@@ -38,10 +38,12 @@
 .pick { position: relative; display: grid; gap: var(--s-3); padding: var(--s-4); border-radius: var(--r-card); border: 1px solid var(--border); background: var(--surface); }
 .pick:hover { border-color: var(--border-strong); }
 .pick img { display: block; width: 100%; height: auto; border-radius: calc(var(--r-card) - 10px); border: 1px solid var(--border); }
-.pick h2 { font-size: var(--fs-xl); margin-top: var(--s-2); }
-.pick h2 a { text-decoration: none; }
-.pick h2 a::after { content: ""; position: absolute; inset: 0; border-radius: var(--r-card); }
-.pick h2 a:focus-visible { outline: none; }
+.picks-round { font-size: var(--fs-2xl); margin-top: var(--s-8); }
+.picks-round + .picks { margin-top: var(--s-5); }
+.pick h3 { font-size: var(--fs-xl); margin-top: var(--s-2); }
+.pick h3 a { text-decoration: none; }
+.pick h3 a::after { content: ""; position: absolute; inset: 0; border-radius: var(--r-card); }
+.pick h3 a:focus-visible { outline: none; }
 .pick:has(a:focus-visible) { outline: 3px solid var(--focus); outline-offset: 4px; }
 .pick p { color: var(--text-muted); max-width: 52ch; }
 @media (max-width: 760px) { .picks { grid-template-columns: 1fr; } }
@@ -113,29 +115,53 @@
 <section class="section">
   <div class="wrap">
     <div class="section-head">
-      <h1 class="section-title">Four hero options</h1>
-      <p class="section-lede">Each preview is the full home page with a different hero. The headline, intro, and everything below the hero stay the same, so you're only comparing the treatment. Use the bar at the bottom of a preview to flip between them.</p>
+      <h1 class="section-title">Hero options</h1>
+      <p class="section-lede">Each preview is the full home page with a different hero. Everything below the hero stays the same. Round 2 changes the structure of the hero itself, and round 1 is kept for comparison. Use the bar at the bottom of a preview to flip between them.</p>
     </div>
+    <h2 class="picks-round">Round 2</h2>
+    <ol class="picks">
+      <li class="pick">
+        <img src="../assets/img/hero/option-e.webp" width="1200" height="750" alt="" loading="lazy">
+        <h3><a href="../hero-options/e/index.html">E. Tour poster</a></h3>
+        <p>The hero is a printed gig poster in your orange, with your name set huge and your career listed as tour dates. Each date links to its case study, and the last one is &#34;Next: your team.&#34;</p>
+      </li>
+      <li class="pick">
+        <img src="../assets/img/hero/option-f.webp" width="1200" height="750" alt="" loading="lazy">
+        <h3><a href="../hero-options/f/index.html">F. Departure board</a></h3>
+        <p>A split-flap headline flips through what you design, once, then stops. Under it, your case studies are listed like departures on a tour board, with platform, scale, and status.</p>
+      </li>
+      <li class="pick">
+        <img src="../assets/img/hero/option-g.webp" width="1200" height="750" alt="" loading="lazy">
+        <h3><a href="../hero-options/g/index.html">G. Name as headline</a></h3>
+        <p>Your name fills the screen like a magazine cover, with your portrait set into the type. Role, focus, and availability sit in a strip underneath.</p>
+      </li>
+      <li class="pick">
+        <img src="../assets/img/hero/option-h.webp" width="1200" height="750" alt="" loading="lazy">
+        <h3><a href="../hero-options/h/index.html">H. Bento</a></h3>
+        <p>The first screen is a set of tiles: the headline, the live Master Tour Dashboard, your photo, an orange availability tile, three numbers, and the site modes.</p>
+      </li>
+    </ol>
+    <h2 class="picks-round">Round 1</h2>
     <ol class="picks">
       <li class="pick">
         <img src="../assets/img/hero/option-a.webp" width="1200" height="750" alt="" loading="lazy">
-        <h2><a href="../hero-options/a/index.html">A. Live system</a></h2>
-        <p>The released Master Tour Dashboard runs inside a phone next to the headline. The theme and text size switches change this site and the app at the same time, so your design system work shows before anyone scrolls.</p>
+        <h3><a href="../hero-options/a/index.html">A. Live system</a></h3>
+        <p>The released Master Tour Dashboard runs inside a phone next to the headline. The theme and text size switches change this site and the app at the same time.</p>
       </li>
       <li class="pick">
         <img src="../assets/img/hero/option-b.webp" width="1200" height="750" alt="" loading="lazy">
-        <h2><a href="../hero-options/b/index.html">B. Work reel</a></h2>
-        <p>Real screens from all four case studies drift slowly under the headline on a slight tilt. It pauses on hover and has a pause button. It shows range and volume right away.</p>
+        <h3><a href="../hero-options/b/index.html">B. Work reel</a></h3>
+        <p>Real screens from all four case studies drift slowly under the headline on a slight tilt, with a pause button.</p>
       </li>
       <li class="pick">
         <img src="../assets/img/hero/option-c.webp" width="1200" height="750" alt="" loading="lazy">
-        <h2><a href="../hero-options/c/index.html">C. Kinetic type</a></h2>
-        <p>No images. The headline animates in on Instrument Sans&#39;s width and weight, and letters near the cursor get wider, bolder, and orange. This is the quietest option.</p>
+        <h3><a href="../hero-options/c/index.html">C. Kinetic type</a></h3>
+        <p>No images. The headline animates in on the width and weight axes, and letters near the cursor get wider, bolder, and orange.</p>
       </li>
       <li class="pick">
         <img src="../assets/img/hero/option-d.webp" width="1200" height="750" alt="" loading="lazy">
-        <h2><a href="../hero-options/d/index.html">D. Annotated portrait</a></h2>
-        <p>Your photo, selected like a frame in Figma, with four callouts around it. This is the most personal option and the only one that puts your face above the fold.</p>
+        <h3><a href="../hero-options/d/index.html">D. Annotated portrait</a></h3>
+        <p>Your photo, selected like a frame in Figma, with four callouts around it.</p>
       </li>
     </ol>
   </div>

@@ -71,3 +71,43 @@
   new MutationObserver(function () { setActive(); measure(); }).observe(root, { attributes: true, attributeFilter: ["data-motion", "data-text"] });
   if (mq.addEventListener) mq.addEventListener("change", setActive);
 })();
+
+/* ---------- F. Split-flap headline: flips through three words once, in under five seconds ---------- */
+(function () {
+  "use strict";
+  var flap = document.querySelector("[data-flap]");
+  if (!flap) return;
+  var root = document.documentElement;
+  if (root.getAttribute("data-motion") === "reduced" || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  var cells = Array.prototype.slice.call(flap.querySelectorAll(".flap-cell"));
+  var words = flap.getAttribute("data-flap").split("|");
+  var pool = "abcdefghijklmnopqrstuvwxyzAEIOU";
+  function pad(w) { while (w.length < cells.length) w += " "; return w.slice(0, cells.length); }
+  function setChar(cell, ch) {
+    var span = cell.firstElementChild;
+    span.textContent = ch === " " ? "" : ch;
+    cell.classList.remove("is-flipping");
+    void cell.offsetWidth;
+    cell.classList.add("is-flipping");
+  }
+  function flipTo(word) {
+    var target = pad(word);
+    cells.forEach(function (cell, i) {
+      var current = cell.firstElementChild.textContent || " ";
+      if (current === target[i]) return;
+      var steps = 2 + (i % 3);
+      for (var s = 0; s <= steps; s++) {
+        (function (s) {
+          setTimeout(function () {
+            setChar(cell, s === steps ? target[i] : pool[Math.floor(Math.random() * pool.length)]);
+          }, i * 32 + s * 55);
+        })(s);
+      }
+    });
+  }
+  var t = 600;
+  words.forEach(function (w) {
+    setTimeout(function () { flipTo(w); }, t);
+    t += 1450;
+  });
+})();
