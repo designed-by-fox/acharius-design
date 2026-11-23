@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="en" data-theme="dark" data-text="default" data-motion="on">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Master Tour mobile redesign and design system | Acharius Fox</title>
+<meta name="description" content="How Acharius Fox redesigned the Master Tour mobile app for phone and tablet, built Eventric&#39;s first design system, and shipped to 60,000+ monthly users in November 2025.">
+<link rel="canonical" href="https://www.acharius.design/live-event-platform/">
+<meta name="theme-color" content="#15120f" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#fbf8f5" media="(prefers-color-scheme: light)">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Acharius Fox">
+<meta property="og:title" content="Rebuilding the Master Tour app for 60,000 people on tour">
+<meta property="og:description" content="How Acharius Fox redesigned the Master Tour mobile app for phone and tablet, built Eventric&#39;s first design system, and shipped to 60,000+ monthly users in November 2025.">
+<meta property="og:url" content="https://www.acharius.design/live-event-platform/">
+<meta property="og:image" content="https://www.acharius.design/assets/img/master-tour/cover.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preload" href="../assets/fonts/instrument-sans-latin-standard-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/css/site.css">
+<script>
+/* Apply saved modes before first paint so the page never flashes the wrong theme */
+(function (r) {
+  function g(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+  r.classList.add("js");
+  var t = g("fox-theme"); r.setAttribute("data-theme", t === "light" || t === "dark" ? t : "dark");
+  r.setAttribute("data-text", g("fox-text") === "large" ? "large" : "default");
+  var m = g("fox-motion");
+  if (m !== "on" && m !== "reduced") m = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches ? "reduced" : "on";
+  r.setAttribute("data-motion", m);
+})(document.documentElement);
+</script>
+<script src="../assets/js/site.js" defer></script>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-fox" viewBox="0 0 32 32"><path style="fill:var(--accent)" d="M3 3.5 12 11h8l9-7.5V16L16 29 3 16Z"/><path style="fill:none;stroke:var(--bg)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M10.5 17.5 16 22.5l5.5-5"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7z"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M4.6 4.6 6 6M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4 6 18M18 6l1.4-1.4"/></g></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M6 6l12 12M18 6 6 18"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-arrow-left" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M19 12H5M11 6l-6 6 6 6"/></symbol>
+    <symbol id="i-arrow-right" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-external" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M8 7h9v9"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></g></symbol>
+    <symbol id="i-zoom" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></g></symbol>
+    <symbol id="i-target" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/></g></symbol>
+    <symbol id="i-pen" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M4 20h4L19 9l-4-4L4 16zM13.5 6.5l4 4"/></symbol>
+    <symbol id="i-trend" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M3 17l6-6 4 4 8-8M15 7h6v6"/></symbol>
+    <symbol id="i-layers" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="m12 3 9 5-9 5-9-5zM3 13l9 5 9-5M3 17.5l9 5 9-5"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M10.5 18.5h3"/></g></symbol>
+    <symbol id="i-access" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="4.5" r="1.8"/><path d="M5 8.5c2.3.6 4.6 1 7 1s4.7-.4 7-1M12 9.5v4.5M12 14l-3 6.5M12 14l3 6.5"/></g></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></g></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></g></symbol>
+    <symbol id="i-file" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8zM14 3v5h5M9 13h6M9 17h4"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8 12.5 2.8 2.8L16 10"/></g></symbol>
+    <symbol id="i-rotate" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"/></symbol>
+    <symbol id="i-store" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M12 7v6M9.5 10.5 12 13l2.5-2.5"/></g></symbol>
+    <symbol id="i-play-proto" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M10 8.5v5l4-2.5z" fill="currentColor"/><path d="M8 21h8" stroke-linecap="round"/></g></symbol>
+  </defs>
+</svg><a class="skip-link" href="#main">Skip to main content</a>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="../index.html" aria-label="Acharius Fox, home">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><use href="#i-fox"/></svg>
+      <span class="brand-name" aria-hidden="true">Acharius <span class="nm">Fox</span></span>
+    </a>
+    <nav class="site-nav" id="site-nav" aria-label="Main">
+      <ul class="nav-list">
+        <li><a href="../index.html#work" aria-current="page">Work</a></li>
+        <li><a href="../about/index.html">About</a></li>
+        <li><a href="../art/index.html">Art</a></li>
+        <li class="nav-contact"><a href="../index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-btn theme-toggle" type="button" aria-label="Switch to light theme">
+        <svg class="i-moon" aria-hidden="true"><use href="#i-moon"/></svg>
+        <svg class="i-sun" aria-hidden="true"><use href="#i-sun"/></svg>
+      </button>
+      <button class="icon-btn menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+        <svg aria-hidden="true"><use href="#i-menu"/></svg>
+      </button>
+      <a class="btn btn-primary btn-sm header-cta" href="../index.html#contact">Contact</a>
+    </div>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+<article class="cs" style="--tint:#e5322d">
+  <header class="wrap cs-hero">
+    <a class="cs-back" href="../index.html#work"><svg aria-hidden="true"><use href="#i-arrow-left"/></svg>All work</a>
+    <ul class="chips" aria-label="Focus areas">
+<li class="chip chip--accent">Mobile and tablet</li><li class="chip chip--accent">Design systems</li><li class="chip chip--accent">Research</li>    </ul>
+    <h1 class="cs-title"><span data-draft="case study title">Rebuilding the <span class="nm">Master Tour</span> app for 60,000 people on tour</span></h1>
+    <p class="cs-sub">Master Tour is a suite of products built for touring professionals. <span data-draft="subtitle">I led design for its mobile redesign, a new venue product, and its first design system.</span></p>
+<div class="cs-links">
+  <a class="btn btn-primary" href="#design-system"><svg aria-hidden="true"><use href="#i-layers"/></svg>Try the design system demo</a>
+  <a class="btn btn-ghost" href="https://apps.apple.com/us/app/master-tour-mobile/id347364187" target="_blank" rel="noopener">App Store<svg aria-hidden="true"><use href="#i-external"/></svg><span class="visually-hidden">(opens in a new tab)</span></a>
+  <a class="btn btn-ghost" href="https://play.google.com/store/apps/details?id=com.eventric.mastertour" target="_blank" rel="noopener">Google Play<svg aria-hidden="true"><use href="#i-external"/></svg><span class="visually-hidden">(opens in a new tab)</span></a>
+</div>
+  </header>
+
+  <div class="wrap">
+    <div class="cs-cover"><div class="badges"><span class="project-flag"><svg aria-hidden="true"><use href="#i-check"/></svg>Live on the App Store and Google Play</span></div>
+<div class="stage stage--mt" role="img" aria-label="Three screens from the redesigned Master Tour mobile app: Files, the show-day Dashboard, and the Guest List summary">
+  <div class="dev dev--phone" style="left:13%;bottom:-14%;width:25%;--r:-7deg;z-index:1"><img src="../assets/img/master-tour/mobile-files-redesign.png" width="1179" height="2556" alt="" loading="lazy" decoding="async"></div>
+  <div class="dev dev--phone" style="left:37.5%;bottom:-4%;width:25%;--r:0deg;z-index:3"><img src="../assets/img/master-tour/mobile-dashboard-released.png" width="786" height="1712" alt="" loading="lazy" decoding="async"></div>
+  <div class="dev dev--phone" style="left:62%;bottom:-14%;width:25%;--r:7deg;z-index:2"><img src="../assets/img/master-tour/guest-list-final-summary.png" width="1179" height="2556" alt="" loading="lazy" decoding="async"></div>
+</div>
+
+</div>
+<dl class="snapshot" aria-label="Project snapshot">
+  <div><dt>My role</dt><dd>Lead UX Designer</dd><dd>Only UX designer for my first two years</dd></div>
+  <div><dt>Timeline</dt><dd>May 2023 to June 2026</dd><dd>Public mobile launch, November 2025</dd></div>
+  <div><dt>Team</dt><dd>Lead PM, lead engineer and the engineering team, COO / VP of Product, and me as lead designer</dd></div>
+  <div><dt>Platforms</dt><dd>iOS and Android, phone and tablet</dd><dd>Web for Master Tour Venue</dd></div>
+</dl>
+<section class="tldr" aria-labelledby="tldr-title">
+  <h2 class="tldr-head" id="tldr-title">The short version</h2>
+  <div class="tldr-grid">
+    <div class="tldr-item">
+      <svg aria-hidden="true"><use href="#i-target"/></svg>
+      <h3>The challenge</h3>
+      <p>The mobile app hadn't seen a real update since it launched, seven years earlier. Information was buried several taps deep, and the most requested feature was simply more editing on mobile.</p>
+    </div>
+    <div class="tldr-item">
+      <svg aria-hidden="true"><use href="#i-pen"/></svg>
+      <h3>What I did</h3>
+      <p data-draft="tldr">Rebuilt the app's UX and information architecture from scratch over seven months, added a show-day Dashboard, reworked navigation, files, and the guest list, and built Eventric's first design system.</p>
+    </div>
+    <div class="tldr-item">
+      <svg aria-hidden="true"><use href="#i-trend"/></svg>
+      <h3>The outcome</h3>
+      <p data-draft="tldr">Shipped to the App Store and Google Play in late November 2025 for 60,000+ monthly users, after a 20-person beta changed how the Dashboard works.</p>
+    </div>
+  </div>
+</section>
+<div class="methods">
+  <h2>Methods and skills</h2>
+  <ul class="chips">
+    <li class="chip">User interviews</li><li class="chip">Beta testing</li><li class="chip">Concept testing</li>
+    <li class="chip">Prototyping</li><li class="chip">Information architecture</li><li class="chip">Mobile and tablet UI</li>
+    <li class="chip">Figma variables and tokens</li><li class="chip">Stakeholder management</li>
+  </ul>
+</div>
+
+    <div class="cs-layout">
+      <nav class="toc" aria-labelledby="toc-title">
+        <h2 id="toc-title">On this page</h2>
+        <ol>
+<li><a href="#context">The product</a></li>
+<li><a href="#role">My role</a></li>
+<li><a href="#process">Process and timeline</a></li>
+<li><a href="#decisions">Key decisions</a></li>
+<li><a href="#design-system">Design system</a></li>
+<li><a href="#venue">Master Tour Venue</a></li>
+<li><a href="#brand">Logo and website</a></li>
+<li><a href="#outcomes">Scale and results</a></li>
+<li><a href="#reflection">Reflection</a></li>
+        </ol>
+      </nav>
+      <div class="cs-body">
+        <details class="toc-mobile">
+          <summary>On this page</summary>
+          <ol>
+<li><a href="#context">The product</a></li>
+<li><a href="#role">My role</a></li>
+<li><a href="#process">Process and timeline</a></li>
+<li><a href="#decisions">Key decisions</a></li>
+<li><a href="#design-system">Design system</a></li>
+<li><a href="#venue">Master Tour Venue</a></li>
+<li><a href="#brand">Logo and website</a></li>
+<li><a href="#outcomes">Scale and results</a></li>
+<li><a href="#reflection">Reflection</a></li>
+          </ol>
+        </details>
+<section class="cs-section" id="context" aria-labelledby="context-h">
+  <div><span class="cs-num" aria-hidden="true"></span><h2 class="cs-h2" id="context-h">One app every user touches</h2></div>
+  <div class="prose">
+    <p>Master Tour is split across two apps. Tour managers are the paying customers, with over <strong>6,000 monthly subscriptions</strong>, and they use both the desktop and mobile apps. Crew members and everyone else on a tour use the mobile app for free once a tour manager adds them to their organization. That's how mobile reached over <strong>60,000 monthly users</strong>, about ten for every paid subscription.</p>
+    <p>Neither app had a source of truth in Figma. The only reference for how either one worked was the live build itself. That gap was a big part of why we redesigned mobile, since it's the one app every user touches.</p>
+  </div>
+  <figure class="figure"><div class="frame "><img src="../assets/img/master-tour/desktop-dashboard.png" width="1894" height="1166" alt="Master Tour Desktop app on the Dashboard for a show day, with a sidebar menu, the day&#x27;s schedule, notes, local map, venue and hotel details, key contacts, and a list of tour dates" loading="lazy" decoding="async" id="img-mt-desktop-73"><button class="icon-btn zoom-btn" type="button" data-lightbox="../assets/img/master-tour/desktop-dashboard.png" data-img="img-mt-desktop-73" aria-label="View larger: Master Tour Desktop app on the Dashboard for a show day"><svg aria-hidden="true"><use href="#i-zoom"/></svg></button></div><figcaption><b>Master Tour Desktop:</b> the Dashboard tour managers use to plan each show day.</figcaption></figure>
+</section>
+
+<section class="cs-section" id="role" aria-labelledby="role-h">
+  <div><span class="cs-num" aria-hidden="true"></span><h2 class="cs-h2" id="role-h">The first designer in almost 20 years</h2></div>
+  <div class="prose">
+    <p>I joined Eventric as their first full-time designer in almost 20 years, and for two years I was the only UX designer at the company. My work included redesigning the mobile app for Master Tour, their touring and live event logistics software, used by tour managers to coordinate shows and by crew members to check travel times, guest lists, set lists, and other day-of details on the road.</p>
+    <p>Because the executive team was watching this project closely, I spent as much time managing expectations and gathering input as I did designing. The Figma file collected <strong>over 1,000 comments</strong> from leadership and engineering before the MVP was signed off. Balancing that feedback against what was actually feasible for development, while keeping the redesign coherent, was as much a part of the job as the screens themselves.</p>
+  </div>
+</section>
+
+<section class="cs-section" id="process" aria-labelledby="process-h">
+  <div><span class="cs-num" aria-hidden="true"></span><h2 class="cs-h2" id="process-h">From a blank file to the app stores</h2></div>
+  <div class="prose">
+    <p>The mobile app hadn't seen a real update since it launched, seven years earlier. Over seven months I rebuilt the app's UX and information architecture from scratch, using Forma 36 as a base design system since none had existed before. This was also the first source of truth the team had ever had outside of live builds, which meant building out a real design and prototyping process alongside the redesign itself.</p>
+    <p>Designs were mostly signed off in July 2024, with some changes along the way to account for development. From there, a small team took about 16 months to get the app out the door. After a limited beta, the app launched to the public in late November 2025.</p>
+  </div>
+  <ol class="steps" style="--steps:5" aria-label="Project timeline">
+    <li class="step"><p class="step-when">May 2023</p><p class="step-what">Joined Eventric</p><p class="step-note">No design system, no Figma source of truth</p></li>
+    <li class="step"><p class="step-when">7 months</p><p class="step-what">Redesign</p><p class="step-note">UX and IA rebuilt, concepts tested with interviews and prototypes</p></li>
+    <li class="step"><p class="step-when">July 2024</p><p class="step-what">MVP sign-off</p><p class="step-note">After 1,000+ Figma comments</p></li>
+    <li class="step"><p class="step-when">About 16 months</p><p class="step-what">Build and beta</p><p class="step-note">20 power users, 15 interviewed</p></li>
+    <li class="step"><p class="step-when">Nov 2025</p><p class="step-what">Public launch</p><p class="step-note">App Store and Google Play</p></li>
+  </ol>
+</section>
+
+<section class="cs-section" id="decisions" aria-labelledby="decisions-h">
+  <div><span class="cs-num" aria-hidden="true"></span><h2 class="cs-h2" id="decisions-h">Key decisions</h2></div>
+  <div class="decisions">
+
+    <article class="decision" aria-labelledby="d1">
+      <div class="decision-head">
+        <span class="label">Decision 1</span>
+        <h3 class="decision-title" id="d1">Open on a show-day Dashboard instead of a list of dates</h3>
+      </div>
+      <div class="decision-grid">
+        <div><h4>The situation</h4><p>The app used to drop everyone onto a list of dates. Show-day details sat several taps deep.</p></div>
+        <div class="chosen"><h4>What I chose</h4><p>We added a Dashboard so mobile would feel closer to what tour managers see on desktop, with the day's venue, schedule, notes, and files at the top level.</p></div>
+        <div><h4>The trade-off</h4><p data-draft="trade-off">Bringing desktop-level detail to one phone screen meant a lot of information competing for space, which is exactly what the beta pushed back on.</p></div>
+      </div>
+      <div class="gallery gallery--phones" style="--cols:3">
+        <figure class="figure"><div class="frame frame--phone"><img src="../assets/img/master-tour/mobile-original-dates.png" width="484" height="1052" alt="Original Master Tour mobile app opening on a Dates screen, a plain list of tour dates showing venue, city, and time zone for each day" loading="lazy" decoding="async" id="img-mt-dates-74"><button class="icon-btn zoom-btn" type="button" data-lightbox="../assets/img/master-tour/mobile-original-dates.png" data-img="img-mt-dates-74" aria-label="View larger: Original Master Tour mobile app opening on a Dates screen"><svg aria-hidden="true"><use href="#i-zoom"/></svg></button></div><figcaption><span class="tag-state">Original</span>Dates</figcaption></figure>
+        <figure class="figure"><div class="frame frame--phone"><img src="../assets/img/master-tour/mobile-dashboard-draft.png" width="1179" height="2556" alt="Early draft of the Master Tour mobile Dashboard, with a date picker, venue details, and horizontally scrolling cards for Schedule and Notes" loading="lazy" decoding="async" id="img-mt-dash-draft-75"><button class="icon-btn zoom-btn" type="button" data-lightbox="../assets/img/master-tour/mobile-dashboard-draft.png" data-img="img-mt-dash-draft-75" aria-label="View larger: Early draft of the Master Tour mobile Dashboard"><svg aria-hidden="true"><use href="#i-zoom"/></svg></button></div><figcaption><span class="tag-state">Draft</span>Dashboard</figcaption></figure>
+        <figure class="figure"><div class="frame frame--phone"><img src="../assets/img/master-tour/mobile-dashboard-released.png" width="786" height="1712" alt="Released Master Tour mobile Dashboard for a single day, with venue details, shortcut buttons for Files, Hotels, Events, and Guest List, and stacked Day Notes and Hotel Notes" loading="lazy" decoding="async" id="img-mt-dash-final-76"><button class="icon-btn zoom-btn" type="button" data-lightbox="../assets/img/master-tour/mobile-dashboard-released.png" data-img="img-mt-dash-final-76" aria-label="View larger: Released Master Tour mobile Dashboard for a single day"><svg aria-hidden="true"><use href="#i-zoom"/></svg></button></div><figcaption><span class="tag-state tag-state--after">Released</span>Dashboard</figcaption></figure>
+      </div>
+    </article>
+
+    <article class="decision" aria-labelledby="d2">
+      <div class="decision-head">
+        <span class="label">Decision 2</span>
+        <h3 class="decision-title" id="d2">Change the Dashboard layout based on beta feedback, before launch</h3>
+      </div>
+      <div class="decision-grid">
+        <div><h4>The situation</h4><p>Before the public release, we ran a limited beta with 20 power users, and I interviewed 15 of them. Tour managers kept raising the same worry: with the Dashboard's horizontally scrolling cards, crew could easily miss key details.</p></div>
+        <div class="chosen"><h4>What I chose</h4><p>I reworked it into a vertical layout with collapsible sections before launch.</p></div>
+        <div><h4>The trade-off</h4><p data-draft="trade-off">A longer page to scroll, in exchange for nothing hidden off to the side. Collapsible sections let each person fold away what they don't need.</p></div>
+      </div>
+      <p class="pull" data-draft="pull quote">Fifteen beta interviews caught a layout problem we would otherwise have shipped to 60,000 people.</p>
+    </article>
+
+    <article class="decision" aria-labelledby="d3">
+      <div class="decision-head">
+        <span class="label">Decision 3</span>
+        <h3 class="decision-title" id="d3">Let people build their own navigation</h3>
+      </div>
+      <div class="decision-grid">
+        <div><h4>The situation</h4><p>Different roles lean on different parts of the app. Some users only ever submit guest list requests, for example. The original bottom nav had four fixed tabs, and a lot of information sat at least four taps deep.</p></div>
+        <div class="chosen"><h4>What I chose</h4><p>The new More menu brings any section down to two taps. Unlocking it lets you drag tabs into any order, so the ones you use most are pinned to the bottom nav.</p></div>
+        <div><h4>Why it matters to me</h4><p>I'm personally very proud of how this turned out.</p></div>
+      </div>
+      <div class="gallery gallery--phones" style="--cols:2">
+        <figure class="figure"><div class="frame frame--phone"><img src="../assets/img/master-tour/mobile-more-menu.png" width="1179" height="2556" alt="Master Tour mobile More menu open over the Dates screen, with Settings, a Mental Health partnership link, and sections like Push Notifications, Files, Hotel, Guest List, Set List, Tasks, Notes, Crew, and Map" loading="lazy" decoding="async" id="img-mt-more-77"><button class="icon-btn zoom-btn" type="button" data-lightbox="../assets/img/master-tour/mobile-more-menu.png" data-img="img-mt-more-77" aria-label="View larger: Master Tour mobile More menu open over the Dates screen"><svg aria-hidden="true"><use href="#i-zoom"/></svg></button></div><figcaption><span class="tag-state tag-state--after">Redesign</span>More menu</figcaption></figure>
+        <figure class="figure"><div class="frame frame--phone"><img src="../assets/img/master-tour/mobile-more-menu-unlocked.png" width="1179" height="2556" alt="Master Tour mobile More menu unlocked, with drag handles next to every item so tabs like Dashboard, Dates, Schedule, and Events can be reordered and pinned to the bottom nav" loading="lazy" decoding="async" id="img-mt-more-unlocked-78"><button class="icon-btn zoom-btn" type="button" data-lightbox="../assets/img/master-tour/mobile-more-menu-unlocked.png" data-img="img-mt-more-unlocked-78" aria-label="View larger: Master Tour mobile More menu unlocked"><svg aria-hidden="true"><use href="#i-zoom"/></svg></button></div><figcaption><span class="tag-state tag-state--after">Redesign</span>More menu, unlocked for reordering</figcaption></figure>
+      </div>
+    </article>
+
+    <article class="decision" aria-labelledby="d4">
+      <div class="decision-head">
+        <span class="label">Decision 4</span>
+        <h3 class="decision-title" id="d4">Put every file in one place, and actually use the tablet</h3>
+      </div>
+      <div class="decision-grid">
+        <div><h4>The situation</h4><p>Mobile users could only open files attached to a specific date. The original app ran on tablets but rarely scaled to fit them.</p></div>
+        <div class="chosen"><h4>What I chose</h4><p>Files now shows tour and organization files alongside the day's files, and the list can be filtered. Both were new to mobile. On tablet, Files splits into two columns in both portrait and landscape.</p></div>
+        <div><h4>The result</h4><p data-draft="decision copy">Tablet users get a layout made for the screen instead of a phone list stretched edge to edge.</p></div>
+      </div>
+      <div class="gallery gallery--phones" style="--cols:2">
+        <figure class="figure"><div class="frame frame--phone"><img src="../assets/img/master-tour/mobile-original-attachments.png" width="819" height="1781" alt="Original Master Tour mobile Attachments screen in dark mode, a single list of files for the day with a download button next to each" loading="lazy" decoding="async" id="img-mt-files-orig-79"><button class="icon-btn zoom-btn" type="button" data-lightbox="../assets/img/master-tour/mobile-original-attachments.png" data-img="img-mt-files-orig-79" aria-label="View larger: Original Master Tour mobile Attachments screen in dark mode"><svg aria-hidden="true"><use href="#i-zoom"/></svg></button></div><figcaption><span class="tag-state">Original</span>Attachments</figcaption></figure>
+        <figure class="figure"><div class="frame frame--phone"><img src="../assets/img/master-tour/mobile-files-redesign.png" width="1179" height="2556" alt="Redesigned Master Tour mobile Files screen in dark mode, with files grouped into Today&#x27;s, Tour, and Organization sections, color-coded file type icons, and a note showing who each file is visible to" loading="lazy" decoding="async" id="img-mt-files-new-80"><button class="icon-btn zoom-btn" type="button" data-lightbox="../assets/img/master-tour/mobile-files-redesign.png" data-img="img-mt-files-new-80" aria-label="View larger: Redesigned Master Tour mobile Files screen in dark mode"><svg aria-hidden="true"><use href="#i-zoom"/></svg></button></div><figcaption><span class="tag-state tag-state--after">Redesign</span>Files</figcaption></figure>
+      </div>
+      <div class="gallery" style="--cols:3">
+        <figure class="figure"><div class="frame "><img src="../assets/img/master-tour/tablet-original-attachments.png" width="1295" height="1727" alt="Original Master Tour Attachments screen on a tablet, a single list of three files stretched across the full width with most of the screen left empty" loading="lazy" decoding="async" id="img-mt-tab-orig-81"><button class="icon-btn zoom-btn" type="button" data-lightbox="../assets/img/master-tour/tablet-original-attachments.png" data-img="img-mt-tab-orig-81" aria-label="View larger: Original Master Tour Attachments screen on a tablet"><svg aria-hidden="true"><use href="#i-zoom"/></svg></button></div><figcaption><span class="tag-state">Original</span>Attachments on tablet</figcaption></figure>
+        <figure class="figure"><div class="frame "><img src="../assets/img/master-tour/tablet-files-portrait.png" width="768" height="1024" alt="Redesigned Master Tour Files screen on a tablet in portrait, with Today&#x27;s Files in one column and Tour Files and Organization Files in a second column" loading="lazy" decoding="async" id="img-mt-tab-port-82"><button class="icon-btn zoom-btn" type="button" data-lightbox="../assets/img/master-tour/tablet-files-portrait.png" data-img="img-mt-tab-port-82" aria-label="View larger: Redesigned Master Tour Files screen on a tablet in portrait"><svg aria-hidden="true"><use href="#i-zoom"/></svg></button></div><figcaption><span class="tag-state tag-state--after">Redesign</span>Files, portrait</figcaption></figure>
+        <figure class="figure"><div class="frame "><img src="../assets/img/master-tour/tablet-files-landscape.png" width="1024" height="768" alt="Redesigned Master Tour Files screen on a tablet in landscape, with the same two-column layout of Today&#x27;s, Tour, and Organization files centered on a wider screen" loading="lazy" decoding="async" id="img-mt-tab-land-83"><button class="icon-btn zoom-btn" type="button" data-lightbox="../assets/img/master-tour/tablet-files-landscape.png" data-img="img-mt-tab-land-83" aria-label="View larger: Redesigned Master Tour Files screen on a tablet in landscape"><svg aria-hidden="true"><use href="#i-zoom"/></svg></button></div><figcaption><span class="tag-state tag-state--after">Redesign</span>Files, landscape</figcaption></figure>
+      </div>
+    </article>
+
+    <article class="decision" aria-labelledby="d5">
+      <div class="decision-head">
+        <span class="label">Decision 5</span>
+        <h3 class="decision-title" id="d5">Guest list: summary first, actions in the list</h3>
+      </div>
+      <div class="decision-grid">
+        <div><h4>The situation</h4><p>Guest list requests used to sit in a plain list, with the summary at the bottom and actions hidden in a popup.</p></div>
+        <div class="chosen"><h4>What I chose</h4><p>The redesign moves the summary to the top, breaks it out by status, and lets you change a request's status right from the list.</p></div>
+        <div><h4>How it evolved</h4><p data-draft="decision copy">The draft split requests into two groups. The final version shows every status, plus allotment and remaining counts.</p></div>
+      </div>
+      <div class="gallery gallery--phones" style="--cols:3">
+        <figure class="figure"><div class="frame frame--phone"><img src="../assets/img/master-tour/guest-list-original-request.png" width="666" height="1448" alt="Original Master Tour mobile Guest List in dark mode, with a popup over the list showing one request&#x27;s details and small Edit, Delete, decline, and approve controls" loading="lazy" decoding="async" id="img-mt-gl-req-84"><button class="icon-btn zoom-btn" type="button" data-lightbox="../assets/img/master-tour/guest-list-original-request.png" data-img="img-mt-gl-req-84" aria-label="View larger: Original Master Tour mobile Guest List in dark mode"><svg aria-hidden="true"><use href="#i-zoom"/></svg></button></div><figcaption><span class="tag-state">Original</span>Request popup</figcaption></figure>
+        <figure class="figure"><div class="frame frame--phone"><img src="../assets/img/master-tour/guest-list-original-summary.png" width="666" height="1448" alt="Original Master Tour mobile Guest List in light mode, a plain list of requests with a summary of ticket counts by type at the very bottom" loading="lazy" decoding="async" id="img-mt-gl-sum-85"><button class="icon-btn zoom-btn" type="button" data-lightbox="../assets/img/master-tour/guest-list-original-summary.png" data-img="img-mt-gl-sum-85" aria-label="View larger: Original Master Tour mobile Guest List in light mode"><svg aria-hidden="true"><use href="#i-zoom"/></svg></button></div><figcaption><span class="tag-state">Original</span>Summary at the bottom</figcaption></figure>
+        <figure class="figure"><div class="frame frame--phone"><img src="../assets/img/master-tour/guest-list-draft.png" width="1179" height="2556" alt="Draft of the redesigned Guest List, with the event details and a New or Pending versus Approved summary at the top, above color-coded request cards" loading="lazy" decoding="async" id="img-mt-gl-draft-86"><button class="icon-btn zoom-btn" type="button" data-lightbox="../assets/img/master-tour/guest-list-draft.png" data-img="img-mt-gl-draft-86" aria-label="View larger: Draft of the redesigned Guest List"><svg aria-hidden="true"><use href="#i-zoom"/></svg></button></div><figcaption><span class="tag-state">Draft</span>Summary</figcaption></figure>
+        <figure class="figure"><div class="frame frame--phone"><img src="../assets/img/master-tour/guest-list-final-summary.png" width="1179" height="2556" alt="Final redesigned Guest List summary, with arrows to move between events and a table breaking ticket types out by New, Pending, Declined, and Approved, plus allotment and remaining counts" loading="lazy" decoding="async" id="img-mt-gl-final-87"><button class="icon-btn zoom-btn" type="button" data-lightbox="../assets/img/master-tour/guest-list-final-summary.png" data-img="img-mt-gl-final-87" aria-label="View larger: Final redesigned Guest List summary"><svg aria-hidden="true"><use href="#i-zoom"/></svg></button></div><figcaption><span class="tag-state tag-state--after">Final</span>Summary</figcaption></figure>
+        <figure class="figure"><div class="frame frame--phone"><img src="../assets/img/master-tour/guest-list-final-status-menu.png" width="1179" height="2556" alt="Final redesigned Guest List scrolled to the requests, with a status dropdown open on one request showing Approved, New, Pending, and Declined options" loading="lazy" decoding="async" id="img-mt-gl-status-88"><button class="icon-btn zoom-btn" type="button" data-lightbox="../assets/img/master-tour/guest-list-final-status-menu.png" data-img="img-mt-gl-status-88" aria-label="View larger: Final redesigned Guest List scrolled to the requests"><svg aria-hidden="true"><use href="#i-zoom"/></svg></button></div><figcaption><span class="tag-state tag-state--after">Final</span>Status menu</figcaption></figure>
+      </div>
+    </article>
+  </div>
+  <div class="prose">
+    <p>There are a lot more features and UX improvements I'd love to show here, but this page would get very long. If you're curious about any of the changes I made, reach out. I've spent many hours thinking about this app, and I'm always happy to talk about what I learned.</p>
+  </div>
+</section>
+
+<section class="cs-section" id="design-system" aria-labelledby="ds-h">
+  <div><span class="cs-num" aria-hidden="true"></span><h2 class="cs-h2" id="ds-h">A design system you can switch in two clicks</h2></div>
+  <div class="prose">
+    <p>As the product grew, I rebuilt the design system to keep pace, moving from manual styles to Figma's variables and tokens once they became available. By the end, the entire app could switch between mobile and tablet, or light and dark mode, in two clicks, with font size and spacing adjustable globally or per component. That structure also made the system easier to work with using AI tools, which became a growing priority as the design landscape shifted.</p>
+    <p>The original file stayed with Eventric, so I rebuilt the released Dashboard in code using the same setup: a primitives collection, plus one collection that applies them. Try switching the modes below.</p>
+  </div>
+  <iframe class="demo-frame" src="../demos/master-tour-dashboard.html?embed=1" title="Interactive Master Tour Dashboard rebuilt in code, with theme, device, and text size modes" loading="lazy" data-follow-modes></iframe>
+  <p class="prose"><a href="../demos/master-tour-dashboard.html">Open the demo on its own page</a></p>
+</section>
+
+<section class="cs-section" id="venue" aria-labelledby="venue-h">
+  <div><span class="cs-num" aria-hidden="true"></span><h2 class="cs-h2" id="venue-h">Master Tour Venue, a new product</h2></div>
+  <div class="prose">
+    <p>Master Tour Venue started with our CTO. The goal was to connect venues to Master Tour so accurate information flowed between both systems. The proof of concept was a Tech Pack that venues could claim, then sign up for Master Tour Venue to keep their details in Master Tour correct.</p>
+    <p>Out-of-date venue info is a massive pain point in touring. Bands and crew each have their own riders and load-in requirements, and venue details go stale quickly.</p>
+    <p>A contract designer started on the project before I joined, and the green color scheme is their work. Once I came on, I oversaw the main designs for two pieces. The <strong>Tech Pack</strong> is a shareable link venues can send to touring crews. The <strong>Admin Dashboard</strong> is where venue admins sign in and keep their information up to date. Since I was also working on Master Tour Mobile, I built a design system using Material Design's Figma plugin, then used it to course-correct the scale, color, and layout of pages that had already been designed.</p>
+  </div>
+  <div class="gallery" style="--cols:2">
+    <figure class="figure"><div class="frame "><img src="../assets/img/master-tour/venue-poc-dashboard.png" width="1521" height="895" alt="Proof of concept for Master Tour Venue, a dark blue dashboard with a venue picker and cards for Profile, View Tech Pack, and Manage Production" loading="lazy" decoding="async" id="img-mt-v-poc-dash-89"><button class="icon-btn zoom-btn" type="button" data-lightbox="../assets/img/master-tour/venue-poc-dashboard.png" data-img="img-mt-v-poc-dash-89" aria-label="View larger: Proof of concept for Master Tour Venue"><svg aria-hidden="true"><use href="#i-zoom"/></svg></button></div><figcaption><span class="tag-state">Proof of concept</span>Dashboard</figcaption></figure>
+    <figure class="figure"><div class="frame "><img src="../assets/img/master-tour/venue-poc-venue-info.png" width="1521" height="859" alt="Proof of concept for Master Tour Venue, a General Venue Information form with fields for venue type, name, address, website, and phone numbers" loading="lazy" decoding="async" id="img-mt-v-poc-info-90"><button class="icon-btn zoom-btn" type="button" data-lightbox="../assets/img/master-tour/venue-poc-venue-info.png" data-img="img-mt-v-poc-info-90" aria-label="View larger: Proof of concept for Master Tour Venue"><svg aria-hidden="true"><use href="#i-zoom"/></svg></button></div><figcaption><span class="tag-state">Proof of concept</span>Venue info</figcaption></figure>
+  </div>
+  <figure class="figure"><div class="frame "><img src="../assets/img/master-tour/venue-contractor-tech-pack.png" width="1440" height="1024" alt="Contract designer&#x27;s Tech Pack concept in a dark green color scheme, with a collapsible sidebar of production sections and a Facilities panel with image thumbnails" loading="lazy" decoding="async" id="img-mt-v-contract-91"><button class="icon-btn zoom-btn" type="button" data-lightbox="../assets/img/master-tour/venue-contractor-tech-pack.png" data-img="img-mt-v-contract-91" aria-label="View larger: Contract designer&#x27;s Tech Pack concept in a dark green color scheme"><svg aria-hidden="true"><use href="#i-zoom"/></svg></button></div><figcaption><span class="tag-state">Contract designer</span>Tech Pack</figcaption></figure>
+  <div class="gallery" style="--cols:2">
+    <figure class="figure"><div class="frame "><img src="../assets/img/master-tour/venue-tech-pack.png" width="1440" height="1024" alt="Redesigned Master Tour Venue Tech Pack, with a last-updated banner, search, section tabs, and a Venue Info card showing venue details next to a map" loading="lazy" decoding="async" id="img-mt-v-techpack-92"><button class="icon-btn zoom-btn" type="button" data-lightbox="../assets/img/master-tour/venue-tech-pack.png" data-img="img-mt-v-techpack-92" aria-label="View larger: Redesigned Master Tour Venue Tech Pack"><svg aria-hidden="true"><use href="#i-zoom"/></svg></button></div><figcaption><span class="tag-state tag-state--after">Redesign</span>Tech Pack</figcaption></figure>
+    <figure class="figure"><div class="frame "><img src="../assets/img/master-tour/venue-admin-dashboard.png" width="1440" height="1024" alt="Redesigned Master Tour Venue Admin Dashboard on the Facilities tab, with venue and stage pickers in the sidebar, dressing room details, and photo attachments" loading="lazy" decoding="async" id="img-mt-v-admin-93"><button class="icon-btn zoom-btn" type="button" data-lightbox="../assets/img/master-tour/venue-admin-dashboard.png" data-img="img-mt-v-admin-93" aria-label="View larger: Redesigned Master Tour Venue Admin Dashboard on the Facilities tab"><svg aria-hidden="true"><use href="#i-zoom"/></svg></button></div><figcaption><span class="tag-state tag-state--after">Redesign</span>Admin Dashboard</figcaption></figure>
+  </div>
+</section>
+
+<section class="cs-section" id="brand" aria-labelledby="brand-h">
+  <div><span class="cs-num" aria-hidden="true"></span><h2 class="cs-h2" id="brand-h">Logo and website</h2></div>
+  <h3 class="cs-h3">Logo redesign</h3>
+  <div class="prose">
+    <p>The Master Tour logo needed to be brought into a modern era. The old star was also wider than it was tall, which made it hard to use in square spaces like a mobile app icon. I redrew the star to fix both, then carried it across the Master Tour, Master Tour × Eventric, and Master Tour Venue logos. I also tried over 500 font variants for the wordmark, but in the end the CEO decided to keep the original font.</p>
+  </div>
+  <div class="gallery" style="--cols:2">
+    <figure class="figure"><div class="frame "><img src="../assets/img/master-tour/logo-original.png" width="2048" height="313" alt="Original Master Tour logo, a hand-drawn red star with a thick dark outline and a microphone, next to the Master Tour wordmark" loading="lazy" decoding="async" id="img-mt-logo-o-94"></div><figcaption><span class="tag-state">Original</span>Master Tour</figcaption></figure>
+    <figure class="figure"><div class="frame "><img src="../assets/img/master-tour/logo-redesign.png" width="2400" height="291" alt="Redesigned Master Tour logo, a clean geometric red star with a simplified microphone, next to the Master Tour wordmark" loading="lazy" decoding="async" id="img-mt-logo-n-95"></div><figcaption><span class="tag-state tag-state--after">Redesign</span>Master Tour</figcaption></figure>
+    <figure class="figure"><div class="frame "><img src="../assets/img/master-tour/logo-eventric-original.png" width="1992" height="509" alt="Original Master Tour by Eventric logo, with the hand-drawn outlined red star above the Eventric wordmark" loading="lazy" decoding="async" id="img-mt-logo-eo-96"></div><figcaption><span class="tag-state">Original</span>Master Tour × Eventric</figcaption></figure>
+    <figure class="figure"><div class="frame "><img src="../assets/img/master-tour/logo-eventric-redesign.png" width="2000" height="406" alt="Redesigned Master Tour and Eventric logo, with the new geometric red star beside the Master Tour and Eventric wordmarks" loading="lazy" decoding="async" id="img-mt-logo-en-97"></div><figcaption><span class="tag-state tag-state--after">Redesign</span>Master Tour × Eventric</figcaption></figure>
+    <figure class="figure"><div class="frame "><img src="../assets/img/master-tour/logo-venue-original.png" width="2048" height="540" alt="Original Master Tour Venue logo, the hand-drawn outlined red star next to a stacked Master Tour Venue wordmark" loading="lazy" decoding="async" id="img-mt-logo-vo-98"></div><figcaption><span class="tag-state">Original</span>Master Tour Venue</figcaption></figure>
+    <figure class="figure"><div class="frame "><img src="../assets/img/master-tour/logo-venue-redesign.png" width="2400" height="597" alt="Redesigned Master Tour Venue logo, the new geometric star in blue next to a stacked Master Tour Venue wordmark" loading="lazy" decoding="async" id="img-mt-logo-vn-99"></div><figcaption><span class="tag-state tag-state--after">Redesign</span>Master Tour Venue</figcaption></figure>
+  </div>
+  <h3 class="cs-h3">Website</h3>
+  <div class="prose">
+    <p>I redesigned the Master Tour website, its first update in seven years. The client list was out of date, and we wanted to refresh the brand for people who might be finding us for the first time. The website is also where tour managers sign up for their 14-day free trial, which makes it the first step of the journey for our paying customers. First impressions matter.</p>
+  </div>
+  <div class="compare">
+    <figure class="figure"><div class="scroll-frame" tabindex="0" role="region" aria-label="Master Tour website, full desktop page"><img src="../assets/img/master-tour/website-desktop.jpg" width="1600" height="6231" alt="Full-page desktop design of the Master Tour marketing website in a dark theme, with a hero and product screenshot, usage stats, feature cards, a client photo grid, FAQs, and footer" loading="lazy" decoding="async"></div><figcaption>Desktop. Scroll inside the frame to see the full page.</figcaption></figure>
+    <figure class="figure"><div class="scroll-frame" tabindex="0" role="region" aria-label="Master Tour website, full mobile page"><img src="../assets/img/master-tour/website-mobile.jpg" width="393" height="7713" alt="Full-page mobile design of the Master Tour marketing website, with the same sections stacked in a single column" loading="lazy" decoding="async"></div><figcaption>Mobile. Scroll inside the frame to see the full page.</figcaption></figure>
+  </div>
+</section>
+
+<section class="cs-section" id="outcomes" aria-labelledby="outcomes-h">
+  <div><span class="cs-num" aria-hidden="true"></span><h2 class="cs-h2" id="outcomes-h">Scale and results</h2></div>
+  <ul class="metrics" role="list">
+    <li class="metric"><span class="metric-value">60,000+</span><span class="metric-label">monthly mobile users on the redesigned app</span></li>
+    <li class="metric"><span class="metric-value">6,000+</span><span class="metric-label">monthly paid subscriptions from tour managers</span></li>
+    <li class="metric"><span class="metric-value">4 <small>to</small> 2</span><span class="metric-label">taps to reach any section with the new More menu</span></li>
+    <li class="metric"><span class="metric-value">1,000+</span><span class="metric-label">Figma comments from leadership and engineering worked through before MVP sign-off</span></li>
+    <li class="metric"><span class="metric-value">500+</span><span class="metric-label">phone and tablet screens in the redesign</span></li>
+    <li class="metric"><span class="metric-value">Nov 2025</span><span class="metric-label">public launch on the App Store and Google Play</span></li>
+  </ul>
+</section>
+
+<section class="cs-section" id="reflection" aria-labelledby="reflection-h">
+  <div><span class="cs-num" aria-hidden="true"></span><h2 class="cs-h2" id="reflection-h">Reflection</h2></div>
+  <div class="reflect">
+    <div class="reflect-card">
+      <h3><svg aria-hidden="true"><use href="#i-check"/></svg>What worked</h3>
+      <p data-draft="reflection: needs your voice">Putting the design in front of power users before the public launch. The beta interviews were short, but they changed the most important screen in the app.</p>
+    </div>
+    <div class="reflect-card">
+      <h3><svg aria-hidden="true"><use href="#i-rotate"/></svg>What I'd do differently</h3>
+      <p data-draft="reflection: needs your voice">With 16 months between sign-off and launch, I'd set up a lighter, living spec early on, so the changes we made for development were tracked in one place instead of across comments.</p>
+    </div>
+  </div>
+</section>
+      </div>
+    </div>
+
+    <div class="next-project">
+      <div>
+        <p class="label">Next case study</p>
+        <h2><a href="../supplier-transfer/index.html">Helping <span class="nm">Parachute Health</span> suppliers hand off orders they can't fill</a></h2>
+      </div>
+      <span class="next-arrow" aria-hidden="true"><svg><use href="#i-arrow-right"/></svg></span>
+    </div>
+  </div>
+</article>
+<section class="section" id="contact" aria-labelledby="contact-title">
+  <div class="wrap">
+    <div class="contact">
+      <h2 class="contact-title" id="contact-title">Let's talk</h2>
+      <p data-draft="contact copy">I'm looking for Lead and Senior product design roles in Chicago or remote, especially on consumer mobile apps and design systems. Email is the fastest way to reach me.</p>
+      <div class="contact-actions">
+        <a class="btn btn-primary" href="mailto:designedbyfox@proton.me"><svg aria-hidden="true"><use href="#i-mail"/></svg>Email designedbyfox@proton.me</a>
+        <button class="btn btn-ghost" type="button" data-copy="designedbyfox@proton.me" aria-describedby="copy-status"><svg aria-hidden="true"><use href="#i-copy"/></svg>Copy email</button>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/acharius" target="_blank" rel="noopener">LinkedIn<svg aria-hidden="true"><use href="#i-external"/></svg><span class="visually-hidden">(opens in a new tab)</span></a>
+      </div>
+      <p class="copy-status" id="copy-status" role="status"></p>
+    </div>
+  </div>
+</section></main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <p><span class="nm">Acharius Fox</span></p>
+        <p>Lead Product Designer in Chicago.</p>
+        <p data-draft="footer credit">Designed by Fox and built in plain HTML and CSS with <span class="nm">Claude Code</span>. Hosted on GitHub Pages.</p>
+      </div>
+      <div>
+        <h2>Site</h2>
+        <ul>
+          <li><a href="../index.html#work">Work</a></li>
+          <li><a href="../about/index.html">About</a></li>
+          <li><a href="../art/index.html">Art</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Connect</h2>
+        <ul>
+          <li><a href="mailto:designedbyfox@proton.me">Email</a></li>
+          <li><a href="https://www.linkedin.com/in/acharius" target="_blank" rel="noopener">LinkedIn<svg aria-hidden="true"><use href="#i-external"/></svg><span class="visually-hidden">(opens in a new tab)</span></a></li>
+          <li><a href="../assets/AchariusFox_Resume.pdf">Résumé (PDF)</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="footer-legal">© 2026 Acharius Fox</p>
+  </div>
+</footer>
+
+<dialog class="lightbox" id="lightbox" aria-labelledby="lightbox-caption">
+  <div class="lightbox-bar">
+    <p id="lightbox-caption" data-lightbox-caption></p>
+    <button class="icon-btn" type="button" data-close aria-label="Close image">
+      <svg aria-hidden="true"><use href="#i-close"/></svg>
+    </button>
+  </div>
+  <div class="lightbox-body"><img alt=""></div>
+</dialog>
+</body>
+</html>

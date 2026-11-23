@@ -1,0 +1,535 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Master Tour Dashboard, rebuilt in code | Acharius Fox</title>
+<meta name="description" content="The released Master Tour mobile Dashboard rebuilt in HTML and CSS, with light and dark, phone and tablet, and text size modes driven by a primitives and semantic token setup.">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<script>
+/* Follow the portfolio's saved theme before first paint */
+(function (r) {
+  var t = null; try { t = localStorage.getItem("fox-theme"); } catch (e) {}
+  r.setAttribute("data-theme", t === "light" ? "light" : "dark");
+  if (/[?&]embed\b/.test(location.search)) r.classList.add("embed");
+})(document.documentElement);
+</script>
+<style>
+@font-face { font-family: "Instrument Sans"; src: url("../assets/fonts/instrument-sans-latin-standard-normal.woff2") format("woff2"); font-weight: 400 700; font-display: swap; }
+/* Layout: page chrome (title, mode controls) above a scaled device stage, variable readout below.
+   Chrome follows the portfolio's theme. The device screen uses its own token set, applied by script from
+   the primitives and semantic tables at the bottom of the file. */
+:root{
+  --bg:#15120F; --panel:#1E1A16; --fg:#F7F1EA; --muted:#BDB2A7; --line:#3A322C; --line-strong:#7A6D62; --accent:#FF8A3D; --on-accent:#1A0E05;
+  --font-ui:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --font-mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  color-scheme:dark;
+}
+:root[data-theme="light"]{--bg:#FBF8F5; --panel:#FFFFFF; --fg:#1C1714; --muted:#5C5047; --line:#E6DDD5; --line-strong:#8A7F76; --accent:#B34200; --on-accent:#FFFFFF; color-scheme:light}
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--fg);font-family:var(--font-ui);font-size:15px;line-height:1.5}
+:root.embed, :root.embed body{background:transparent}
+img{max-width:100%}
+.visually-hidden{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+
+.page{max-width:1240px;margin:0 auto;padding:28px 16px 48px;display:grid;gap:22px;grid-template-columns:minmax(0,1fr)}
+.embed .page{padding:20px 20px 24px}
+.intro{display:grid;gap:6px;max-width:64ch}
+.intro h1{margin:0;font-size:28px;line-height:1.15;font-weight:600;letter-spacing:-.01em;text-wrap:balance}
+.intro p{margin:0;color:var(--muted)}
+.intro a{color:inherit}
+.embed .intro{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+.controls{display:flex;flex-wrap:wrap;align-items:flex-end;gap:14px 22px;padding:14px 16px;background:var(--panel);border:1px solid var(--line);border-radius:14px}
+.group{display:grid;gap:6px}
+.group-label{font-size:13px;font-weight:600;color:var(--muted)}
+.seg{display:inline-flex;flex-wrap:wrap;gap:2px;padding:3px;border:1px solid var(--line-strong);border-radius:10px;background:var(--bg)}
+.seg button{font:inherit;font-size:14px;font-weight:550;border:0;background:transparent;color:var(--muted);min-height:34px;padding:6px 12px;border-radius:7px;cursor:pointer}
+.seg button:hover{color:var(--fg)}
+.seg button[aria-pressed="true"]{background:var(--accent);color:var(--on-accent)}
+.seg button:focus-visible,.mt button:focus-visible,[tabindex="0"]:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.mode{margin-left:auto;display:grid;gap:6px;min-width:0}
+.mode-name{font-family:var(--font-mono);font-size:14px;padding:6px 10px;border-radius:7px;border:1px dashed var(--line-strong)}
+
+.stage{display:flex;justify-content:center;min-width:0}
+.stage-box{position:relative}
+.device{position:absolute;top:0;left:0;transform-origin:0 0;padding:12px;border-radius:58px;background:#0A0A0C;box-shadow:0 0 0 1px #2A2A2E,0 24px 60px -20px rgba(0,0,0,.45)}
+.device.tablet{padding:16px;border-radius:38px}
+.hint{text-align:center;color:var(--muted);font-size:14px;margin:-8px 0 0}
+
+.readout{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px;display:grid;gap:12px}
+.readout h2{margin:0;font-size:16px;font-weight:600}
+.readout p{margin:0;color:var(--muted);font-size:14px;max-width:70ch}
+.vars{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(300px,100%),1fr));gap:0 28px;margin:0;padding:0;list-style:none}
+.vars li{display:flex;align-items:center;gap:10px;padding:7px 0;border-top:1px solid var(--line);font-family:var(--font-mono);font-size:13px;min-width:0}
+.vars .k{flex:1;min-width:0;overflow-wrap:anywhere}
+.vars .r{color:var(--muted)}
+.vars .sw{width:14px;height:14px;border-radius:4px;box-shadow:inset 0 0 0 1px rgba(127,127,127,.5);flex:none}
+.vars .val{font-variant-numeric:tabular-nums;min-width:68px;text-align:right}
+
+/* ---------- Device screen (all values come from semantic tokens) ---------- */
+.mt{width:393px;height:852px;display:grid;grid-template-rows:auto auto minmax(0,1fr) auto;overflow:hidden;position:relative;border-radius:46px;
+  background:var(--color-background-screen);color:var(--color-text-primary);
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  font-size:var(--size-text-body);line-height:1.3;-webkit-font-smoothing:antialiased}
+.mt[data-device="tablet"]{width:1180px;height:820px;border-radius:22px}
+.mt button{font:inherit;color:inherit}
+.ic{width:var(--size-icon-default);height:var(--size-icon-default);flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+
+.status{height:54px;display:flex;align-items:center;justify-content:space-between;padding:4px 30px 0 46px;background:var(--color-background-bar);font-weight:600;font-size:17px}
+.status .dots{display:none}
+.mt[data-device="tablet"] .status{height:22px;justify-content:center;padding:0}
+.mt[data-device="tablet"] .status .clock,.mt[data-device="tablet"] .status .sig{display:none}
+.mt[data-device="tablet"] .status .dots{display:block;letter-spacing:2px;color:var(--color-text-tertiary);font-size:12px;line-height:1}
+.sig{display:flex;gap:6px;align-items:center}
+.sig svg{fill:currentColor}
+
+.nav{display:grid;grid-template-columns:44px 1fr 44px;align-items:center;padding:4px 12px 10px;background:var(--color-background-bar);border-bottom:1px solid var(--color-border-default);text-align:center}
+.nav-t{font-weight:600;font-size:var(--size-text-headline)}
+.nav-s{font-size:var(--size-text-meta)}
+.nav .back{color:var(--color-accent-default)}
+.nav .cal{justify-self:end;color:var(--color-text-secondary)}
+.nav .ic{width:24px;height:24px}
+.mt[data-device="tablet"] .nav .back{visibility:hidden}
+
+.screen{min-height:0;overflow-y:auto;position:relative;scrollbar-width:none;overscroll-behavior:contain}
+.screen::-webkit-scrollbar,.col::-webkit-scrollbar,.pills::-webkit-scrollbar{display:none}
+.top{display:grid;gap:12px;padding:var(--size-space-gutter) var(--size-space-gutter) 0;width:100%;max-width:var(--max-width-content);margin:0 auto;box-sizing:border-box;min-width:0}
+.list{display:grid;gap:16px;padding:16px var(--size-space-gutter) 28px}
+.cols{display:none}
+.mt[data-device="tablet"] .screen{display:grid;grid-template-rows:auto minmax(0,1fr);overflow:hidden}
+.mt[data-device="tablet"] .list{display:none}
+.mt[data-device="tablet"] .cols{display:grid;grid-template-columns:repeat(var(--layout-columns),minmax(0,1fr));gap:16px;min-height:0;padding:16px var(--size-space-gutter) 0;width:100%;max-width:var(--max-width-content);margin:0 auto;box-sizing:border-box}
+.col{min-height:0;overflow-y:auto;position:relative;display:flex;flex-direction:column;gap:16px;padding-bottom:24px;scrollbar-width:none;overscroll-behavior:contain}
+
+.card{background:var(--color-surface-card);border-radius:var(--size-radius-card)}
+.venue{padding:var(--size-space-card);min-width:0}
+.venue-t{margin:0;font-size:var(--size-text-venue);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.venue-b{display:flex;gap:14px;margin-top:10px;align-items:flex-start}
+.date{display:grid;justify-items:center;font-size:var(--size-text-meta);line-height:1.2;min-width:2.6em}
+.date b{font-size:var(--size-text-venue);line-height:1.15}
+.lines{display:grid;gap:5px;min-width:0}
+.ln{display:flex;align-items:center;gap:7px;min-width:0}
+.ln .ic{color:var(--color-accent-default)}
+.ln.dim{color:var(--color-text-secondary)}
+.ln.dim .ic{color:inherit}
+
+.pills{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 calc(var(--size-space-gutter) * -1);padding:0 var(--size-space-gutter)}
+.pill{display:inline-flex;align-items:center;gap:6px;flex:none;padding:5px 10px;border:1px solid var(--color-border-default);background:var(--color-surface-pill);border-radius:7px;font-size:var(--size-text-meta)!important;cursor:pointer;white-space:nowrap}
+.pill .ic{width:calc(var(--size-icon-default) - 2px);height:calc(var(--size-icon-default) - 2px)}
+
+.sec-h{width:100%;display:flex;align-items:center;gap:8px;padding:var(--size-space-card);background:none;border:0;cursor:pointer;text-align:left}
+.sec-t{font-size:var(--size-text-section)!important;font-weight:700}
+.count{display:none;font-size:var(--size-text-caption)!important;color:var(--color-text-secondary);border:1px solid var(--color-border-default);border-radius:4px;padding:0 6px}
+.cbtn{margin-left:auto;width:30px;height:30px;border-radius:50%;background:var(--color-surface-button);display:grid;place-items:center;color:var(--color-accent-default);flex:none}
+.cbtn .ic{width:15px;height:15px;stroke-width:2.2}
+.cbtn .ex,.collapsed .cbtn .co{display:none}
+.collapsed .cbtn .ex{display:block}
+.collapsed .count{display:inline-block}
+.collapsed .sec-b{display:none}
+.sec-b{display:grid;gap:10px;padding:0 var(--size-space-card) var(--size-space-card)}
+.sec-b.flush{padding:0;gap:0}
+
+.inset{background:var(--color-surface-inset);border-radius:8px;padding:var(--size-space-row) var(--size-space-card)}
+.inset-h{display:flex;align-items:center;gap:8px;font-weight:600;font-size:var(--size-text-headline)}
+.inset-h .ic,.chev{color:var(--color-accent-default)}
+.inset-h .ic{margin-left:auto}
+.inset-h.big{font-size:var(--size-text-venue)}
+.note{margin:6px 0 0}
+.dl{display:grid;gap:6px;margin-top:8px}
+.dl div{display:flex;align-items:center;gap:8px;font-size:var(--size-text-meta);color:var(--color-text-secondary);min-width:0}
+.dl .ic{width:calc(var(--size-icon-default) - 2px);height:calc(var(--size-icon-default) - 2px)}
+.a{color:var(--color-accent-default)}
+.tag{font-size:var(--size-text-caption);color:var(--color-text-secondary);border:1px solid var(--color-border-default);border-radius:5px;padding:0 6px;white-space:nowrap;font-style:normal;font-weight:400}
+.inset .tag{background:var(--color-background-screen);display:inline-block;margin-bottom:4px}
+.more{text-align:center;color:var(--color-accent-default);font-size:var(--size-text-meta);margin-top:6px}
+
+.rows{list-style:none;margin:0;padding:0;border-top:1px solid var(--color-border-default)}
+.rows li{border-bottom:1px solid var(--color-border-default)}
+.si{display:flex;align-items:center;gap:8px;padding:var(--size-space-row) var(--size-space-card)}
+.si-main{display:grid;gap:3px;flex:1;min-width:0}
+.si-top{display:flex;align-items:center;gap:6px;font-size:var(--size-text-meta)}
+.si-top .tag{margin-left:auto}
+.si-top .ic{width:calc(var(--size-icon-default) - 2px);height:calc(var(--size-icon-default) - 2px)}
+.si-title{font-weight:600}
+.si-note{font-size:var(--size-text-caption);color:var(--color-text-tertiary)}
+.si.cur{background:var(--color-highlight-current)}
+.si.tbd{color:var(--color-text-secondary);font-style:italic}
+.si.tbd .si-title{font-weight:500}
+.fr{display:flex;align-items:center;gap:12px;padding:var(--size-space-row) var(--size-space-card)}
+.fr > div{flex:1;min-width:0}
+.fr-n{font-weight:500}
+.fr-m{font-size:var(--size-text-caption);color:var(--color-text-secondary);margin-top:2px}
+.fr-v{display:flex;gap:5px;align-items:flex-start;font-size:var(--size-text-caption);color:var(--color-text-secondary);margin-top:3px}
+.fr-v .ic{width:13px;height:13px;margin-top:1px}
+.fr .ic.t{width:calc(var(--size-icon-default) + 6px);height:calc(var(--size-icon-default) + 6px)}
+.t-pdf{color:var(--color-file-pdf)} .t-img{color:var(--color-accent-default)} .t-sheet{color:var(--color-file-sheet)}
+.go{display:block;text-align:center;padding:12px;color:var(--color-accent-default);font-size:var(--size-text-headline)}
+.task{display:flex;gap:10px;align-items:flex-start;padding:var(--size-space-row) var(--size-space-card)}
+.task .ic{color:var(--color-accent-default);margin-top:1px}
+.task.done span{color:var(--color-text-secondary);text-decoration:line-through}
+
+.tabs{display:flex;justify-content:space-around;background:var(--color-background-bar);border-top:1px solid var(--color-border-default);padding:8px 6px 32px}
+.tab{display:grid;justify-items:center;gap:3px;font-size:11px;color:var(--color-text-tertiary);min-width:60px}
+.tab .ic{width:25px;height:25px;stroke-width:1.6}
+.tab.on{color:var(--color-accent-default)}
+.mt[data-device="tablet"] .tabs{justify-content:center;gap:44px;padding:12px 0 18px}
+.mt[data-device="tablet"] .tab{display:flex;gap:7px;font-size:14px;align-items:center}
+.mt[data-device="tablet"] .tab .ic{width:20px;height:20px}
+.mt::after{content:"";position:absolute;left:50%;bottom:8px;width:134px;height:5px;margin-left:-67px;border-radius:3px;background:var(--color-text-primary)}
+.mt[data-device="tablet"]::after{width:310px;margin-left:-155px;bottom:6px}
+
+@media (max-width:640px){.mode{margin-left:0}.intro h1{font-size:24px}}
+@media (prefers-reduced-motion:no-preference){:root:not([data-motion="reduced"]) .mt *{transition:background-color .2s,color .2s,border-color .2s}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-chev-r" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
+  <symbol id="i-chev-l" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><text x="12" y="19" font-size="8" text-anchor="middle" fill="currentColor" stroke="none" font-family="system-ui">13</text></symbol>
+  <symbol id="i-map" viewBox="0 0 24 24"><path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2zM9 4v14M15 6v14"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5"/><path d="M12 7v5l3.5 2"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></symbol>
+  <symbol id="i-hotel" viewBox="0 0 24 24"><rect x="4" y="2.5" width="16" height="19" rx="1"/><path d="M10 21.5v-4h4v4M8.5 7h1M14.5 7h1M8.5 11h1M14.5 11h1M8.5 15h1M14.5 15h1"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 2.5 2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5-4.8-4.6 6.6-.9z"/></symbol>
+  <symbol id="i-tag" viewBox="0 0 24 24"><path d="M12.6 2.6A2 2 0 0 0 11.2 2H4a2 2 0 0 0-2 2v7.2a2 2 0 0 0 .6 1.4l8.7 8.7a2.4 2.4 0 0 0 3.4 0l6.6-6.6a2.4 2.4 0 0 0 0-3.4z"/><circle cx="7.5" cy="7.5" r="1.2"/></symbol>
+  <symbol id="i-music" viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></symbol>
+  <symbol id="i-list" viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3.5 6h.01M3.5 12h.01M3.5 18h.01"/></symbol>
+  <symbol id="i-min" viewBox="0 0 24 24"><path d="M4 14h6v6M20 10h-6V4M14 10l7-7M3 21l7-7"/></symbol>
+  <symbol id="i-max" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></symbol>
+  <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zM14 2v6h6M8 13h8M8 17h6"/></symbol>
+  <symbol id="i-img" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-5-5L5 21"/></symbol>
+  <symbol id="i-dl" viewBox="0 0 24 24"><path d="M4 14v5a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5M12 3v12M7.5 10.5 12 15l4.5-4.5"/></symbol>
+  <symbol id="i-bus" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="15" rx="2"/><path d="M5 11h14M8 21v-3M16 21v-3M8.5 14.5h.01M15.5 14.5h.01"/></symbol>
+  <symbol id="i-plane" viewBox="0 0 24 24"><path d="M10.5 13.5 3 11l1.5-1.5 8 1 4.5-4.5c1-1 2.5-1.5 3.5-1 .5 1 0 2.5-1 3.5L15 13l1 8-1.5 1.5-2.5-7.5-3 3V21l-1.5 1L6 19l-3-1.5L4 16h3z"/></symbol>
+  <symbol id="i-train" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="14" rx="3"/><path d="M5 11h14M9 21l1.5-4M15 21l-1.5-4M8.5 14h.01M15.5 14h.01"/></symbol>
+  <symbol id="i-ship" viewBox="0 0 24 24"><path d="M2 21c1 .7 1.7 1 3 1 2.5 0 2.5-2 5-2s2.5 2 5 2c1.3 0 2-.3 3-1M4.5 18 3 12h18l-1.5 6M6 12V8h12v4M12 4v4"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5"/><path d="M2.5 12h19M12 2.5a14 14 0 0 1 0 19M12 2.5a14 14 0 0 0 0 19"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M21 16.5v3a2 2 0 0 1-2.2 2A19 19 0 0 1 2.5 5.2 2 2 0 0 1 4.5 3h3a2 2 0 0 1 2 1.7l.6 3a2 2 0 0 1-.6 1.8L8 10.9a15 15 0 0 0 5.1 5.1l1.4-1.5a2 2 0 0 1 1.8-.6l3 .6a2 2 0 0 1 1.7 2z"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0"/></symbol>
+  <symbol id="i-bed" viewBox="0 0 24 24"><path d="M2.5 5v15M2.5 9h17a2 2 0 0 1 2 2v9M2.5 16.5h19M7 9v7.5"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 9a6 6 0 0 1 12 0c0 6.5 2.5 8 2.5 8h-17S6 15.5 6 9M10.3 20.5a2 2 0 0 0 3.4 0"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="m8.5 12 2.5 2.5 4.5-5"/></symbol>
+  <symbol id="i-box" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M3.5 10.5 12 3.5l8.5 7V20a1 1 0 0 1-1 1h-5v-6h-5v6h-5a1 1 0 0 1-1-1z"/></symbol>
+  <symbol id="i-dates" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M16 2v4M8 2v4M3 9.5h18M8 13.5h.01M12 13.5h.01M16 13.5h.01M8 17h.01M12 17h.01"/></symbol>
+  <symbol id="i-more" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5"/><path d="M8 12h.01M12 12h.01M16 12h.01"/></symbol>
+</svg>
+
+<main class="page">
+  <header class="intro">
+    <h1>Master Tour Dashboard</h1>
+    <p>The Master Tour mobile Dashboard as it shipped, rebuilt in HTML and CSS with the same token setup I used in Figma: one primitives collection, and one collection that applies them. Switch modes below and every part of the screen follows. Tour details are sample data, and a few colors are a shade darker or lighter than the shipped app so every text pair meets WCAG AA contrast. <a href="../live-event-platform/index.html#design-system">Back to the case study</a>.</p>
+  </header>
+
+  <section class="controls" aria-label="Variable modes">
+    <div class="group"><span class="group-label" id="lab-theme">Theme</span>
+      <div class="seg" role="group" aria-labelledby="lab-theme" data-mode="theme">
+        <button type="button" id="m-light" data-v="0" aria-pressed="false">Light</button>
+        <button type="button" id="m-dark" data-v="1" aria-pressed="true">Dark</button>
+      </div></div>
+    <div class="group"><span class="group-label" id="lab-device">Device</span>
+      <div class="seg" role="group" aria-labelledby="lab-device" data-mode="device">
+        <button type="button" id="m-phone" data-v="0" aria-pressed="true">Phone</button>
+        <button type="button" id="m-tablet" data-v="1" aria-pressed="false">Tablet</button>
+      </div></div>
+    <div class="group"><span class="group-label" id="lab-text">Text size</span>
+      <div class="seg" role="group" aria-labelledby="lab-text" data-mode="text">
+        <button type="button" id="m-t0" data-v="0" aria-pressed="true">Default</button>
+        <button type="button" id="m-t1" data-v="1" aria-pressed="false">Large</button>
+        <button type="button" id="m-t2" data-v="2" aria-pressed="false">Extra Large</button>
+      </div></div>
+    <div class="mode"><span class="group-label">Active mode</span><span class="mode-name" id="modeName" aria-live="polite">Phone, Dark, Default</span></div>
+  </section>
+
+  <div class="stage" id="stage">
+    <div class="stage-box" id="stageBox">
+      <div class="device" id="device">
+        <div class="mt" id="mt" data-device="phone">
+          <div class="status" aria-hidden="true">
+            <span class="clock">9:41</span>
+            <span class="dots">•••</span>
+            <span class="sig">
+              <svg width="18" height="12" viewBox="0 0 18 12"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5.5" width="3" height="6.5" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg>
+              <svg width="16" height="12" viewBox="0 0 16 12"><path d="M8 2.2c2.4 0 4.6.9 6.2 2.5l1.2-1.2A10.4 10.4 0 0 0 8 .5 10.4 10.4 0 0 0 .6 3.5l1.2 1.2A8.7 8.7 0 0 1 8 2.2zm0 3.4c1.5 0 2.8.6 3.8 1.5L13 5.9A7 7 0 0 0 8 3.9a7 7 0 0 0-5 2l1.2 1.2c1-.9 2.3-1.5 3.8-1.5zm0 3.4c.6 0 1.1.2 1.5.6L8 11.1 6.5 9.6c.4-.4.9-.6 1.5-.6z"/></svg>
+              <svg width="27" height="13" viewBox="0 0 27 13"><rect x=".5" y=".5" width="23" height="12" rx="3.5" fill="none" stroke="currentColor" opacity=".4"/><rect x="2" y="2" width="20" height="9" rx="2"/><path d="M25 4.5v4c.8-.3 1.3-1.1 1.3-2s-.5-1.7-1.3-2z" opacity=".4"/></svg>
+            </span>
+          </div>
+          <header class="nav">
+            <svg class="ic back" aria-hidden="true"><use href="#i-chev-l"/></svg>
+            <div><div class="nav-t">Show Day</div><div class="nav-s">Thu, Aug 13</div></div>
+            <svg class="ic cal" aria-hidden="true"><use href="#i-cal"/></svg>
+          </header>
+
+          <div class="screen" id="screen" tabindex="0" role="region" aria-label="Dashboard screen, scrollable">
+            <div class="top">
+              <div class="card venue">
+                <h2 class="venue-t">Northside Hall &amp; Garden Stage at Lincoln Square</h2>
+                <div class="venue-b">
+                  <div class="date"><span>AUG</span><b>13</b><span>THU</span></div>
+                  <div class="lines">
+                    <div class="ln"><svg class="ic" aria-hidden="true"><use href="#i-map"/></svg>Chicago, IL US</div>
+                    <div class="ln"><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg>8:00 PM (CDT)</div>
+                    <div class="ln dim"><svg class="ic" aria-hidden="true"><use href="#i-eye"/></svg>Visible to All Users</div>
+                  </div>
+                </div>
+              </div>
+              <div class="pills">
+                <button type="button" class="pill" data-go="files"><svg class="ic" aria-hidden="true"><use href="#i-folder"/></svg>Files (4)</button>
+                <button type="button" class="pill" data-go="hotels"><svg class="ic" aria-hidden="true"><use href="#i-hotel"/></svg>Hotels</button>
+                <button type="button" class="pill" data-go="events"><svg class="ic" aria-hidden="true"><use href="#i-star"/></svg>Events</button>
+                <button type="button" class="pill"><svg class="ic" aria-hidden="true"><use href="#i-tag"/></svg>Guest List (20)</button>
+                <button type="button" class="pill"><svg class="ic" aria-hidden="true"><use href="#i-music"/></svg>Set List</button>
+                <button type="button" class="pill" data-go="tasks"><svg class="ic" aria-hidden="true"><use href="#i-list"/></svg>Tasks</button>
+              </div>
+            </div>
+            <div class="list" id="list">
+
+              <section class="card sec" id="s-notes">
+                <button type="button" class="sec-h" aria-expanded="true"><span class="sec-t">Notes</span><span class="count">Day + Hotel</span><span class="cbtn" aria-hidden="true"><svg class="ic co"><use href="#i-min"/></svg><svg class="ic ex"><use href="#i-max"/></svg></span></button>
+                <div class="sec-b">
+                  <div class="inset"><div class="inset-h">Day Notes<svg class="ic" aria-hidden="true"><use href="#i-chev-r"/></svg></div>
+                    <p class="note">- Guest list sections have been approved for this date.<br>- Opening Band: please have your luggage packed today for the 12 PM flight.<br>- Laminates for the guest list section must be carried at ALL TIMES!</p></div>
+                  <div class="inset"><div class="inset-h">Hotel Notes<svg class="ic" aria-hidden="true"><use href="#i-chev-r"/></svg></div>
+                    <p class="note">- Late checkout approved until 2 PM for band rooms.<br>- Crew parking is in the north garage. Bring your tag.<br>- Breakfast is in the lobby restaurant from 6:30 to 10 AM.</p></div>
+                </div>
+              </section>
+
+              <section class="card sec" id="s-schedule">
+                <button type="button" class="sec-h" aria-expanded="true"><span class="sec-t">Schedule</span><span class="count">7 Items</span><span class="cbtn" aria-hidden="true"><svg class="ic co"><use href="#i-min"/></svg><svg class="ic ex"><use href="#i-max"/></svg></span></button>
+                <div class="sec-b flush">
+                  <ul class="rows">
+                    <li class="si tbd"><div class="si-main"><div class="si-top"><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg>Hidden<span class="tag">Band + Crew</span></div><div class="si-title">BAND + Crew Lobby Call</div></div><svg class="ic chev" aria-hidden="true"><use href="#i-chev-r"/></svg></li>
+                    <li class="si cur"><div class="si-main"><div class="si-top"><svg class="ic" aria-hidden="true"><use href="#i-bus"/></svg>~ 8:35 AM - 8:47 AM</div><div class="si-title">BAND + Crew: Drive to Northside Hall - 2 Miles / 12 mins</div></div><svg class="ic chev" aria-hidden="true"><use href="#i-chev-r"/></svg></li>
+                    <li class="si tbd"><div class="si-main"><div class="si-top"><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg>TBD</div><div class="si-title">Tech Lobby Call</div></div><svg class="ic chev" aria-hidden="true"><use href="#i-chev-r"/></svg></li>
+                    <li class="si"><div class="si-main"><div class="si-top"><svg class="ic" aria-hidden="true"><use href="#i-plane"/></svg>12:00 PM CDT - 3:05 PM EDT</div><div class="si-title">Opening Band: Dep ORD arr LGA</div><div class="si-note">Bags at the curb by 9:30 AM</div></div><svg class="ic chev" aria-hidden="true"><use href="#i-chev-r"/></svg></li>
+                    <li class="si"><div class="si-main"><div class="si-top"><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg>1:00 PM CDT <svg class="ic" aria-hidden="true"><use href="#i-eye"/></svg><svg class="ic" aria-hidden="true"><use href="#i-bell"/></svg><span class="tag">Band + Crew</span></div><div class="si-title">Load In</div></div><svg class="ic chev" aria-hidden="true"><use href="#i-chev-r"/></svg></li>
+                    <li class="si tbd"><div class="si-main"><div class="si-top"><svg class="ic" aria-hidden="true"><use href="#i-train"/></svg>3:15 PM - 3:40 PM</div><div class="si-title">Train to Lincoln Square - 2 Miles / 25 mins</div></div><svg class="ic chev" aria-hidden="true"><use href="#i-chev-r"/></svg></li>
+                    <li class="si tbd"><div class="si-main"><div class="si-top"><svg class="ic" aria-hidden="true"><use href="#i-ship"/></svg>4:00 PM - 5:15 PM</div><div class="si-title">BAND + Crew: River Cruise to Dinner</div></div><svg class="ic chev" aria-hidden="true"><use href="#i-chev-r"/></svg></li>
+                  </ul>
+                  <span class="go">Go to Schedule</span>
+                </div>
+              </section>
+
+              <section class="card sec" id="s-files">
+                <button type="button" class="sec-h" aria-expanded="true"><span class="sec-t">Files</span><span class="count">4 Items</span><span class="cbtn" aria-hidden="true"><svg class="ic co"><use href="#i-min"/></svg><svg class="ic ex"><use href="#i-max"/></svg></span></button>
+                <div class="sec-b flush">
+                  <ul class="rows">
+                    <li class="fr"><svg class="ic t t-pdf" aria-hidden="true"><use href="#i-file"/></svg><div><div class="fr-n">Advance Sheet - Northside.pdf</div><div class="fr-m">Added Tue. Aug 11 1:32 PM</div></div><svg class="ic a" aria-hidden="true"><use href="#i-dl"/></svg></li>
+                    <li class="fr"><svg class="ic t t-img" aria-hidden="true"><use href="#i-img"/></svg><div><div class="fr-n">Stage Plot v3.jpg</div><div class="fr-m">Added Tue. Aug 11 1:32 PM</div></div><svg class="ic a" aria-hidden="true"><use href="#i-dl"/></svg></li>
+                    <li class="fr"><svg class="ic t" aria-hidden="true"><use href="#i-file"/></svg><div><div class="fr-n">Hospitality Rider.txt</div><div class="fr-m">Added Tue. Aug 11 1:32 PM</div><div class="fr-v"><svg class="ic" aria-hidden="true"><use href="#i-eye"/></svg><span>Visible to Admins, Managers, and: A Team, Group A, Production</span></div></div><svg class="ic a" aria-hidden="true"><use href="#i-dl"/></svg></li>
+                    <li class="fr"><svg class="ic t t-sheet" aria-hidden="true"><use href="#i-file"/></svg><div><div class="fr-n">Per Diems.xlsx</div><div class="fr-m">Added Tue. Aug 11 1:32 PM</div></div><svg class="ic a" aria-hidden="true"><use href="#i-dl"/></svg></li>
+                  </ul>
+                  <span class="go">Go to Files</span>
+                </div>
+              </section>
+
+              <section class="card sec" id="s-hotels">
+                <button type="button" class="sec-h" aria-expanded="true"><span class="sec-t">Hotels</span><span class="count">2 Items</span><span class="cbtn" aria-hidden="true"><svg class="ic co"><use href="#i-min"/></svg><svg class="ic ex"><use href="#i-max"/></svg></span></button>
+                <div class="sec-b">
+                  <div class="inset"><span class="tag">Band + Crew</span><div class="inset-h big">The Lakeview Hotel<svg class="ic" aria-hidden="true"><use href="#i-chev-r"/></svg></div>
+                    <div class="dl"><div><svg class="ic" aria-hidden="true"><use href="#i-bed"/></svg>Room 1015</div><div><svg class="ic" aria-hidden="true"><use href="#i-map"/></svg>455 N. Lakeview Ave, Chicago, IL 60611 US</div><div><svg class="ic" aria-hidden="true"><use href="#i-globe"/></svg><span class="a">lakeviewhotel.example</span></div><div><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg>Main: <span class="a">312-555-0190</span></div></div></div>
+                  <div class="inset"><span class="tag">Crew</span><div class="inset-h big">Riverside Suites<svg class="ic" aria-hidden="true"><use href="#i-chev-r"/></svg></div>
+                    <div class="dl"><div><svg class="ic" aria-hidden="true"><use href="#i-bed"/></svg>Rooms 402 - 410</div><div><svg class="ic" aria-hidden="true"><use href="#i-map"/></svg>210 W. Kinzie St, Chicago, IL 60654 US</div><div><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg>Main: <span class="a">312-555-0144</span></div></div></div>
+                </div>
+              </section>
+
+              <section class="card sec" id="s-events">
+                <button type="button" class="sec-h" aria-expanded="true"><span class="sec-t">Events</span><span class="count">2 Items</span><span class="cbtn" aria-hidden="true"><svg class="ic co"><use href="#i-min"/></svg><svg class="ic ex"><use href="#i-max"/></svg></span></button>
+                <div class="sec-b">
+                  <div class="inset"><div class="inset-h big">Northside Hall<svg class="ic" aria-hidden="true"><use href="#i-chev-r"/></svg></div>
+                    <div class="dl"><div><svg class="ic" aria-hidden="true"><use href="#i-map"/></svg>4802 N. Lincoln Ave, Chicago, IL 60625</div><div><svg class="ic" aria-hidden="true"><use href="#i-globe"/></svg><span class="a">northsidehall.example</span></div><div><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg>Main: <span class="a">773-555-0203</span></div></div></div>
+                  <div class="inset"><div class="inset-h big">Garden Stage<svg class="ic" aria-hidden="true"><use href="#i-chev-r"/></svg></div>
+                    <div class="dl"><div><svg class="ic" aria-hidden="true"><use href="#i-map"/></svg>4810 N. Lincoln Ave, Chicago, IL 60625</div><div><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg>Main: <span class="a">773-555-0217</span></div></div></div>
+                </div>
+              </section>
+
+              <section class="card sec" id="s-contacts">
+                <button type="button" class="sec-h" aria-expanded="true"><span class="sec-t">Key Contacts</span><span class="count">2 Items</span><span class="cbtn" aria-hidden="true"><svg class="ic co"><use href="#i-min"/></svg><svg class="ic ex"><use href="#i-max"/></svg></span></button>
+                <div class="sec-b">
+                  <div class="inset"><div class="inset-h big">Venue - Northside Hall<svg class="ic" aria-hidden="true"><use href="#i-chev-r"/></svg></div>
+                    <div class="dl"><div><svg class="ic" aria-hidden="true"><use href="#i-user"/></svg>Maya Chen (Security)</div><div><svg class="ic" aria-hidden="true"><use href="#i-user"/></svg>Paula Ferguson (FOH)</div><div><svg class="ic" aria-hidden="true"><use href="#i-user"/></svg>Theo Brooks (Production)</div></div><div class="more">+3</div></div>
+                  <div class="inset"><div class="inset-h big">Hotel - The Lakeview<svg class="ic" aria-hidden="true"><use href="#i-chev-r"/></svg></div>
+                    <div class="dl"><div><svg class="ic" aria-hidden="true"><use href="#i-user"/></svg>Jordan Ellis (Front Desk)</div><div><svg class="ic" aria-hidden="true"><use href="#i-user"/></svg>Renee Park (Sales)</div><div><svg class="ic" aria-hidden="true"><use href="#i-user"/></svg>Sam Ortiz (Concierge)</div></div><div class="more">+1</div></div>
+                </div>
+              </section>
+
+              <section class="card sec" id="s-tasks">
+                <button type="button" class="sec-h" aria-expanded="true"><span class="sec-t">Tasks</span><span class="count">2 Items</span><span class="cbtn" aria-hidden="true"><svg class="ic co"><use href="#i-min"/></svg><svg class="ic ex"><use href="#i-max"/></svg></span></button>
+                <div class="sec-b flush">
+                  <ul class="rows">
+                    <li class="task"><svg class="ic" aria-hidden="true"><use href="#i-box"/></svg><span>Confirm guest list cutoff with the box office</span></li>
+                    <li class="task done"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span>Send updated stage plot to FOH</span></li>
+                  </ul>
+                </div>
+              </section>
+
+            </div>
+            <div class="cols"><div class="col" id="colL" tabindex="0" role="region" aria-label="Left column, scrollable"></div><div class="col" id="colR" tabindex="0" role="region" aria-label="Right column, scrollable"></div></div>
+          </div>
+
+          <nav class="tabs" aria-hidden="true">
+            <span class="tab on"><svg class="ic"><use href="#i-home"/></svg>Dashboard</span>
+            <span class="tab"><svg class="ic"><use href="#i-dates"/></svg>Dates</span>
+            <span class="tab"><svg class="ic"><use href="#i-clock"/></svg>Schedule</span>
+            <span class="tab"><svg class="ic"><use href="#i-star"/></svg>Events</span>
+            <span class="tab"><svg class="ic"><use href="#i-more"/></svg>More</span>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="hint" id="hint">Scroll inside the screen. Tap a section header to collapse it.</p>
+
+  <section class="readout" aria-labelledby="ro-h">
+    <h2 id="ro-h">Variables in this mode</h2>
+    <p>Color variables reference the primitives collection and change with the theme. Size variables change with text size. Layout variables change with the device.</p>
+    <ul class="vars" id="vars"></ul>
+  </section>
+</main>
+
+<script>
+(function(){
+  // Primitives collection: raw values only.
+  var P = {
+    'gray/0':'#FFFFFF','gray/25':'#F9F9FB','gray/50':'#F2F2F7','gray/100':'#E5E5EA','gray/200':'#D1D1D6',
+    'gray/400':'#AEAEB2','gray/500':'#8E8E93','gray/600':'#636366','gray/700':'#48484A','gray/800':'#3A3A3C',
+    'gray/850':'#2C2C2E','gray/900':'#1C1C1E','gray/950':'#121214','gray/1000':'#000000',
+    'blue/100':'#D3E9FC','blue/300':'#64B0FF','blue/400':'#0A84FF','blue/500':'#007AFF','blue/600':'#0062CC','blue/900':'#1B2B45',
+    'red/400':'#FF453A','red/500':'#FF3B30','green/400':'#30D158','green/500':'#34C759'
+  };
+  // Semantic collection, grouped by color / size / layout. Each entry lists its value per mode.
+  var COLOR = { // [Light, Dark]
+    'color/background/screen':['gray/100','gray/900'],
+    'color/background/bar':['gray/25','gray/950'],
+    'color/surface/card':['gray/0','gray/850'],
+    'color/surface/inset':['gray/50','gray/800'],
+    'color/surface/pill':['gray/0','gray/900'],
+    'color/surface/button':['gray/100','gray/1000'],
+    'color/border/default':['gray/200','gray/700'],
+    'color/text/primary':['gray/1000','gray/0'],
+    'color/text/secondary':['gray/600','gray/400'],
+    'color/text/tertiary':['gray/600','gray/400'],
+    'color/accent/default':['blue/600','blue/300'],
+    'color/highlight/current':['blue/100','blue/900'],
+    'color/file/pdf':['red/500','red/400'],
+    'color/file/sheet':['green/500','green/400']
+  };
+  var SIZE = { // [Default, Large, Extra Large], px
+    'size/text/caption':[12,14,16],
+    'size/text/meta':[13,15,17],
+    'size/text/body':[15,17,20],
+    'size/text/headline':[17,19,22],
+    'size/text/venue':[20,22,25],
+    'size/text/section':[22,24,28],
+    'size/icon/default':[16,18,20],
+    'size/space/row':[12,14,16],
+    'size/space/card':[14,16,18]
+  };
+  var LAYOUT = { // [Phone, Tablet]
+    'size/space/gutter':['12px','20px'],
+    'size/radius/card':['10px','12px'],
+    'layout/columns':['1','2'],
+    'max-width/content':['100%','1120px']
+  };
+  var SHOW = ['color/background/screen','color/surface/card','color/surface/inset','color/text/primary','color/text/secondary',
+    'color/accent/default','color/highlight/current','size/text/body','size/text/section','size/space/card','size/space/gutter','layout/columns'];
+  var NAMES = {theme:['Light','Dark'], device:['Phone','Tablet'], text:['Default','Large','Extra Large']};
+  var mode = {theme:1, device:0, text:0};
+  var EMBED = document.documentElement.classList.contains('embed');
+
+  var mt = document.getElementById('mt'), device = document.getElementById('device');
+  var stage = document.getElementById('stage'), box = document.getElementById('stageBox');
+  var list = document.getElementById('list'), colL = document.getElementById('colL'), colR = document.getElementById('colR');
+  var screen = document.getElementById('screen');
+  function cssName(k){ return '--' + k.replace(/\//g,'-'); }
+  function sec(id){ return document.getElementById('s-' + id); }
+
+  function resolve(k){
+    if (COLOR[k]) { var r = COLOR[k][mode.theme]; return {ref:r, val:P[r], color:true}; }
+    if (SIZE[k]) return {val:SIZE[k][mode.text] + 'px'};
+    return {val:LAYOUT[k][mode.device]};
+  }
+  function apply(){
+    Object.keys(COLOR).concat(Object.keys(SIZE), Object.keys(LAYOUT)).forEach(function(k){
+      mt.style.setProperty(cssName(k), resolve(k).val);
+    });
+    mt.dataset.device = mode.device ? 'tablet' : 'phone';
+    device.classList.toggle('tablet', !!mode.device);
+    document.getElementById('modeName').textContent = NAMES.device[mode.device] + ', ' + NAMES.theme[mode.theme] + ', ' + NAMES.text[mode.text];
+    document.getElementById('hint').textContent = mode.device
+      ? 'Scroll inside the screen. On tablet, the left and right columns scroll on their own.'
+      : 'Scroll inside the screen. Tap a section header to collapse it.';
+    var ul = document.getElementById('vars'); ul.innerHTML = '';
+    SHOW.forEach(function(k){
+      var r = resolve(k), li = document.createElement('li');
+      li.innerHTML = '<span class="k">' + k + '</span>' + (r.color
+        ? '<span class="r">' + r.ref + '</span><span class="sw" aria-hidden="true" style="background:' + r.val + '"></span><span class="val">' + r.val + '</span>'
+        : '<span class="val">' + r.val.replace('px','') + '</span>');
+      ul.appendChild(li);
+    });
+    place(); fit();
+  }
+  function place(){
+    if (mode.device) {
+      ['files','hotels','events','contacts','tasks'].forEach(function(id){ colL.appendChild(sec(id)); });
+      ['notes','schedule'].forEach(function(id){ colR.appendChild(sec(id)); });
+    } else {
+      ['notes','schedule','files','hotels','events','contacts','tasks'].forEach(function(id){ list.appendChild(sec(id)); });
+    }
+    screen.scrollTop = colL.scrollTop = colR.scrollTop = 0;
+  }
+  function fit(){
+    var pad = mode.device ? 16 : 12, w = (mode.device ? 1180 : 393) + pad*2, h = (mode.device ? 820 : 852) + pad*2;
+    var avail = stage.clientWidth;
+    var maxH = EMBED ? 760 : Math.max(0.55 * h, window.innerHeight - 40);
+    var s = Math.min(1, avail / w, maxH / h);
+    device.style.transform = 'scale(' + s + ')';
+    box.style.width = (w * s) + 'px'; box.style.height = (h * s) + 'px';
+    report();
+  }
+  function report(){
+    if (window.parent !== window) {
+      window.parent.postMessage({type:'fox-demo-height', height: document.querySelector('.page').getBoundingClientRect().height + 4}, '*');
+    }
+  }
+
+  document.querySelectorAll('.seg').forEach(function(g){
+    g.addEventListener('click', function(e){
+      var b = e.target.closest('button'); if (!b) return;
+      mode[g.dataset.mode] = +b.dataset.v;
+      g.querySelectorAll('button').forEach(function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+      apply();
+    });
+  });
+  mt.addEventListener('click', function(e){
+    var h = e.target.closest('.sec-h');
+    if (h) { var s = h.parentNode, c = s.classList.toggle('collapsed'); h.setAttribute('aria-expanded', c ? 'false' : 'true'); return; }
+    var p = e.target.closest('.pill');
+    if (p && p.dataset.go) {
+      var t = sec(p.dataset.go), c2 = t.parentNode;
+      t.classList.remove('collapsed'); t.querySelector('.sec-h').setAttribute('aria-expanded','true');
+      var scroller = mode.device ? c2 : screen;
+      var reduce = document.documentElement.getAttribute('data-motion') === 'reduced' || matchMedia('(prefers-reduced-motion: reduce)').matches;
+      scroller.scrollTo({top: t.offsetTop - (mode.device ? 0 : 12), behavior: reduce ? 'auto' : 'smooth'});
+    }
+  });
+  // Follow the portfolio's theme and motion settings when embedded
+  window.addEventListener('message', function(e){
+    var d = e.data || {};
+    if (d.type === 'fox-modes') {
+      if (d.theme) document.documentElement.setAttribute('data-theme', d.theme === 'light' ? 'light' : 'dark');
+      if (d.motion) document.documentElement.setAttribute('data-motion', d.motion);
+    }
+  });
+  if (window.ResizeObserver) new ResizeObserver(fit).observe(stage); else window.addEventListener('resize', fit);
+  window.addEventListener('load', report);
+  apply();
+  if (window.parent !== window) window.parent.postMessage({type:'fox-demo-ready'}, '*');
+})();
+</script>
+</body>
+</html>

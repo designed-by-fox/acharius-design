@@ -1,0 +1,708 @@
+{
+  "portrait": {
+    "path": "assets/img/about/fox-portrait.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642fd3fba0adeb5d619b38a3_Group%2096.png"
+    ]
+  },
+  "headphones": {
+    "path": "assets/img/about/fox-headphones.jpg",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/64367bca649ff09136c9a421_IMG_5195-p-1600.jpg",
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/64367bca649ff09136c9a421_IMG_5195.jpg"
+    ]
+  },
+  "mt-cover": {
+    "path": "assets/img/master-tour/cover.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6abd2c62326a8d6bbb475f70_Eventric%20Project-p-2000.png",
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6abd2c62326a8d6bbb475f70_Eventric%20Project.png"
+    ]
+  },
+  "mt-desktop": {
+    "path": "assets/img/master-tour/desktop-dashboard.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6abb2057ef1617a3dcd175db_mt-desktop-dashboard.png"
+    ]
+  },
+  "mt-dates": {
+    "path": "assets/img/master-tour/mobile-original-dates.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6abafe3d80256781883b3d2c_mt-mobile-before-dates-list.png"
+    ]
+  },
+  "mt-dash-draft": {
+    "path": "assets/img/master-tour/mobile-dashboard-draft.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6abafe3ea58835af2b249852_7b3616295011e978a656852fd1411e48_mt-mobile-2-dashboard-draft.png"
+    ]
+  },
+  "mt-dash-final": {
+    "path": "assets/img/master-tour/mobile-dashboard-released.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6abafe3ed56e99d6e4d8d249_mt-mobile-dashboard-day-view.png"
+    ]
+  },
+  "mt-files-orig": {
+    "path": "assets/img/master-tour/mobile-original-attachments.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6abb0d0c20715816e2a1bd2c_mt-mobile-attachments-original.png"
+    ]
+  },
+  "mt-files-new": {
+    "path": "assets/img/master-tour/mobile-files-redesign.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6abb0d0df33fc668a40fb434_mt-mobile-files-redesign.png"
+    ]
+  },
+  "mt-tab-orig": {
+    "path": "assets/img/master-tour/tablet-original-attachments.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6abb0edd8ab619b30596a13d_mt-tablet-attachments-original.png"
+    ]
+  },
+  "mt-tab-port": {
+    "path": "assets/img/master-tour/tablet-files-portrait.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6abb0edde320761397a5d7c7_mt-tablet-files-redesign-portrait.png"
+    ]
+  },
+  "mt-tab-land": {
+    "path": "assets/img/master-tour/tablet-files-landscape.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6abb0eddf0696620a75dbd16_mt-tablet-files-redesign-landscape.png"
+    ]
+  },
+  "mt-more": {
+    "path": "assets/img/master-tour/mobile-more-menu.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6abb0fffebae3ea495a3099f_dad0e47cf4262b7b96ed9138b251f516_mt-mobile-more-menu-locked.png"
+    ]
+  },
+  "mt-more-unlocked": {
+    "path": "assets/img/master-tour/mobile-more-menu-unlocked.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6abb0fff9dca993d2fa6b906_721b1da832622f5a61b14a4f47b3bb36_mt-mobile-more-menu-unlocked.png"
+    ]
+  },
+  "mt-gl-req": {
+    "path": "assets/img/master-tour/guest-list-original-request.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6abb123c5b9583693e4f04e5_mt-mobile-guest-list-original-request.png"
+    ]
+  },
+  "mt-gl-sum": {
+    "path": "assets/img/master-tour/guest-list-original-summary.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6abb123cef1617a3dccd862e_mt-mobile-guest-list-original-summary.png"
+    ]
+  },
+  "mt-gl-draft": {
+    "path": "assets/img/master-tour/guest-list-draft.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6abb123cef1617a3dccd8636_mt-mobile-guest-list-draft.png"
+    ]
+  },
+  "mt-gl-final": {
+    "path": "assets/img/master-tour/guest-list-final-summary.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6abb123c8c9202ebdb4d181f_mt-mobile-guest-list-final-summary.png"
+    ]
+  },
+  "mt-gl-status": {
+    "path": "assets/img/master-tour/guest-list-final-status-menu.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6abb123db065c6c0d05ee424_mt-mobile-guest-list-final-status-menu.png"
+    ]
+  },
+  "mt-v-poc-dash": {
+    "path": "assets/img/master-tour/venue-poc-dashboard.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6abb15b3ef1617a3dcce6d34_mt-venue-poc-dashboard.png"
+    ]
+  },
+  "mt-v-poc-info": {
+    "path": "assets/img/master-tour/venue-poc-venue-info.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6abb15ab4e4d7a7c3a6fc46f_mt-venue-poc-venue-info.png"
+    ]
+  },
+  "mt-v-contract": {
+    "path": "assets/img/master-tour/venue-contractor-tech-pack.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6abb15ab977d48a261886c50_mt-venue-contractor-tech-pack.png"
+    ]
+  },
+  "mt-v-techpack": {
+    "path": "assets/img/master-tour/venue-tech-pack.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6abb15aba1647929f3edb067_mt-venue-redesign-tech-pack.png"
+    ]
+  },
+  "mt-v-admin": {
+    "path": "assets/img/master-tour/venue-admin-dashboard.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6abb15acd341a9c24c3530dd_mt-venue-redesign-admin-facilities.png"
+    ]
+  },
+  "mt-logo-o": {
+    "path": "assets/img/master-tour/logo-original.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6abb193d5b9583693e50f93e_logo-master-tour-original.png"
+    ]
+  },
+  "mt-logo-n": {
+    "path": "assets/img/master-tour/logo-redesign.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6abb193dd131285b68183e56_logo-master-tour-redesign.png"
+    ]
+  },
+  "mt-logo-eo": {
+    "path": "assets/img/master-tour/logo-eventric-original.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6abb193dd341a9c24c368f37_logo-master-tour-eventric-original.png"
+    ]
+  },
+  "mt-logo-en": {
+    "path": "assets/img/master-tour/logo-eventric-redesign.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6abb193dd131285b68183e6a_logo-master-tour-eventric-redesign-p-2000.png",
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6abb193dd131285b68183e6a_logo-master-tour-eventric-redesign.png"
+    ]
+  },
+  "mt-logo-vo": {
+    "path": "assets/img/master-tour/logo-venue-original.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6abb193d431407f230e619a8_logo-master-tour-venue-original.png"
+    ]
+  },
+  "mt-logo-vn": {
+    "path": "assets/img/master-tour/logo-venue-redesign.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6abb193d48a4e4b98a3c2ff9_logo-master-tour-venue-redesign.png"
+    ]
+  },
+  "mt-web-d": {
+    "path": "assets/img/master-tour/website-desktop.jpg",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6abb1a69ef1617a3dccfc595_website-master-tour-desktop.jpg"
+    ]
+  },
+  "mt-web-m": {
+    "path": "assets/img/master-tour/website-mobile.jpg",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6abb1a688c9202ebdb4f9f09_website-master-tour-mobile.jpg"
+    ]
+  },
+  "st-cover": {
+    "path": "assets/img/supplier-transfer/cover.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6436b72d245ee411b41436be_supplier_transfer_hero-p-2000.png",
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6436b72d245ee411b41436be_supplier_transfer_hero.png"
+    ]
+  },
+  "st-modal": {
+    "path": "assets/img/supplier-transfer/transfer-modal.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642dcaeec67a7e809594dedc_Transfer%20Modal%20Open.png"
+    ]
+  },
+  "st-flow-0": {
+    "path": "assets/img/supplier-transfer/flow-current.jpg",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/643fedf49503495fda2dba51_Supplier%20Transfer-p-2000.jpeg",
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/643fedf49503495fda2dba51_Supplier%20Transfer.jpeg"
+    ]
+  },
+  "st-flow-1": {
+    "path": "assets/img/supplier-transfer/flow-mvp-1.jpg",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/643fee0f30b46604de581e22_Supplier%20Transfer%20(2)-p-2000.jpeg",
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/643fee0f30b46604de581e22_Supplier%20Transfer%20(2).jpeg"
+    ]
+  },
+  "st-flow-2": {
+    "path": "assets/img/supplier-transfer/flow-mvp-2.jpg",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/643fee193c316a61caacdcf0_Supplier%20Transfer%20(3)-p-2000.jpeg",
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/643fee193c316a61caacdcf0_Supplier%20Transfer%20(3).jpeg"
+    ]
+  },
+  "itp-cover": {
+    "path": "assets/img/identity-theft-protection/cover.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6433fa6b73954f3c7f71f86e_Identity%20Theft%20Project%20Hero%20Img-p-2000.png",
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6433fa6b73954f3c7f71f86e_Identity%20Theft%20Project%20Hero%20Img.png"
+    ]
+  },
+  "itp-timeline": {
+    "path": "assets/img/identity-theft-protection/timeline.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642b77fec1ed2249cb7ea07f_Frame%201-p-2000.png",
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642b77fec1ed2249cb7ea07f_Frame%201.png"
+    ]
+  },
+  "itp-enroll-1": {
+    "path": "assets/img/identity-theft-protection/enrollment-v1.jpg",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642a9aadfa552a22be85fa16_UserInfo_Closed_LRG.jpg"
+    ]
+  },
+  "itp-enroll-2": {
+    "path": "assets/img/identity-theft-protection/enrollment-v2.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642a9b82bb87cb4441507212_Prototype%20V1%201.png"
+    ]
+  },
+  "itp-enroll-3": {
+    "path": "assets/img/identity-theft-protection/enrollment-v3.jpg",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642a9f3bdaa796a9588d75ab_MVP1UserInfo_Closed_LRG_V2.jpg"
+    ]
+  },
+  "itp-acct-1": {
+    "path": "assets/img/identity-theft-protection/create-account-v1.jpg",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642b7bd57d3521233e56b033_CreateAccount_FilledStrong_LRG.jpg"
+    ]
+  },
+  "itp-acct-2": {
+    "path": "assets/img/identity-theft-protection/create-account-v2.jpg",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642b7c029bd04857474d338d_MVP1CreateAccount_Strong_LRG.jpg"
+    ]
+  },
+  "itp-acct-3": {
+    "path": "assets/img/identity-theft-protection/create-account-v3.jpg",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642b7c7a7735495f3452acc2_MVP1CreateAccount_Strong_LRG_V2.jpg"
+    ]
+  },
+  "itp-test-2": {
+    "path": "assets/img/identity-theft-protection/test-variant-condensed.jpg",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642b8253d2094b577bf2d3dd_Prototype%20V2%201.jpg"
+    ]
+  },
+  "itp-vp-tablet": {
+    "path": "assets/img/identity-theft-protection/viewport-tablet.jpg",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642b8015c1ed2257cd7f337f_MVP1UserInfo_Closed_MED_V2.jpg"
+    ]
+  },
+  "itp-vp-mobile": {
+    "path": "assets/img/identity-theft-protection/viewport-mobile.jpg",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642b802b40c74512c788c82d_MVP1UserInfo_Closed_SML_V2.jpg"
+    ]
+  },
+  "itp-ios-phone": {
+    "path": "assets/img/identity-theft-protection/ios-handset-success.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642b80db95612b319b85af8a_iOS%20Handset_New%20User_Success%20Email2x.png"
+    ]
+  },
+  "itp-ios-tp": {
+    "path": "assets/img/identity-theft-protection/ios-tablet-portrait-success.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642b8109d2094b58d8f2b90f_iOS%20Tablet%20Portrait_New%20User_Success%20Email2x.png"
+    ]
+  },
+  "itp-ios-tl": {
+    "path": "assets/img/identity-theft-protection/ios-tablet-landscape-success.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642b8116a118630b2a3080ec_2xiOS%20Tablet%20Landscape_New%20User_Success%20Email.png"
+    ]
+  },
+  "pr-cover": {
+    "path": "assets/img/patient-rounding/cover.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642ed7e1b248cc320b78d56f_Group%2091-p-2000.png",
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642ed7e1b248cc320b78d56f_Group%2091.png"
+    ]
+  },
+  "pr-cycle": {
+    "path": "assets/img/patient-rounding/north-star-cycle.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642b91df58f557c63328cb7e_Screenshot%202023-04-03%20215445.png"
+    ]
+  },
+  "pr-p1": {
+    "path": "assets/img/patient-rounding/actor-leadership-rounder.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642b95ffa887aec6ddf22244_LEADERSHIP%20ROUNDERS.png"
+    ]
+  },
+  "pr-p2": {
+    "path": "assets/img/patient-rounding/actor-delegated-rounder.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642b960b12112f49b2de2698_DELEGATED%20ROUNDER.png"
+    ]
+  },
+  "pr-p3": {
+    "path": "assets/img/patient-rounding/actor-administrator.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642b9616d2094b36faf45c63_ADMINISTRATOR.png"
+    ]
+  },
+  "pr-p4": {
+    "path": "assets/img/patient-rounding/actor-data-analyst.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642b963304ea37da4e5dbad6_DATA%20ANALYST.png"
+    ]
+  },
+  "pr-audit": {
+    "path": "assets/img/patient-rounding/ui-audit.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6436a7c3a43c9f58417da852_Artboard%20%E2%80%93%201-p-2000.png",
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6436a7c3a43c9f58417da852_Artboard%20%E2%80%93%201.png"
+    ]
+  },
+  "pr-forms-b": {
+    "path": "assets/img/patient-rounding/forms-before.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642b96e1ea0676352e0512a3_01_forms_ui-p-1600.png",
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642b96e1ea0676352e0512a3_01_forms_ui.png"
+    ]
+  },
+  "pr-forms-a": {
+    "path": "assets/img/patient-rounding/forms-after.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642c1dc3cc98cf63c6621fa6_Forms%20Landing2x.png"
+    ]
+  },
+  "pr-default-b": {
+    "path": "assets/img/patient-rounding/form-default-before.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642b96fbab59d40bbae23cec_02_pdrq_form_ui-p-1600.png",
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642b96fbab59d40bbae23cec_02_pdrq_form_ui.png"
+    ]
+  },
+  "pr-default-a": {
+    "path": "assets/img/patient-rounding/form-default-after.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642c1de2e389857cac6b5782_Rounding%20Form%20Default%20V22x.png"
+    ]
+  },
+  "pr-yes-b": {
+    "path": "assets/img/patient-rounding/form-yes-before.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642b9712ad38a46cf14053d3_03_pdrq_formYes_ui-p-1600.png",
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642b9712ad38a46cf14053d3_03_pdrq_formYes_ui.png"
+    ]
+  },
+  "pr-yes-a": {
+    "path": "assets/img/patient-rounding/form-yes-after.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642c1e2da1eeb3f00a0617e0_Rounding%20Form%20Yes%20V22x.png"
+    ]
+  },
+  "pr-no-b": {
+    "path": "assets/img/patient-rounding/form-no-before.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642c1bb2242247222df3da68_04_pdrq_formNo_ui-p-1600.png",
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642c1bb2242247222df3da68_04_pdrq_formNo_ui.png"
+    ]
+  },
+  "pr-no-a": {
+    "path": "assets/img/patient-rounding/form-no-after.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642c1e8adeb86f35a8eb614f_Rounding%20Form%20No%20Selection%202%20V22x.png"
+    ]
+  },
+  "pr-map-b": {
+    "path": "assets/img/patient-rounding/status-map-before.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642b978fec49bb09394cdeb8_07_statusmap_view_ui-p-1600.png",
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642b978fec49bb09394cdeb8_07_statusmap_view_ui.png"
+    ]
+  },
+  "pr-map-a": {
+    "path": "assets/img/patient-rounding/status-map-after.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642c1ea8ab612dc63ba6fa6c_Status%20Map%20View%20Updated%20V22x.png"
+    ]
+  },
+  "pr-info-b": {
+    "path": "assets/img/patient-rounding/patient-info-before.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642c1c110b2c133c4c1fd90e_09_statusmap_generalInformation_ui-p-1600.png",
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642c1c110b2c133c4c1fd90e_09_statusmap_generalInformation_ui.png"
+    ]
+  },
+  "pr-info-a": {
+    "path": "assets/img/patient-rounding/patient-info-after.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642c1f2cac12e8bca84c116a_Status%20Map%20Patient%20Visit%20Information2x.png"
+    ]
+  },
+  "pr-log-b": {
+    "path": "assets/img/patient-rounding/rounding-log-before.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642c1c1fe362435d86cb3328_10_statusmap_patientRoundingLog_ui-p-1600.png",
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642c1c1fe362435d86cb3328_10_statusmap_patientRoundingLog_ui.png"
+    ]
+  },
+  "pr-log-a": {
+    "path": "assets/img/patient-rounding/rounding-log-after.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642c1f563038ac73f697d3ed_Status%20Map%20Rounding%20Log%20(No%20Saved)2x.png"
+    ]
+  },
+  "pr-notes-b": {
+    "path": "assets/img/patient-rounding/patient-notes-before.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642c1c32f727c277d9cfec59_13_statusmap_patientComments_ui-p-1600.png",
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642c1c32f727c277d9cfec59_13_statusmap_patientComments_ui.png"
+    ]
+  },
+  "pr-notes-a": {
+    "path": "assets/img/patient-rounding/patient-notes-after.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642c1f6b76878385af79bad9_Status%20Map%20Patient%20Notes2x.png"
+    ]
+  },
+  "pr-dash-b": {
+    "path": "assets/img/patient-rounding/dashboard-before.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642c1c46e362434980cb375b_14_dashboard_ui-p-1600.png",
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642c1c46e362434980cb375b_14_dashboard_ui.png"
+    ]
+  },
+  "pr-dash-a": {
+    "path": "assets/img/patient-rounding/dashboard-after.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642c1f7a8e8e7b6f5db2c983_Dashboard2x.png"
+    ]
+  },
+  "pr-tasks-b": {
+    "path": "assets/img/patient-rounding/tasks-before.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642c1d640b2c1343ec1fe4e6_16_tasks_ui-p-1600.png",
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642c1d640b2c1343ec1fe4e6_16_tasks_ui.png"
+    ]
+  },
+  "pr-tasks-a": {
+    "path": "assets/img/patient-rounding/tasks-after.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642c1f983b4d447af1f40e26_Tasks%20-%20All2x.png"
+    ]
+  },
+  "pr-task-b": {
+    "path": "assets/img/patient-rounding/task-details-before.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642c1d771147ab7a0ff6ae85_17_taskDetails_ui-p-1600.png",
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642c1d771147ab7a0ff6ae85_17_taskDetails_ui.png"
+    ]
+  },
+  "pr-task-a": {
+    "path": "assets/img/patient-rounding/task-details-after.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642c1fc12181e9027fd88a39_Task%20Details%20V22x.png"
+    ]
+  },
+  "pr-journey": {
+    "path": "assets/img/patient-rounding/journey-map.jpg",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642b9a4a95612b5e1c87bf30_Customer%20Journey%20Map-p-2000.jpg",
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642b9a4a95612b5e1c87bf30_Customer%20Journey%20Map.jpg"
+    ]
+  },
+  "pr-blueprint": {
+    "path": "assets/img/patient-rounding/service-blueprint.jpg",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642c191a36f34d3226ba8f49_Detailed%20Service%20Blueprint-p-2000.jpg",
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642c191a36f34d3226ba8f49_Detailed%20Service%20Blueprint.jpg"
+    ]
+  },
+  "pr-flow": {
+    "path": "assets/img/patient-rounding/old-and-new-flow.jpg",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642c19725764a38463f027fd_Old%20%2B%20New%20Flowchart%20(1)-p-2000.jpg",
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642c19725764a38463f027fd_Old%20%2B%20New%20Flowchart%20(1).jpg"
+    ]
+  },
+  "pr-affinity": {
+    "path": "assets/img/patient-rounding/affinity-diagram.gif",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642b9ea99bd04892cd4fd185_affinity_diagram_smol.gif"
+    ]
+  },
+  "pr-insights": {
+    "path": "assets/img/patient-rounding/key-insights.jpg",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642c18cea0d871093c5f6f13_Key%20Insights-p-2000.jpg",
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642c18cea0d871093c5f6f13_Key%20Insights.jpg"
+    ]
+  },
+  "pr-present": {
+    "path": "assets/img/patient-rounding/presenting.jpg",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642b9b0776462819d3f89463_Image%20from%20iOS-p-1600.jpg",
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642b9b0776462819d3f89463_Image%20from%20iOS.jpg"
+    ]
+  },
+  "pr-team": {
+    "path": "assets/img/patient-rounding/team.jpg",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642b9ba77646286d7af89d57_IMG_1488-p-1600.jpg",
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642b9ba77646286d7af89d57_IMG_1488.jpg"
+    ]
+  },
+  "ph-chicago": {
+    "path": "assets/img/art/photo-chicago-skyline.jpg",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6ab9dea7babc2dcac3c3e442_photo-chicago-skyline-sunset-lake-p-1600.jpg",
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6ab9dea7babc2dcac3c3e442_photo-chicago-skyline-sunset-lake.jpg"
+    ]
+  },
+  "ph-pyramids": {
+    "path": "assets/img/art/photo-indianapolis-pyramids.jpg",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6ab9dea7bc9469648f13d2fb_photo-indianapolis-pyramids-pond-p-1600.jpg",
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6ab9dea7bc9469648f13d2fb_photo-indianapolis-pyramids-pond.jpg"
+    ]
+  },
+  "ph-paris": {
+    "path": "assets/img/art/photo-paris-street.jpg",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6ab9df93babc2dcac3c40ffc_photo-paris-narrow-street.jpg"
+    ]
+  },
+  "ph-beach-sunset": {
+    "path": "assets/img/art/photo-beach-sunset.jpg",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6ab9e0272d8a785370bed531_IMG_2167.JPEG"
+    ]
+  },
+  "ph-sea-stacks": {
+    "path": "assets/img/art/photo-sea-stacks.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6ab9dfe2b4ebeb080b8e0d3b_final12.png"
+    ]
+  },
+  "ph-glacier": {
+    "path": "assets/img/art/photo-glacier.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6ab9dfe28796a17f0c5e81f3_final14.png"
+    ]
+  },
+  "ph-road": {
+    "path": "assets/img/art/photo-country-road.jpg",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6ab9ded37e32879b459bdb40_IMG_2900-p-1600.jpeg",
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6ab9ded37e32879b459bdb40_IMG_2900.JPEG"
+    ]
+  },
+  "ph-island": {
+    "path": "assets/img/art/photo-island-bay.jpg",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6ab9e04a9f9e16c99cf0fc98_IMG_8063.JPEG"
+    ]
+  },
+  "ph-courtyard": {
+    "path": "assets/img/art/photo-courtyard-sky.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6ab9df705fd04c4dc1c353fe_IMG_4513_s-p-1600.png",
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6ab9df705fd04c4dc1c353fe_IMG_4513_s.png"
+    ]
+  },
+  "ph-towers": {
+    "path": "assets/img/art/photo-towers-dusk.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6ab9dfe230dc52f289a334dc_final3.png"
+    ]
+  },
+  "ph-avenue": {
+    "path": "assets/img/art/photo-avenue-church.jpg",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6ab9e07c71299af5fb0e5148_IMG_0323-p-1600.jpeg",
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6ab9e07c71299af5fb0e5148_IMG_0323.JPEG"
+    ]
+  },
+  "ph-plaza": {
+    "path": "assets/img/art/photo-whitewashed-plaza.jpg",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6ab9e07d4c7299bd38935830_IMG_0266.JPEG"
+    ]
+  },
+  "ph-beachfront": {
+    "path": "assets/img/art/photo-beachfront-towers.jpg",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6ab9df44a25a7ca3e0994434_2019-06-01%2002.40.40%201-p-1600.jpg",
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6ab9df44a25a7ca3e0994434_2019-06-01%2002.40.40%201.jpg"
+    ]
+  },
+  "ph-graffiti": {
+    "path": "assets/img/art/photo-graffiti.jpg",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6ab9e0a78c3ad0a33b08e1b1_IMG_5224-p-1600.jpg",
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6ab9e0a78c3ad0a33b08e1b1_IMG_5224.jpg"
+    ]
+  },
+  "ph-lamp": {
+    "path": "assets/img/art/photo-lamp-skylight.jpg",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6ab9e0e6525e130282cc2d96_IMG_4831-p-1600.jpg",
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6ab9e0e6525e130282cc2d96_IMG_4831.JPG"
+    ]
+  },
+  "ph-burst": {
+    "path": "assets/img/art/photo-light-burst.jpg",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6ab9de564762b9e6143e60b4_IMG_20130712_225440_402-p-1600.jpg",
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6ab9de564762b9e6143e60b4_IMG_20130712_225440_402.jpg"
+    ]
+  },
+  "gl-winter": {
+    "path": "assets/img/art/glitch-winter-wonderland.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6ab9de0ed51743b8d39d2619_Winter%20Wonderland_1-p-1600.png",
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6ab9de0ed51743b8d39d2619_Winter%20Wonderland_1.png"
+    ]
+  },
+  "gl-city": {
+    "path": "assets/img/art/glitch-city.gif",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6ab9ddd6cc0f7e435f646e1a_city.gif"
+    ]
+  },
+  "gl-garden": {
+    "path": "assets/img/art/glitch-garden-archway.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6ab9ddd6d35448ef7851090e_66-p-1600.png",
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6ab9ddd6d35448ef7851090e_66.png"
+    ]
+  },
+  "gl-temptation": {
+    "path": "assets/img/art/glitch-temptation.gif",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6ab9ddfd063e3a2aecf3fc0a_temptation_17.gif"
+    ]
+  },
+  "gl-oblivion": {
+    "path": "assets/img/art/glitch-oblivion.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6ab9ddfef20bcab37b0ecf63_oblivion_29-p-1600.png",
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6ab9ddfef20bcab37b0ecf63_oblivion_29.png"
+    ]
+  },
+  "gl-momentary": {
+    "path": "assets/img/art/glitch-momentary.gif",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6ab9ddfea25a7ca3e098f9f9_momentary_13.gif"
+    ]
+  },
+  "gl-snow": {
+    "path": "assets/img/art/glitch-snowy-street.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6ab9ddd58c3ad0a33b082bf0_1_1.png"
+    ]
+  },
+  "gl-lost": {
+    "path": "assets/img/art/glitch-lost.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6ab9ddfda6e9cc715274f581_lost_15.png"
+    ]
+  }
+}

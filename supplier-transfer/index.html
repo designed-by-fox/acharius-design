@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en" data-theme="dark" data-text="default" data-motion="on">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Supplier Transfer at Parachute Health | Acharius Fox</title>
+<meta name="description" content="Supplier Transfer lets healthcare suppliers pass orders they can&#39;t fulfill to another supplier. Acharius Fox designed the flows and supplier-to-supplier messaging as the project&#39;s only designer.">
+<link rel="canonical" href="https://www.acharius.design/supplier-transfer/">
+<meta name="theme-color" content="#15120f" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#fbf8f5" media="(prefers-color-scheme: light)">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Acharius Fox">
+<meta property="og:title" content="Helping Parachute Health suppliers hand off orders they can&#39;t fill">
+<meta property="og:description" content="Supplier Transfer lets healthcare suppliers pass orders they can&#39;t fulfill to another supplier. Acharius Fox designed the flows and supplier-to-supplier messaging as the project&#39;s only designer.">
+<meta property="og:url" content="https://www.acharius.design/supplier-transfer/">
+<meta property="og:image" content="https://www.acharius.design/assets/img/supplier-transfer/cover.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preload" href="../assets/fonts/instrument-sans-latin-standard-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/css/site.css">
+<script>
+/* Apply saved modes before first paint so the page never flashes the wrong theme */
+(function (r) {
+  function g(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+  r.classList.add("js");
+  var t = g("fox-theme"); r.setAttribute("data-theme", t === "light" || t === "dark" ? t : "dark");
+  r.setAttribute("data-text", g("fox-text") === "large" ? "large" : "default");
+  var m = g("fox-motion");
+  if (m !== "on" && m !== "reduced") m = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches ? "reduced" : "on";
+  r.setAttribute("data-motion", m);
+})(document.documentElement);
+</script>
+<script src="../assets/js/site.js" defer></script>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-fox" viewBox="0 0 32 32"><path style="fill:var(--accent)" d="M3 3.5 12 11h8l9-7.5V16L16 29 3 16Z"/><path style="fill:none;stroke:var(--bg)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M10.5 17.5 16 22.5l5.5-5"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7z"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M4.6 4.6 6 6M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4 6 18M18 6l1.4-1.4"/></g></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M6 6l12 12M18 6 6 18"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-arrow-left" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M19 12H5M11 6l-6 6 6 6"/></symbol>
+    <symbol id="i-arrow-right" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-external" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M8 7h9v9"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></g></symbol>
+    <symbol id="i-zoom" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></g></symbol>
+    <symbol id="i-target" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/></g></symbol>
+    <symbol id="i-pen" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M4 20h4L19 9l-4-4L4 16zM13.5 6.5l4 4"/></symbol>
+    <symbol id="i-trend" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M3 17l6-6 4 4 8-8M15 7h6v6"/></symbol>
+    <symbol id="i-layers" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="m12 3 9 5-9 5-9-5zM3 13l9 5 9-5M3 17.5l9 5 9-5"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M10.5 18.5h3"/></g></symbol>
+    <symbol id="i-access" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="4.5" r="1.8"/><path d="M5 8.5c2.3.6 4.6 1 7 1s4.7-.4 7-1M12 9.5v4.5M12 14l-3 6.5M12 14l3 6.5"/></g></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></g></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></g></symbol>
+    <symbol id="i-file" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8zM14 3v5h5M9 13h6M9 17h4"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8 12.5 2.8 2.8L16 10"/></g></symbol>
+    <symbol id="i-rotate" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"/></symbol>
+    <symbol id="i-store" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M12 7v6M9.5 10.5 12 13l2.5-2.5"/></g></symbol>
+    <symbol id="i-play-proto" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M10 8.5v5l4-2.5z" fill="currentColor"/><path d="M8 21h8" stroke-linecap="round"/></g></symbol>
+  </defs>
+</svg><a class="skip-link" href="#main">Skip to main content</a>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="../index.html" aria-label="Acharius Fox, home">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><use href="#i-fox"/></svg>
+      <span class="brand-name" aria-hidden="true">Acharius <span class="nm">Fox</span></span>
+    </a>
+    <nav class="site-nav" id="site-nav" aria-label="Main">
+      <ul class="nav-list">
+        <li><a href="../index.html#work" aria-current="page">Work</a></li>
+        <li><a href="../about/index.html">About</a></li>
+        <li><a href="../art/index.html">Art</a></li>
+        <li class="nav-contact"><a href="../index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-btn theme-toggle" type="button" aria-label="Switch to light theme">
+        <svg class="i-moon" aria-hidden="true"><use href="#i-moon"/></svg>
+        <svg class="i-sun" aria-hidden="true"><use href="#i-sun"/></svg>
+      </button>
+      <button class="icon-btn menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+        <svg aria-hidden="true"><use href="#i-menu"/></svg>
+      </button>
+      <a class="btn btn-primary btn-sm header-cta" href="../index.html#contact">Contact</a>
+    </div>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+<article class="cs" style="--tint:#2bb3a3">
+  <header class="wrap cs-hero">
+    <a class="cs-back" href="../index.html#work"><svg aria-hidden="true"><use href="#i-arrow-left"/></svg>All work</a>
+    <ul class="chips" aria-label="Focus areas">
+<li class="chip chip--accent">Web app</li><li class="chip chip--accent">Healthcare</li><li class="chip chip--accent">Flows and scoping</li>    </ul>
+    <h1 class="cs-title"><span data-draft="case study title">Helping <span class="nm">Parachute Health</span> suppliers hand off orders they can't fill</span></h1>
+    <p class="cs-sub">Let suppliers pass orders they can't fill to another supplier, instead of leaving them stuck or canceled.</p>
+<div class="cs-links">
+  <a class="btn btn-primary" href="https://www.figma.com/proto/m1mzt1gM19SK0bjoiPHiOA/Supplier-Transfer?node-id=3234-14660&amp;viewport=2708%2C-9485%2C0.29&amp;t=vgESzB1sHF1scAwF-0&amp;scaling=min-zoom&amp;content-scaling=fixed&amp;starting-point-node-id=3234%3A14660&amp;show-proto-sidebar=1" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-play-proto"/></svg>Open the annotated prototype<span class="visually-hidden">(Figma, opens in a new tab)</span></a>
+</div>
+  </header>
+
+  <div class="wrap">
+    <div class="cs-cover"><div class="stage stage--st" role="img" aria-label="Supplier Transfer Order Details screen with the Transfer to Another Vendor modal open">
+  <div class="dev dev--browser" style="left:9%;top:14%;width:96%;--r:0deg;z-index:2"><img src="../assets/img/supplier-transfer/transfer-modal.png" width="1440" height="900" alt="" loading="lazy" decoding="async"></div>
+</div>
+</div>
+<dl class="snapshot" aria-label="Project snapshot">
+  <div><dt>My role</dt><dd>Product Designer</dd><dd>The only designer on the project</dd></div>
+  <div><dt>Timeline</dt><dd>January to June 2022</dd></div>
+  <div><dt>Team</dt><dd>Lead PM, lead engineer and the engineering team, a data partner, and me</dd></div>
+  <div><dt>Platform</dt><dd>Web app for healthcare facilities and suppliers</dd></div>
+</dl>
+<section class="tldr" aria-labelledby="tldr-title">
+  <h2 class="tldr-head" id="tldr-title">The short version</h2>
+  <div class="tldr-grid">
+    <div class="tldr-item">
+      <svg aria-hidden="true"><use href="#i-target"/></svg>
+      <h3>The challenge</h3>
+      <p>When a supplier couldn't fulfill an order, it sat on their dashboard indefinitely or got canceled, and the facility had to place it again with someone else.</p>
+    </div>
+    <div class="tldr-item">
+      <svg aria-hidden="true"><use href="#i-pen"/></svg>
+      <h3>What I did</h3>
+      <p>Research synthesis, MVP release scoping, user flow mapping, and UX design, with a focus on the UI for supplier-to-supplier communication.</p>
+    </div>
+    <div class="tldr-item">
+      <svg aria-hidden="true"><use href="#i-trend"/></svg>
+      <h3>The outcome</h3>
+      <p>Orders can now route to suppliers who can fill them. Glassbox session recordings showed suppliers using the feature right after launch.</p>
+    </div>
+  </div>
+</section>
+<div class="methods">
+  <h2>Methods and skills</h2>
+  <ul class="chips">
+    <li class="chip">Research synthesis</li><li class="chip">User flow mapping</li><li class="chip">Scope refinement</li>
+    <li class="chip">UX and UI design</li><li class="chip">Prototyping</li><li class="chip">Documentation</li>
+  </ul>
+</div>
+
+    <div class="cs-layout">
+      <nav class="toc" aria-labelledby="toc-title">
+        <h2 id="toc-title">On this page</h2>
+        <ol>
+<li><a href="#problem">The problem</a></li>
+<li><a href="#flows">Mapping the flows</a></li>
+<li><a href="#decisions">Key decisions</a></li>
+<li><a href="#designs">Designs and prototype</a></li>
+<li><a href="#outcome">Outcome</a></li>
+<li><a href="#reflection">Reflection</a></li>
+        </ol>
+      </nav>
+      <div class="cs-body">
+        <details class="toc-mobile">
+          <summary>On this page</summary>
+          <ol>
+<li><a href="#problem">The problem</a></li>
+<li><a href="#flows">Mapping the flows</a></li>
+<li><a href="#decisions">Key decisions</a></li>
+<li><a href="#designs">Designs and prototype</a></li>
+<li><a href="#outcome">Outcome</a></li>
+<li><a href="#reflection">Reflection</a></li>
+          </ol>
+        </details>
+<section class="cs-section" id="problem" aria-labelledby="problem-h">
+  <div><span class="cs-num" aria-hidden="true"></span><h2 class="cs-h2" id="problem-h">Orders with nowhere to go</h2></div>
+  <div class="prose">
+    <p>Parachute Health's platform lets healthcare facilities order Durable Medical Equipment (DME) and supplies. There are two main actors in this flow: <strong>facilities</strong> and <strong>suppliers</strong>. Facilities place orders for patients, and suppliers then receive these orders to fulfill.</p>
+    <p>Sometimes, and often enough from the volume of complaints we received about this use case, suppliers cannot fulfill orders for a number of reasons. Before this feature rolled out, those orders would simply sit on the supplier's order dashboard indefinitely or need to be canceled, which made facilities remake the order entirely and try a different supplier.</p>
+    <p>With this in mind, our team set out to construct data model changes and a congruent experience with the rest of our platform so suppliers could send orders they can't fulfill to other suppliers.</p>
+  </div>
+</section>
+
+<section class="cs-section" id="flows" aria-labelledby="flows-h">
+  <div><span class="cs-num" aria-hidden="true"></span><h2 class="cs-h2" id="flows-h">Mapping the flows to scope each release</h2></div>
+  <div class="prose">
+    <p>There are several moving parts in this experience. We were also changing a model relationship from one-to-one to one-to-many, which adds complexity with every new actor. To align the team on which features belonged in each release, and to make sure we were thinking about the end-to-end flow, I mapped the current experience and both MVPs.</p>
+  </div>
+  <figure class="figure"><div class="frame frame--flush"><img src="../assets/img/supplier-transfer/flow-current.jpg" width="2000" height="400" alt="Flowchart of the current experience before Supplier Transfer, from facility vendor selection through order fulfillment or rejection" loading="lazy" decoding="async" id="img-st-flow-0-100"><button class="icon-btn zoom-btn" type="button" data-lightbox="../assets/img/supplier-transfer/flow-current.jpg" data-img="img-st-flow-0-100" aria-label="View larger: Flowchart of the current experience before Supplier Transfer"><svg aria-hidden="true"><use href="#i-zoom"/></svg></button></div><figcaption><span class="tag-state">Current</span>How orders moved before Supplier Transfer.</figcaption></figure>
+  <figure class="figure"><div class="frame frame--flush"><img src="../assets/img/supplier-transfer/flow-mvp-1.jpg" width="2000" height="819" alt="Flowchart of Supplier Transfer MVP 1, with steps between Facility A, Supplier A, and Supplier B" loading="lazy" decoding="async" id="img-st-flow-1-101"><button class="icon-btn zoom-btn" type="button" data-lightbox="../assets/img/supplier-transfer/flow-mvp-1.jpg" data-img="img-st-flow-1-101" aria-label="View larger: Flowchart of Supplier Transfer MVP 1"><svg aria-hidden="true"><use href="#i-zoom"/></svg></button></div><figcaption><span class="tag-state tag-state--after">MVP 1</span>Facility A, Supplier A, and Supplier B, with the first transfer path.</figcaption></figure>
+  <figure class="figure"><div class="frame frame--flush"><img src="../assets/img/supplier-transfer/flow-mvp-2.jpg" width="2000" height="825" alt="Flowchart of Supplier Transfer MVP 2, adding order statuses between Facility A, Supplier A, and Supplier B" loading="lazy" decoding="async" id="img-st-flow-2-102"><button class="icon-btn zoom-btn" type="button" data-lightbox="../assets/img/supplier-transfer/flow-mvp-2.jpg" data-img="img-st-flow-2-102" aria-label="View larger: Flowchart of Supplier Transfer MVP 2"><svg aria-hidden="true"><use href="#i-zoom"/></svg></button></div><figcaption><span class="tag-state tag-state--after">MVP 2</span>Adds order statuses so suppliers can see where a transferred order stands.</figcaption></figure>
+</section>
+
+<section class="cs-section" id="decisions" aria-labelledby="decisions-h">
+  <div><span class="cs-num" aria-hidden="true"></span><h2 class="cs-h2" id="decisions-h">Key decisions</h2></div>
+  <div class="decisions">
+    <article class="decision" aria-labelledby="d1">
+      <div class="decision-head"><span class="label">Decision 1</span><h3 class="decision-title" id="d1">Allow an order to be transferred more than once</h3></div>
+      <div class="decision-grid">
+        <div><h4>The situation</h4><p data-draft="decision copy">The first supplier an order is sent to isn't always the right one, and neither is the second.</p></div>
+        <div class="chosen"><h4>What we chose</h4><p>The data model moved from one-to-one to one-to-many, so an order can be sent more than once to find a supplier who can fill it. Our data shows it usually doesn't go past one transfer.</p></div>
+        <div><h4>The trade-off</h4><p>Design and technical complexity grow quickly as you add actors. What does the Communication tab look like when an order has been transferred six times?</p></div>
+      </div>
+    </article>
+    <article class="decision" aria-labelledby="d2">
+      <div class="decision-head"><span class="label">Decision 2</span><h3 class="decision-title" id="d2">Ship in two MVPs and focus design on supplier-to-supplier communication</h3></div>
+      <div class="decision-grid">
+        <div><h4>The situation</h4><p data-draft="decision copy">The full experience touched facilities, multiple suppliers, statuses, and messaging, on a tight timeline.</p></div>
+        <div class="chosen"><h4>What we chose</h4><p>Our PM rigorously scaled the scope of each release, which let me focus design on specific parts of the experience, mainly the UI for vendor-to-vendor communication.</p></div>
+        <div><h4>Why</h4><p>It's a highly visible, user-facing feature that suppliers frequently requested.</p></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="cs-section" id="designs" aria-labelledby="designs-h">
+  <div><span class="cs-num" aria-hidden="true"></span><h2 class="cs-h2" id="designs-h">Designs and annotated prototype</h2></div>
+  <div class="prose"><p>The annotated Figma prototype walks through the full experience and flow, with notes on the decisions behind each screen.</p></div>
+  <figure class="figure"><div class="frame "><img src="../assets/img/supplier-transfer/transfer-modal.png" width="1440" height="900" alt="Supplier Transfer Order Details screen with a Transfer to Another Vendor modal open" loading="lazy" decoding="async" id="img-st-modal-103"><button class="icon-btn zoom-btn" type="button" data-lightbox="../assets/img/supplier-transfer/transfer-modal.png" data-img="img-st-modal-103" aria-label="View larger: Supplier Transfer Order Details screen with a Transfer to Another Vendor modal open"><svg aria-hidden="true"><use href="#i-zoom"/></svg></button></div><figcaption><b>Order Details</b> with the Transfer to Another Vendor modal open.</figcaption></figure>
+  <p><a class="btn btn-ghost" href="https://www.figma.com/proto/m1mzt1gM19SK0bjoiPHiOA/Supplier-Transfer?node-id=3234-14660&amp;viewport=2708%2C-9485%2C0.29&amp;t=vgESzB1sHF1scAwF-0&amp;scaling=min-zoom&amp;content-scaling=fixed&amp;starting-point-node-id=3234%3A14660&amp;show-proto-sidebar=1" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-play-proto"/></svg>Open the annotated prototype<span class="visually-hidden">(Figma, opens in a new tab)</span></a></p>
+</section>
+
+<section class="cs-section" id="outcome" aria-labelledby="outcome-h">
+  <div><span class="cs-num" aria-hidden="true"></span><h2 class="cs-h2" id="outcome-h">Outcome</h2></div>
+  <ul class="metrics" role="list">
+    <li class="metric"><span class="metric-value">Immediate</span><span class="metric-label">use by suppliers after launch, tracked in Glassbox and our data channels</span></li>
+    <li class="metric"><span class="metric-value">1 <small>to</small> many</span><span class="metric-label">data model change so an order can move more than once</span></li>
+    <li class="metric"><span class="metric-value">2 MVPs</span><span class="metric-label" data-draft="metric label">scoped from the flows so the team could ship in stages</span></li>
+  </ul>
+</section>
+
+<section class="cs-section" id="reflection" aria-labelledby="reflection-h">
+  <div><span class="cs-num" aria-hidden="true"></span><h2 class="cs-h2" id="reflection-h">Reflection</h2></div>
+  <div class="reflect">
+    <div class="reflect-card">
+      <h3><svg aria-hidden="true"><use href="#i-check"/></svg>What worked</h3>
+      <p>Our PM rigorously worked to scale the scope of each feature release, which helped scale the designs down. That let design focus on specific parts of the experience and interaction design, namely the UI of vendor-to-vendor communication. Delivering on it saw immediate use, as we tracked in Glassbox, our user session monitoring tool, and our data channels.</p>
+    </div>
+    <div class="reflect-card">
+      <h3><svg aria-hidden="true"><use href="#i-rotate"/></svg>What I'd do differently</h3>
+      <p>Opening a line of communication between vendors changed our model from one-to-one to one-to-many, and that complexity grows as you add actors. Edge cases like an order with six transfers were hard to account for at the speed we were asked to deliver. Involving engineering earlier in discovery would have saved time, since we had to scrap some design directions because of technical constraints.</p>
+    </div>
+  </div>
+</section>
+      </div>
+    </div>
+
+    <div class="next-project">
+      <div>
+        <p class="label">Next case study</p>
+        <h2><a href="../identity-theft-protection/index.html">Opening <span class="nm">Discover</span> Identity Theft Protection to non-cardholders</a></h2>
+      </div>
+      <span class="next-arrow" aria-hidden="true"><svg><use href="#i-arrow-right"/></svg></span>
+    </div>
+  </div>
+</article>
+<section class="section" id="contact" aria-labelledby="contact-title">
+  <div class="wrap">
+    <div class="contact">
+      <h2 class="contact-title" id="contact-title">Let's talk</h2>
+      <p data-draft="contact copy">I'm looking for Lead and Senior product design roles in Chicago or remote, especially on consumer mobile apps and design systems. Email is the fastest way to reach me.</p>
+      <div class="contact-actions">
+        <a class="btn btn-primary" href="mailto:designedbyfox@proton.me"><svg aria-hidden="true"><use href="#i-mail"/></svg>Email designedbyfox@proton.me</a>
+        <button class="btn btn-ghost" type="button" data-copy="designedbyfox@proton.me" aria-describedby="copy-status"><svg aria-hidden="true"><use href="#i-copy"/></svg>Copy email</button>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/acharius" target="_blank" rel="noopener">LinkedIn<svg aria-hidden="true"><use href="#i-external"/></svg><span class="visually-hidden">(opens in a new tab)</span></a>
+      </div>
+      <p class="copy-status" id="copy-status" role="status"></p>
+    </div>
+  </div>
+</section></main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <p><span class="nm">Acharius Fox</span></p>
+        <p>Lead Product Designer in Chicago.</p>
+        <p data-draft="footer credit">Designed by Fox and built in plain HTML and CSS with <span class="nm">Claude Code</span>. Hosted on GitHub Pages.</p>
+      </div>
+      <div>
+        <h2>Site</h2>
+        <ul>
+          <li><a href="../index.html#work">Work</a></li>
+          <li><a href="../about/index.html">About</a></li>
+          <li><a href="../art/index.html">Art</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Connect</h2>
+        <ul>
+          <li><a href="mailto:designedbyfox@proton.me">Email</a></li>
+          <li><a href="https://www.linkedin.com/in/acharius" target="_blank" rel="noopener">LinkedIn<svg aria-hidden="true"><use href="#i-external"/></svg><span class="visually-hidden">(opens in a new tab)</span></a></li>
+          <li><a href="../assets/AchariusFox_Resume.pdf">Résumé (PDF)</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="footer-legal">© 2026 Acharius Fox</p>
+  </div>
+</footer>
+
+<dialog class="lightbox" id="lightbox" aria-labelledby="lightbox-caption">
+  <div class="lightbox-bar">
+    <p id="lightbox-caption" data-lightbox-caption></p>
+    <button class="icon-btn" type="button" data-close aria-label="Close image">
+      <svg aria-hidden="true"><use href="#i-close"/></svg>
+    </button>
+  </div>
+  <div class="lightbox-body"><img alt=""></div>
+</dialog>
+</body>
+</html>

@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en" data-theme="dark" data-text="default" data-motion="on">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Discover Identity Theft Protection enrollment | Acharius Fox</title>
+<meta name="description" content="Acharius Fox was the sole UX designer for Discover Identity Theft Protection&#39;s Friends and Family and Broad Market enrollment, across web and iOS, through a company rebrand.">
+<link rel="canonical" href="https://www.acharius.design/identity-theft-protection/">
+<meta name="theme-color" content="#15120f" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#fbf8f5" media="(prefers-color-scheme: light)">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Acharius Fox">
+<meta property="og:title" content="Opening Discover Identity Theft Protection to non-cardholders">
+<meta property="og:description" content="Acharius Fox was the sole UX designer for Discover Identity Theft Protection&#39;s Friends and Family and Broad Market enrollment, across web and iOS, through a company rebrand.">
+<meta property="og:url" content="https://www.acharius.design/identity-theft-protection/">
+<meta property="og:image" content="https://www.acharius.design/assets/img/identity-theft-protection/cover.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preload" href="../assets/fonts/instrument-sans-latin-standard-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/css/site.css">
+<script>
+/* Apply saved modes before first paint so the page never flashes the wrong theme */
+(function (r) {
+  function g(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+  r.classList.add("js");
+  var t = g("fox-theme"); r.setAttribute("data-theme", t === "light" || t === "dark" ? t : "dark");
+  r.setAttribute("data-text", g("fox-text") === "large" ? "large" : "default");
+  var m = g("fox-motion");
+  if (m !== "on" && m !== "reduced") m = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches ? "reduced" : "on";
+  r.setAttribute("data-motion", m);
+})(document.documentElement);
+</script>
+<script src="../assets/js/site.js" defer></script>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-fox" viewBox="0 0 32 32"><path style="fill:var(--accent)" d="M3 3.5 12 11h8l9-7.5V16L16 29 3 16Z"/><path style="fill:none;stroke:var(--bg)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M10.5 17.5 16 22.5l5.5-5"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7z"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M4.6 4.6 6 6M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4 6 18M18 6l1.4-1.4"/></g></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M6 6l12 12M18 6 6 18"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-arrow-left" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M19 12H5M11 6l-6 6 6 6"/></symbol>
+    <symbol id="i-arrow-right" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-external" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M8 7h9v9"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></g></symbol>
+    <symbol id="i-zoom" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></g></symbol>
+    <symbol id="i-target" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/></g></symbol>
+    <symbol id="i-pen" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M4 20h4L19 9l-4-4L4 16zM13.5 6.5l4 4"/></symbol>
+    <symbol id="i-trend" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M3 17l6-6 4 4 8-8M15 7h6v6"/></symbol>
+    <symbol id="i-layers" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="m12 3 9 5-9 5-9-5zM3 13l9 5 9-5M3 17.5l9 5 9-5"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M10.5 18.5h3"/></g></symbol>
+    <symbol id="i-access" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="4.5" r="1.8"/><path d="M5 8.5c2.3.6 4.6 1 7 1s4.7-.4 7-1M12 9.5v4.5M12 14l-3 6.5M12 14l3 6.5"/></g></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></g></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></g></symbol>
+    <symbol id="i-file" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8zM14 3v5h5M9 13h6M9 17h4"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8 12.5 2.8 2.8L16 10"/></g></symbol>
+    <symbol id="i-rotate" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"/></symbol>
+    <symbol id="i-store" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M12 7v6M9.5 10.5 12 13l2.5-2.5"/></g></symbol>
+    <symbol id="i-play-proto" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M10 8.5v5l4-2.5z" fill="currentColor"/><path d="M8 21h8" stroke-linecap="round"/></g></symbol>
+  </defs>
+</svg><a class="skip-link" href="#main">Skip to main content</a>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="../index.html" aria-label="Acharius Fox, home">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><use href="#i-fox"/></svg>
+      <span class="brand-name" aria-hidden="true">Acharius <span class="nm">Fox</span></span>
+    </a>
+    <nav class="site-nav" id="site-nav" aria-label="Main">
+      <ul class="nav-list">
+        <li><a href="../index.html#work" aria-current="page">Work</a></li>
+        <li><a href="../about/index.html">About</a></li>
+        <li><a href="../art/index.html">Art</a></li>
+        <li class="nav-contact"><a href="../index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-btn theme-toggle" type="button" aria-label="Switch to light theme">
+        <svg class="i-moon" aria-hidden="true"><use href="#i-moon"/></svg>
+        <svg class="i-sun" aria-hidden="true"><use href="#i-sun"/></svg>
+      </button>
+      <button class="icon-btn menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+        <svg aria-hidden="true"><use href="#i-menu"/></svg>
+      </button>
+      <a class="btn btn-primary btn-sm header-cta" href="../index.html#contact">Contact</a>
+    </div>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+<article class="cs" style="--tint:#ff6000">
+  <header class="wrap cs-hero">
+    <a class="cs-back" href="../index.html#work"><svg aria-hidden="true"><use href="#i-arrow-left"/></svg>All work</a>
+    <ul class="chips" aria-label="Focus areas">
+<li class="chip chip--accent">Financial services</li><li class="chip chip--accent">Web and iOS</li><li class="chip chip--accent">Usability testing</li>    </ul>
+    <h1 class="cs-title"><span data-draft="case study title">Opening <span class="nm">Discover</span> Identity Theft Protection to non-cardholders</span></h1>
+    <p class="cs-sub">Exploring a new market for Discover Financial Services, in the middle of an ongoing company rebrand.</p>
+  </header>
+
+  <div class="wrap">
+    <div class="cs-cover"><div class="stage stage--itp" role="img" aria-label="Discover Identity Theft Protection enrollment form in a desktop browser and on a phone">
+  <div class="dev dev--browser" style="left:6%;top:13%;width:72%;--r:0deg;z-index:1;--ar:16/11"><img src="../assets/img/identity-theft-protection/enrollment-v3.jpg" width="1020" height="1500" alt="" loading="lazy" decoding="async"></div>
+  <div class="dev dev--phone" style="left:69%;top:30%;width:22%;--r:4deg;z-index:2"><img src="../assets/img/identity-theft-protection/viewport-mobile.jpg" width="320" height="1969" alt="" loading="lazy" decoding="async"></div>
+</div>
+</div>
+<dl class="snapshot" aria-label="Project snapshot">
+  <div><dt>My role</dt><dd>UX Design Analyst, then Senior UX Design Analyst, at Kin + Carta</dd><dd>Sole UX designer across five Agile teams</dd></div>
+  <div><dt>Timeline</dt><dd>October 2020 to May 2021</dd></div>
+  <div><dt>Team</dt><dd>Internal: product director, PM, scrum master, engineers, and me</dd><dd>Client: product director, five PMs, five scrum masters, engineers, and legal</dd></div>
+  <div><dt>Platforms</dt><dd>Web at every viewport, and iOS</dd></div>
+</dl>
+<section class="tldr" aria-labelledby="tldr-title">
+  <h2 class="tldr-head" id="tldr-title">The short version</h2>
+  <div class="tldr-grid">
+    <div class="tldr-item">
+      <svg aria-hidden="true"><use href="#i-target"/></svg>
+      <h3>The challenge</h3>
+      <p>To capture a new market while offering an exceptional experience: let people without a Discover card enroll in Identity Theft Protection.</p>
+    </div>
+    <div class="tldr-item">
+      <svg aria-hidden="true"><use href="#i-pen"/></svg>
+      <h3>What I did</h3>
+      <p>Iterative design, usability testing comparing two flows, and the integration of a new design system and rebrand.</p>
+    </div>
+    <div class="tldr-item">
+      <svg aria-hidden="true"><use href="#i-trend"/></svg>
+      <h3>The outcome</h3>
+      <p data-draft="tldr">Friends and Family launched in December 2020 and Broad Market in mid-April 2021, across 400+ screens. A design request process kept the next rebuild from becoming a bottleneck.</p>
+    </div>
+  </div>
+</section>
+<div class="methods">
+  <h2>Methods and skills</h2>
+  <ul class="chips">
+    <li class="chip">Usability testing</li><li class="chip">Prototyping</li><li class="chip">UX and UI design</li>
+    <li class="chip">Manual accessibility testing</li><li class="chip">Client relationships</li><li class="chip">Ideation</li>
+  </ul>
+</div>
+
+    <div class="cs-layout">
+      <nav class="toc" aria-labelledby="toc-title">
+        <h2 id="toc-title">On this page</h2>
+        <ol>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#process">Design process</a></li>
+<li><a href="#decisions">Key decisions</a></li>
+<li><a href="#iterations">Design iterations</a></li>
+<li><a href="#prototypes">Annotated prototypes</a></li>
+<li><a href="#outcome">Outcome</a></li>
+<li><a href="#reflection">Reflection</a></li>
+        </ol>
+      </nav>
+      <div class="cs-body">
+        <details class="toc-mobile">
+          <summary>On this page</summary>
+          <ol>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#process">Design process</a></li>
+<li><a href="#decisions">Key decisions</a></li>
+<li><a href="#iterations">Design iterations</a></li>
+<li><a href="#prototypes">Annotated prototypes</a></li>
+<li><a href="#outcome">Outcome</a></li>
+<li><a href="#reflection">Reflection</a></li>
+          </ol>
+        </details>
+<section class="cs-section" id="overview" aria-labelledby="overview-h">
+  <div><span class="cs-num" aria-hidden="true"></span><h2 class="cs-h2" id="overview-h">Two features, one enrollment flow</h2></div>
+  <div class="prose">
+    <dl>
+      <dt>Identity Theft Protection (ITP)</dt>
+      <dd>A service and feature set by Discover Financial Services that monitors personal information and identity, and offers resolution specialists.</dd>
+      <dt>Friends and Family</dt>
+      <dd>Lets existing Discover members add friends or family to their protection plan.</dd>
+      <dt>Broad Market</dt>
+      <dd>Lets brand-new users without a Discover card enroll in ITP.</dd>
+    </dl>
+    <p>I joined the Friends and Family project midway through its design and development. We kept refining the feature with five Agile teams before its launch in December 2020. Afterward, I worked on Broad Market, which let people enroll without a Discover account or card, using another vendor to handle transactions on non-Discover cards.</p>
+    <p>Following the Broad Market launch, I focused on accessibility for ITP's enrollment: performing manual accessibility tests and training Discover employees on accessibility considerations, working toward WCAG 2.1 compliance.</p>
+  </div>
+</section>
+
+<section class="cs-section" id="process" aria-labelledby="process-h">
+  <div><span class="cs-num" aria-hidden="true"></span><h2 class="cs-h2" id="process-h">Design process</h2></div>
+  <figure class="figure"><div class="frame frame--flush"><img src="../assets/img/identity-theft-protection/timeline.png" width="2000" height="870" alt="Project timeline for the Identity Theft Protection enrollment work at Discover, from the October kickoff through accessibility improvements in May" loading="lazy" decoding="async" id="img-itp-timeline-104"><button class="icon-btn zoom-btn" type="button" data-lightbox="../assets/img/identity-theft-protection/timeline.png" data-img="img-itp-timeline-104" aria-label="View larger: Project timeline for the Identity Theft Protection enrollment work at Discover"><svg aria-hidden="true"><use href="#i-zoom"/></svg></button></div><figcaption><b>Timeline</b> from the October kickoff through accessibility improvements in May.</figcaption></figure>
+</section>
+
+<section class="cs-section" id="decisions" aria-labelledby="decisions-h">
+  <div><span class="cs-num" aria-hidden="true"></span><h2 class="cs-h2" id="decisions-h">Key decisions</h2></div>
+  <div class="decisions">
+    <article class="decision" aria-labelledby="d1">
+      <div class="decision-head"><span class="label">Decision 1</span><h3 class="decision-title" id="d1">Test a condensed, single-screen flow against the multi-page one</h3></div>
+      <div class="decision-grid">
+        <div><h4>The situation</h4><p>Broad Market enrollment inherited several screens from the Friends and Family release, and we wanted to understand its nuances before committing.</p></div>
+        <div class="chosen"><h4>What we did</h4><p>Ran usability testing with eight participants comparing the multi-page flow against a condensed flow that combined screens into one.</p></div>
+        <div><h4>What it informed</h4><p data-draft="add the test result">The Broad Market release on the right of each comparison below. Add which flow won and why.</p></div>
+      </div>
+      <div class="compare">
+        <figure class="figure"><div class="frame "><img src="../assets/img/identity-theft-protection/enrollment-v2.png" width="1020" height="1516" alt="Usability test version of the enrollment form built from the PDF design system guide, with fields for name, address, email, phone, date of birth, and Social Security number" loading="lazy" decoding="async" id="img-itp-enroll-2-105"><button class="icon-btn zoom-btn" type="button" data-lightbox="../assets/img/identity-theft-protection/enrollment-v2.png" data-img="img-itp-enroll-2-105" aria-label="View larger: Usability test version of the enrollment form built from the PDF design system guide"><svg aria-hidden="true"><use href="#i-zoom"/></svg></button></div><figcaption><span class="tag-state">Variant 1</span>Multi-page flow</figcaption></figure>
+        <figure class="figure"><div class="frame "><img src="../assets/img/identity-theft-protection/test-variant-condensed.jpg" width="1020" height="1589" alt="Condensed enrollment flow tested as Variant 2, with personal details and account creation combined on a single screen" loading="lazy" decoding="async" id="img-itp-test-2-106"><button class="icon-btn zoom-btn" type="button" data-lightbox="../assets/img/identity-theft-protection/test-variant-condensed.jpg" data-img="img-itp-test-2-106" aria-label="View larger: Condensed enrollment flow tested as Variant 2"><svg aria-hidden="true"><use href="#i-zoom"/></svg></button></div><figcaption><span class="tag-state tag-state--after">Variant 2</span>Condensed flow</figcaption></figure>
+      </div>
+    </article>
+    <article class="decision" aria-labelledby="d2">
+      <div class="decision-head"><span class="label">Decision 2</span><h3 class="decision-title" id="d2">Rebuild every screen in the new design system, a month before launch</h3></div>
+      <div class="decision-grid">
+        <div><h4>The situation</h4><p>The new design system was handed off as a PDF, which had me estimating parts of the UI like the spacing between form fields. The real system arrived a month before launch.</p></div>
+        <div class="chosen"><h4>What I chose</h4><p>I went back through each screen and rebuilt it with the new components before Broad Market launched, syncing often with designers on the bank side of Discover to track which components had changed.</p></div>
+        <div><h4>What changed after</h4><p>We added a design request form, with requests routed to a Design Kanban board I managed, each with specific exit criteria so this bottleneck wouldn't happen again.</p></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="cs-section" id="iterations" aria-labelledby="iterations-h">
+  <div><span class="cs-num" aria-hidden="true"></span><h2 class="cs-h2" id="iterations-h">Design iterations</h2></div>
+  <div class="prose"><p>Each screen went through three versions: Friends and Family, the usability test built from the PDF design system guide, and the Broad Market release with the real design system and legal approval.</p></div>
+  <h3 class="cs-h3">Enrollment form</h3>
+  <div class="gallery" style="--cols:3">
+    <figure class="figure"><div class="frame "><img src="../assets/img/identity-theft-protection/enrollment-v1.jpg" width="1021" height="1069" alt="Friends and Family version of the Identity Theft Protection enrollment form, asking for name, address, contact details, date of birth, and Social Security number" loading="lazy" decoding="async" id="img-itp-enroll-1-107"><button class="icon-btn zoom-btn" type="button" data-lightbox="../assets/img/identity-theft-protection/enrollment-v1.jpg" data-img="img-itp-enroll-1-107" aria-label="View larger: Friends and Family version of the Identity Theft Protection enrollment form"><svg aria-hidden="true"><use href="#i-zoom"/></svg></button></div><figcaption><span class="tag-state">V1</span>Friends and Family</figcaption></figure>
+    <figure class="figure"><div class="frame "><img src="../assets/img/identity-theft-protection/enrollment-v2.png" width="1020" height="1516" alt="Usability test version of the enrollment form built from the PDF design system guide, with fields for name, address, email, phone, date of birth, and Social Security number" loading="lazy" decoding="async" id="img-itp-enroll-2-108"><button class="icon-btn zoom-btn" type="button" data-lightbox="../assets/img/identity-theft-protection/enrollment-v2.png" data-img="img-itp-enroll-2-108" aria-label="View larger: Usability test version of the enrollment form built from the PDF design system guide"><svg aria-hidden="true"><use href="#i-zoom"/></svg></button></div><figcaption><span class="tag-state">V2</span>Usability test</figcaption></figure>
+    <figure class="figure"><div class="frame "><img src="../assets/img/identity-theft-protection/enrollment-v3.jpg" width="1020" height="1500" alt="Broad Market release of the enrollment form, rebuilt with the new Discover design system components" loading="lazy" decoding="async" id="img-itp-enroll-3-109"><button class="icon-btn zoom-btn" type="button" data-lightbox="../assets/img/identity-theft-protection/enrollment-v3.jpg" data-img="img-itp-enroll-3-109" aria-label="View larger: Broad Market release of the enrollment form"><svg aria-hidden="true"><use href="#i-zoom"/></svg></button></div><figcaption><span class="tag-state tag-state--after">V3</span>Broad Market release</figcaption></figure>
+  </div>
+  <h3 class="cs-h3">User ID and password</h3>
+  <div class="gallery" style="--cols:3">
+    <figure class="figure"><div class="frame "><img src="../assets/img/identity-theft-protection/create-account-v1.jpg" width="1020" height="905" alt="Friends and Family version of the Create Account screen, with user ID and password filled in and a strong password indicator" loading="lazy" decoding="async" id="img-itp-acct-1-110"><button class="icon-btn zoom-btn" type="button" data-lightbox="../assets/img/identity-theft-protection/create-account-v1.jpg" data-img="img-itp-acct-1-110" aria-label="View larger: Friends and Family version of the Create Account screen"><svg aria-hidden="true"><use href="#i-zoom"/></svg></button></div><figcaption><span class="tag-state">V1</span>Friends and Family</figcaption></figure>
+    <figure class="figure"><div class="frame "><img src="../assets/img/identity-theft-protection/create-account-v2.jpg" width="1020" height="970" alt="Usability test version of the Create Account screen, with a Discover banner at the top and a strong password indicator" loading="lazy" decoding="async" id="img-itp-acct-2-111"><button class="icon-btn zoom-btn" type="button" data-lightbox="../assets/img/identity-theft-protection/create-account-v2.jpg" data-img="img-itp-acct-2-111" aria-label="View larger: Usability test version of the Create Account screen"><svg aria-hidden="true"><use href="#i-zoom"/></svg></button></div><figcaption><span class="tag-state">V2</span>Usability test</figcaption></figure>
+    <figure class="figure"><div class="frame "><img src="../assets/img/identity-theft-protection/create-account-v3.jpg" width="1020" height="960" alt="Broad Market release of the Create Account screen in the new design system, with a strong password indicator" loading="lazy" decoding="async" id="img-itp-acct-3-112"><button class="icon-btn zoom-btn" type="button" data-lightbox="../assets/img/identity-theft-protection/create-account-v3.jpg" data-img="img-itp-acct-3-112" aria-label="View larger: Broad Market release of the Create Account screen in the new design system"><svg aria-hidden="true"><use href="#i-zoom"/></svg></button></div><figcaption><span class="tag-state tag-state--after">V3</span>Broad Market release</figcaption></figure>
+  </div>
+</section>
+
+<section class="cs-section" id="prototypes" aria-labelledby="prototypes-h">
+  <div><span class="cs-num" aria-hidden="true"></span><h2 class="cs-h2" id="prototypes-h">Annotated prototypes</h2></div>
+  <div class="prose"><p>Each Adobe XD prototype walks through the user flow at one viewport, with notes on the decisions and rationale behind changes between Friends and Family, usability testing, and the Broad Market release.</p></div>
+  <h3 class="cs-h3">Web</h3>
+  <ul class="chips">
+    <li><a class="btn btn-ghost" href="https://xd.adobe.com/view/20ea8baf-1994-486a-ad8b-fac9521e06bf-75b9/" target="_blank" rel="noopener">Desktop prototype<svg aria-hidden="true"><use href="#i-external"/></svg><span class="visually-hidden">(Adobe XD, opens in a new tab)</span></a></li>
+    <li><a class="btn btn-ghost" href="https://xd.adobe.com/view/070afe4d-8520-4ac1-a0ce-1597753a56ac-5259/" target="_blank" rel="noopener">Tablet prototype<svg aria-hidden="true"><use href="#i-external"/></svg><span class="visually-hidden">(Adobe XD, opens in a new tab)</span></a></li>
+    <li><a class="btn btn-ghost" href="https://xd.adobe.com/view/7a3f3e3c-9e33-43a3-86ae-662f0381e6b8-2f6c/" target="_blank" rel="noopener">Mobile web prototype<svg aria-hidden="true"><use href="#i-external"/></svg><span class="visually-hidden">(Adobe XD, opens in a new tab)</span></a></li>
+  </ul>
+  <div class="gallery" style="--cols:3">
+    <figure class="figure"><div class="frame "><img src="../assets/img/identity-theft-protection/enrollment-v3.jpg" width="1020" height="1500" alt="Broad Market release of the enrollment form, rebuilt with the new Discover design system components" loading="lazy" decoding="async" id="img-itp-enroll-3-113"><button class="icon-btn zoom-btn" type="button" data-lightbox="../assets/img/identity-theft-protection/enrollment-v3.jpg" data-img="img-itp-enroll-3-113" aria-label="View larger: Broad Market release of the enrollment form"><svg aria-hidden="true"><use href="#i-zoom"/></svg></button></div><figcaption><b>Desktop</b> viewport</figcaption></figure>
+    <figure class="figure"><div class="frame "><img src="../assets/img/identity-theft-protection/viewport-tablet.jpg" width="755" height="1598" alt="Broad Market enrollment form at the tablet web viewport" loading="lazy" decoding="async" id="img-itp-vp-tablet-114"><button class="icon-btn zoom-btn" type="button" data-lightbox="../assets/img/identity-theft-protection/viewport-tablet.jpg" data-img="img-itp-vp-tablet-114" aria-label="View larger: Broad Market enrollment form at the tablet web viewport"><svg aria-hidden="true"><use href="#i-zoom"/></svg></button></div><figcaption><b>Tablet</b> viewport</figcaption></figure>
+    <figure class="figure"><div class="frame "><img src="../assets/img/identity-theft-protection/viewport-mobile.jpg" width="320" height="1969" alt="Broad Market enrollment form at the mobile web viewport" loading="lazy" decoding="async" id="img-itp-vp-mobile-115"><button class="icon-btn zoom-btn" type="button" data-lightbox="../assets/img/identity-theft-protection/viewport-mobile.jpg" data-img="img-itp-vp-mobile-115" aria-label="View larger: Broad Market enrollment form at the mobile web viewport"><svg aria-hidden="true"><use href="#i-zoom"/></svg></button></div><figcaption><b>Mobile web</b> viewport</figcaption></figure>
+  </div>
+  <h3 class="cs-h3">iOS</h3>
+  <ul class="chips">
+    <li><a class="btn btn-ghost" href="https://xd.adobe.com/view/2cae897d-8704-4f47-89eb-cf99bed05b89-79fd/" target="_blank" rel="noopener">Handset prototype<svg aria-hidden="true"><use href="#i-external"/></svg><span class="visually-hidden">(Adobe XD, opens in a new tab)</span></a></li>
+    <li><a class="btn btn-ghost" href="https://xd.adobe.com/view/ce4beff6-396d-475e-a834-fe2078e2c8c3-9b18/" target="_blank" rel="noopener">Tablet portrait prototype<svg aria-hidden="true"><use href="#i-external"/></svg><span class="visually-hidden">(Adobe XD, opens in a new tab)</span></a></li>
+    <li><a class="btn btn-ghost" href="https://xd.adobe.com/view/915b9740-9094-437c-80dc-dbdbc5177c1d-c408/" target="_blank" rel="noopener">Tablet landscape prototype<svg aria-hidden="true"><use href="#i-external"/></svg><span class="visually-hidden">(Adobe XD, opens in a new tab)</span></a></li>
+  </ul>
+  <div class="gallery" style="--cols:3">
+    <figure class="figure"><div class="frame "><img src="../assets/img/identity-theft-protection/ios-handset-success.png" width="750" height="1238" alt="iOS handset screen confirming sign-up, with a checkmark and a Log In button" loading="lazy" decoding="async" id="img-itp-ios-phone-116"><button class="icon-btn zoom-btn" type="button" data-lightbox="../assets/img/identity-theft-protection/ios-handset-success.png" data-img="img-itp-ios-phone-116" aria-label="View larger: iOS handset screen confirming sign-up"><svg aria-hidden="true"><use href="#i-zoom"/></svg></button></div><figcaption><b>Handset</b></figcaption></figure>
+    <figure class="figure"><div class="frame "><img src="../assets/img/identity-theft-protection/ios-tablet-portrait-success.png" width="1536" height="1180" alt="iOS tablet portrait screen confirming sign-up, with a checkmark and a Log In button" loading="lazy" decoding="async" id="img-itp-ios-tp-117"><button class="icon-btn zoom-btn" type="button" data-lightbox="../assets/img/identity-theft-protection/ios-tablet-portrait-success.png" data-img="img-itp-ios-tp-117" aria-label="View larger: iOS tablet portrait screen confirming sign-up"><svg aria-hidden="true"><use href="#i-zoom"/></svg></button></div><figcaption><b>Tablet</b> portrait</figcaption></figure>
+    <figure class="figure"><div class="frame "><img src="../assets/img/identity-theft-protection/ios-tablet-landscape-success.png" width="2048" height="1180" alt="iOS tablet landscape screen confirming sign-up, with a checkmark and a Log In button" loading="lazy" decoding="async" id="img-itp-ios-tl-118"><button class="icon-btn zoom-btn" type="button" data-lightbox="../assets/img/identity-theft-protection/ios-tablet-landscape-success.png" data-img="img-itp-ios-tl-118" aria-label="View larger: iOS tablet landscape screen confirming sign-up"><svg aria-hidden="true"><use href="#i-zoom"/></svg></button></div><figcaption><b>Tablet</b> landscape</figcaption></figure>
+  </div>
+  <h3 class="cs-h3">Usability test prototypes</h3>
+  <div class="prose"><p>These are the two flows we tested with eight participants. Our goal was to better understand the nuances of Broad Market enrollment and, ideally, condense several Friends and Family screens into one.</p></div>
+  <ul class="chips">
+    <li><a class="btn btn-ghost" href="https://xd.adobe.com/view/18d3991b-d701-4c00-8767-efd3adc024ca-4d80/" target="_blank" rel="noopener">Variant 1: multi-page flow<svg aria-hidden="true"><use href="#i-external"/></svg><span class="visually-hidden">(Adobe XD, opens in a new tab)</span></a></li>
+    <li><a class="btn btn-ghost" href="https://xd.adobe.com/view/88020ad6-dd25-4403-a258-5582bb9a54e6-dd51/" target="_blank" rel="noopener">Variant 2: condensed flow<svg aria-hidden="true"><use href="#i-external"/></svg><span class="visually-hidden">(Adobe XD, opens in a new tab)</span></a></li>
+  </ul>
+</section>
+
+<section class="cs-section" id="outcome" aria-labelledby="outcome-h">
+  <div><span class="cs-num" aria-hidden="true"></span><h2 class="cs-h2" id="outcome-h">Outcome</h2></div>
+  <ul class="metrics" role="list">
+    <li class="metric"><span class="metric-value">Dec 2020</span><span class="metric-label">Friends and Family launched</span></li>
+    <li class="metric"><span class="metric-value">Apr 2021</span><span class="metric-label">Broad Market launched, opening ITP to non-Discover cardholders</span></li>
+    <li class="metric"><span class="metric-value">400+</span><span class="metric-label">screens designed across web and iOS</span></li>
+    <li class="metric"><span class="metric-value">8</span><span class="metric-label">usability test participants comparing two enrollment flows</span></li>
+  </ul>
+</section>
+
+<section class="cs-section" id="reflection" aria-labelledby="reflection-h">
+  <div><span class="cs-num" aria-hidden="true"></span><h2 class="cs-h2" id="reflection-h">Reflection</h2></div>
+  <div class="reflect">
+    <div class="reflect-card">
+      <h3><svg aria-hidden="true"><use href="#i-check"/></svg>What worked</h3>
+      <p>The number of iterations on the enrollment screens allowed for many design considerations, and my visual design skills were used heavily in the early stages of Broad Market. I became more integrated into one of the development teams and worked closely with them to keep iterating and validating designs, making sure they were technically feasible while prioritizing what could reasonably go into the MVP launch.</p>
+    </div>
+    <div class="reflect-card">
+      <h3><svg aria-hidden="true"><use href="#i-rotate"/></svg>What I'd do differently</h3>
+      <p data-draft="condensed from your text, last sentence is new">I learned a lot about external factors that can affect the design process. Getting the design system as a PDF, then the real thing a month before launch, meant redoing every screen. The design request form and Kanban board with clear exit criteria came out of that, and I'd push for them from day one next time.</p>
+    </div>
+  </div>
+</section>
+      </div>
+    </div>
+
+    <div class="next-project">
+      <div>
+        <p class="label">Next case study</p>
+        <h2><a href="../patient-rounding/index.html">Modernizing <span class="nm">Press Ganey</span>'s iRound for hospital rounding</a></h2>
+      </div>
+      <span class="next-arrow" aria-hidden="true"><svg><use href="#i-arrow-right"/></svg></span>
+    </div>
+  </div>
+</article>
+<section class="section" id="contact" aria-labelledby="contact-title">
+  <div class="wrap">
+    <div class="contact">
+      <h2 class="contact-title" id="contact-title">Let's talk</h2>
+      <p data-draft="contact copy">I'm looking for Lead and Senior product design roles in Chicago or remote, especially on consumer mobile apps and design systems. Email is the fastest way to reach me.</p>
+      <div class="contact-actions">
+        <a class="btn btn-primary" href="mailto:designedbyfox@proton.me"><svg aria-hidden="true"><use href="#i-mail"/></svg>Email designedbyfox@proton.me</a>
+        <button class="btn btn-ghost" type="button" data-copy="designedbyfox@proton.me" aria-describedby="copy-status"><svg aria-hidden="true"><use href="#i-copy"/></svg>Copy email</button>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/acharius" target="_blank" rel="noopener">LinkedIn<svg aria-hidden="true"><use href="#i-external"/></svg><span class="visually-hidden">(opens in a new tab)</span></a>
+      </div>
+      <p class="copy-status" id="copy-status" role="status"></p>
+    </div>
+  </div>
+</section></main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <p><span class="nm">Acharius Fox</span></p>
+        <p>Lead Product Designer in Chicago.</p>
+        <p data-draft="footer credit">Designed by Fox and built in plain HTML and CSS with <span class="nm">Claude Code</span>. Hosted on GitHub Pages.</p>
+      </div>
+      <div>
+        <h2>Site</h2>
+        <ul>
+          <li><a href="../index.html#work">Work</a></li>
+          <li><a href="../about/index.html">About</a></li>
+          <li><a href="../art/index.html">Art</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Connect</h2>
+        <ul>
+          <li><a href="mailto:designedbyfox@proton.me">Email</a></li>
+          <li><a href="https://www.linkedin.com/in/acharius" target="_blank" rel="noopener">LinkedIn<svg aria-hidden="true"><use href="#i-external"/></svg><span class="visually-hidden">(opens in a new tab)</span></a></li>
+          <li><a href="../assets/AchariusFox_Resume.pdf">Résumé (PDF)</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="footer-legal">© 2026 Acharius Fox</p>
+  </div>
+</footer>
+
+<dialog class="lightbox" id="lightbox" aria-labelledby="lightbox-caption">
+  <div class="lightbox-bar">
+    <p id="lightbox-caption" data-lightbox-caption></p>
+    <button class="icon-btn" type="button" data-close aria-label="Close image">
+      <svg aria-hidden="true"><use href="#i-close"/></svg>
+    </button>
+  </div>
+  <div class="lightbox-body"><img alt=""></div>
+</dialog>
+</body>
+</html>
