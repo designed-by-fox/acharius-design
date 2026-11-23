@@ -30,7 +30,7 @@ assets/css/site.css                  Tokens and all styles
 assets/js/site.js                    Modes, menu, image viewer, pausable GIFs, table of contents, copy email
 assets/fonts/                        Instrument Sans and Literata italic
 assets/img/                          Images, one folder per page or case study
-assets/AchariusFox_Resume.pdf        Résumé
+assets/AchariusFox_Resume.pdf        Resume
 .github/workflows/pages.yml          Deploys to GitHub Pages on every push to main
 ```
 

@@ -218,7 +218,7 @@ a:hover { text-decoration-color: var(--accent); }
 }
 /* line-height 1 keeps Literata's taller ascent from pushing its line apart. */
 .nm { line-height: 1; }
-:is(h1, h2, h3, .brand-name, .footer-brand) .nm { font-weight: 500; }
+:is(h1, h2, h3, .brand-name, .footer-name) .nm { font-weight: 500; }
 @media (min-width: 40rem) {
   :is(h1, h2, h3) .nm { white-space: nowrap; }
 }
@@ -703,6 +703,30 @@ main:focus { outline: none; }
   border: 1px solid var(--border);
   background: color-mix(in srgb, var(--bg) 50%, transparent);
 }
+/* Hover cue, like a button. Decorative: the title link already covers the card. */
+.project-cta {
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  min-height: 44px;
+  padding: 0 1.15rem;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--on-accent);
+  font-weight: 600;
+  font-size: var(--fs-sm);
+  opacity: 0;
+  transition: opacity var(--dur-2);
+}
+.project-cta svg { width: 16px; height: 16px; transition: transform var(--dur-2) var(--ease-out); }
+.project:hover .project-cta,
+.project:focus-within .project-cta { opacity: 1; }
+@media (hover: none) { .project-cta { opacity: 1; } }
+@media (prefers-reduced-motion: no-preference) {
+  :root:not([data-motion="reduced"]) .project:hover .project-cta svg { transform: translateX(3px); }
+}
+@media (forced-colors: active) { .project-cta { border: 1px solid ButtonText; } }
 .project-media {
   position: relative;
   z-index: 1;
@@ -713,16 +737,16 @@ main:focus { outline: none; }
   min-height: 0;
 }
 .project--wide .project-media { align-items: center; padding: clamp(1.5rem, 3vw, 2.5rem); }
-.project-media img {
+.project-media > img {
   width: 100%;
   max-height: 24rem;
   object-fit: contain;
   object-position: bottom center;
   transition: transform var(--dur-3) var(--ease-out);
 }
-.project--wide .project-media img { max-height: 26rem; object-position: center; }
+.project--wide .project-media > img { max-height: 26rem; object-position: center; }
 @media (prefers-reduced-motion: no-preference) {
-  :root:not([data-motion="reduced"]) .project:hover .project-media img { transform: translateY(-6px) scale(1.015); }
+  :root:not([data-motion="reduced"]) .project:hover .project-media > img { transform: translateY(-6px) scale(1.015); }
 }
 .project-flag {
   display: inline-flex;
@@ -890,7 +914,7 @@ main:focus { outline: none; }
   gap: var(--s-6);
 }
 .footer-brand { display: grid; gap: var(--s-2); align-content: start; }
-.footer-brand .nm { color: var(--text); font-size: 1.5rem; }
+.footer-name .nm { color: var(--text); font-size: 1.5rem; }
 .footer-grid h2 { font-size: var(--fs-sm); color: var(--text); font-weight: 600; letter-spacing: 0; margin-bottom: var(--s-3); }
 .footer-grid ul { list-style: none; padding: 0; display: grid; gap: var(--s-1); }
 .footer-grid a { display: inline-flex; align-items: center; gap: var(--s-2); min-height: 32px; text-decoration: none; color: var(--text-muted); }
@@ -1395,7 +1419,7 @@ main:focus { outline: none; }
   .nav-contact { display: list-item; }
   .work-grid { grid-template-columns: 1fr; }
   .project, .project--wide { min-height: 0; }
-  .project-media img { max-height: 17rem; }
+  .project-media > img { max-height: 17rem; }
   .practice { grid-template-columns: 1fr; }
   .practice-item, .practice-item:nth-child(even) { padding: var(--s-5) 0; border-right: 0; }
   .practice-item:nth-child(odd) { border-right: 0; }
