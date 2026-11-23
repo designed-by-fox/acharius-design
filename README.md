@@ -10,7 +10,7 @@ Plain HTML, CSS, and a small amount of vanilla JavaScript. No framework, no buil
 
 - **Design tokens.** Colors, type, spacing, and radii are CSS custom properties at the top of `assets/css/site.css`: primitives first, then semantic roles for the dark and light themes.
 - **Modes.** Theme, text size, and motion are stored per browser and applied to `<html>` before first paint, so pages never flash the wrong theme. The home page hero lets visitors switch them and shows live contrast ratios for the text.
-- **Type.** Instrument Sans for everything, with Instrument Serif italic reserved for names of people, products, clients, and places (`<span class="nm">`).
+- **Type.** Instrument Sans for everything, with Literata italic reserved for names of people, products, clients, and places (`<span class="nm">`).
 - **Interactive demo.** `demos/master-tour-dashboard.html` rebuilds the Master Tour mobile Dashboard in code, driven by a primitives collection and a semantic collection, with theme, device, and text size modes.
 
 ## Structure
@@ -28,16 +28,15 @@ demos/master-tour-dashboard.html     Interactive Dashboard demo, embedded in its
 404.html                             Not found page
 assets/css/site.css                  Tokens and all styles
 assets/js/site.js                    Modes, menu, image viewer, pausable GIFs, table of contents, copy email
-assets/fonts/                        Instrument Sans and Instrument Serif
+assets/fonts/                        Instrument Sans and Literata italic
 assets/img/                          Images, one folder per page or case study
 assets/AchariusFox_Resume.pdf        Résumé
 .github/workflows/pages.yml          Deploys to GitHub Pages on every push to main
-acharius-design.zip                  Snapshot of the whole site in one download
 ```
 
 ## Run it locally
 
-Clone the repo, or download `acharius-design.zip` and unzip it. Then open `index.html` in a browser. For the closest match to production, serve the folder instead:
+Open `index.html` in a browser. For the closest match to production, serve the folder instead:
 
 ```
 python -m http.server 8000
@@ -73,6 +72,6 @@ Built to WCAG 2.2 AA and checked with axe-core on every page, in both themes, at
 
 ## Credits and rights
 
-Fonts: Instrument Sans and Instrument Serif by the Instrument Sans Project Authors, under the SIL Open Font License 1.1.
+Fonts: Instrument Sans by the Instrument Sans Project Authors and Literata by TypeTogether, both under the SIL Open Font License 1.1.
 
 Case study text, images, and screenshots © 2026 Acharius Fox, shown as portfolio work. Product screens remain the property of their respective companies. Please don't reuse them.
