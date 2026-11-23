@@ -471,8 +471,10 @@ main:focus { outline: none; }
   box-shadow: 0 0 0 4px var(--accent-soft);
 }
 .specimen { position: relative; }
+.specimen-wrap { container-type: inline-size; min-width: 0; }
 .hero-title {
   font-size: var(--fs-display);
+  font-size: clamp(2.125rem, 8.4cqi, 4.375rem);
   font-weight: 540;
   line-height: 1.02;
   letter-spacing: -0.035em;
