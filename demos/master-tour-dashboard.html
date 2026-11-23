@@ -12,6 +12,8 @@
   var t = null; try { t = localStorage.getItem("fox-theme"); } catch (e) {}
   r.setAttribute("data-theme", t === "light" ? "light" : "dark");
   if (/[?&]embed\b/.test(location.search)) r.classList.add("embed");
+  /* ?screen: just the phone screen, sized to the frame, driven by the parent page's modes */
+  if (/[?&]screen\b/.test(location.search)) r.classList.add("embed", "screen");
 })(document.documentElement);
 </script>
 <style>
@@ -39,6 +41,11 @@ img{max-width:100%}
 .intro h1{margin:0;font-size:28px;line-height:1.15;font-weight:600;letter-spacing:-.01em;text-wrap:balance}
 .intro p{margin:0;color:var(--muted)}
 .intro a{color:inherit}
+.screen .page{padding:0;gap:0;max-width:none}
+.screen .controls,.screen .hint,.screen .readout{display:none}
+.screen .stage{display:block}
+.screen .device{padding:0;border-radius:0;background:none;box-shadow:none}
+.screen .mt{border-radius:0}
 .embed .intro{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
 .controls{display:flex;flex-wrap:wrap;align-items:flex-end;gap:14px 22px;padding:14px 16px;background:var(--panel);border:1px solid var(--line);border-radius:14px}
@@ -440,6 +447,10 @@ img{max-width:100%}
   var NAMES = {theme:['Light','Dark'], device:['Phone','Tablet'], text:['Default','Large','Extra Large']};
   var mode = {theme:1, device:0, text:0};
   var EMBED = document.documentElement.classList.contains('embed');
+  var SCREEN = document.documentElement.classList.contains('screen');
+  if (SCREEN) {
+    try { mode.theme = localStorage.getItem('fox-theme') === 'light' ? 0 : 1; mode.text = localStorage.getItem('fox-text') === 'large' ? 1 : 0; } catch (e) {}
+  }
 
   var mt = document.getElementById('mt'), device = document.getElementById('device');
   var stage = document.getElementById('stage'), box = document.getElementById('stageBox');
@@ -483,6 +494,12 @@ img{max-width:100%}
     screen.scrollTop = colL.scrollTop = colR.scrollTop = 0;
   }
   function fit(){
+    if (SCREEN) {
+      var sw = stage.clientWidth / 393;
+      device.style.transform = 'scale(' + sw + ')';
+      box.style.width = (393 * sw) + 'px'; box.style.height = (852 * sw) + 'px';
+      return;
+    }
     var pad = mode.device ? 16 : 12, w = (mode.device ? 1180 : 393) + pad*2, h = (mode.device ? 820 : 852) + pad*2;
     var avail = stage.clientWidth;
     var maxH = EMBED ? 760 : Math.max(0.55 * h, window.innerHeight - 40);
@@ -492,6 +509,7 @@ img{max-width:100%}
     report();
   }
   function report(){
+    if (SCREEN) return;
     if (window.parent !== window) {
       window.parent.postMessage({type:'fox-demo-height', height: document.querySelector('.page').getBoundingClientRect().height + 4}, '*');
     }
@@ -523,6 +541,11 @@ img{max-width:100%}
     if (d.type === 'fox-modes') {
       if (d.theme) document.documentElement.setAttribute('data-theme', d.theme === 'light' ? 'light' : 'dark');
       if (d.motion) document.documentElement.setAttribute('data-motion', d.motion);
+      if (SCREEN) {
+        if (d.theme) mode.theme = d.theme === 'light' ? 0 : 1;
+        if (d.text) mode.text = d.text === 'large' ? 1 : 0;
+        apply();
+      }
     }
   });
   if (window.ResizeObserver) new ResizeObserver(fit).observe(stage); else window.addEventListener('resize', fit);

@@ -102,7 +102,7 @@
   function broadcast() {
     document.querySelectorAll("iframe[data-follow-modes]").forEach(function (f) {
       try {
-        f.contentWindow.postMessage({ type: "fox-modes", theme: root.getAttribute("data-theme"), motion: root.getAttribute("data-motion") }, "*");
+        f.contentWindow.postMessage({ type: "fox-modes", theme: root.getAttribute("data-theme"), text: root.getAttribute("data-text"), motion: root.getAttribute("data-motion") }, "*");
       } catch (e) {}
     });
   }
