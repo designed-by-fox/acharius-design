@@ -32,11 +32,12 @@ assets/fonts/                        Instrument Sans and Instrument Serif
 assets/img/                          Images, one folder per page or case study
 assets/AchariusFox_Resume.pdf        Résumé
 .github/workflows/pages.yml          Deploys to GitHub Pages on every push to main
+acharius-design.zip                  Snapshot of the whole site in one download
 ```
 
 ## Run it locally
 
-Open `index.html` in a browser. For the closest match to production, serve the folder instead:
+Clone the repo, or download `acharius-design.zip` and unzip it. Then open `index.html` in a browser. For the closest match to production, serve the folder instead:
 
 ```
 python -m http.server 8000
