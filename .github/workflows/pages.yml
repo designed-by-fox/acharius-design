@@ -1,13 +1,11 @@
-# Deploys the site to GitHub Pages on every push to main.
-# Before deploying, it downloads any portfolio images that aren't in the repo yet from the
-# Webflow CDN and commits them, so the images live here before the Webflow site goes away.
+# Publishes the site to GitHub Pages on every push to main.
 name: Deploy site
 on:
   push:
     branches: [main]
   workflow_dispatch:
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
 concurrency:
@@ -21,21 +19,6 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-      - name: Download images from the Webflow CDN (skips ones already in the repo)
-        run: node scripts/fetch-images.mjs
-        continue-on-error: true
-      - name: Save new images to the repo
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
-          git add assets/img
-          if ! git diff --cached --quiet; then
-            git commit -m "Add portfolio images from the Webflow CDN"
-            git push
-          fi
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
