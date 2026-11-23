@@ -45,7 +45,7 @@ Your philosophy paragraph and the Option B intro stay in the hero, word for word
 
 ## Decisions I made that you may want to change
 
-1. **Hosting.** You didn't pick an option, so I built everything locally and didn't create a repo or publish anything. README steps 3 and 4 cover GitHub Pages and the domain move. Webflow stays live until you switch DNS.
+1. **Hosting.** The site lives in `designed-by-fox/acharius-design` and deploys to https://designed-by-fox.github.io/acharius-design/ on every push to `main`. www.acharius.design still points at Webflow until you switch DNS (README step 4).
 2. **URLs.** Master Tour and Supplier Transfer keep their Webflow URLs, so links in applications you've already sent still work. `/itp` and the misspelled `/paitent-rounding-app` redirect to `/identity-theft-protection/` and `/patient-rounding/`.
 3. **Websites section.** The live Art page says "coming soon," which reads as unfinished to a reviewer, so I left that section out. Send me the URLs (PUG Mortgage, Keegan's site, and so on) and I'll add a Websites section with live links.
 4. **Farm-to-School Procurement** stays out, matching the hidden Webflow page.
