@@ -663,6 +663,8 @@ main:focus { outline: none; }
 }
 .project:hover { border-color: var(--border-strong); }
 .project--wide { grid-column: 1 / -1; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); grid-template-rows: none; min-height: 30rem; }
+.project--flip { grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); }
+.project--flip .project-text { order: 2; }
 .project-text {
   position: relative;
   z-index: 2;
@@ -801,7 +803,7 @@ main:focus { outline: none; }
 .project--wide .project-media .stage { align-self: center; }
 .cs-cover { padding: clamp(1rem, 3vw, 2.5rem) clamp(1rem, 3vw, 2.5rem) 0; }
 .cs-cover .stage { aspect-ratio: 16 / 8; max-width: 62rem; margin-inline: auto; }
-.cs-cover .stage--mt { aspect-ratio: 16 / 9; max-width: 56rem; }
+.cs-cover .stage--mt, .cs-cover .stage--ga { aspect-ratio: 16 / 9; max-width: 56rem; }
 
 /* ==========================================================================
    How I work, experience, skills, quotes, contact
@@ -943,6 +945,22 @@ main:focus { outline: none; }
 .cs-title { font-size: var(--fs-3xl); max-width: 22ch; margin-inline: auto; letter-spacing: -0.03em; font-stretch: 94%; }
 .cs-sub { margin: var(--s-5) auto 0; max-width: 40rem; color: var(--text-muted); font-size: var(--fs-lg); line-height: 1.5; }
 .cs-links { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--s-3); margin-top: var(--s-6); }
+.cs-note {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--s-3);
+  max-width: 36rem;
+  margin: var(--s-6) auto 0;
+  padding: var(--s-3) var(--s-4);
+  border-radius: var(--r-control);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-size: var(--fs-sm);
+  line-height: 1.5;
+  text-align: left;
+}
+.cs-note svg { flex: none; width: 18px; height: 18px; margin-top: 0.1rem; color: var(--accent); }
 
 .cs-cover {
   position: relative;
@@ -1378,6 +1396,7 @@ main:focus { outline: none; }
   .hero-grid { grid-template-columns: 1fr; align-items: start; }
   .modes { max-width: 32rem; }
   .project--wide { grid-template-columns: 1fr; grid-template-rows: auto 1fr; }
+  .project--flip .project-text { order: 0; }
   .project--wide .project-media { padding-top: 0; }
   .exp-layout { grid-template-columns: 1fr; }
   .skill-groups { position: static; }
@@ -1439,7 +1458,7 @@ main:focus { outline: none; }
   .split { grid-template-columns: 1fr; }
   .next-project { grid-template-columns: 1fr; }
   .demo-frame { min-height: 52rem; }
-  .cs-cover .stage, .cs-cover .stage--mt { aspect-ratio: 16 / 12; }
+  .cs-cover .stage, .cs-cover .stage--mt, .cs-cover .stage--ga { aspect-ratio: 16 / 12; }
 
   /* Keep the first project visible on a phone screen: the modes panel collapses */
   .hero { padding-block: var(--s-5) var(--s-6); }

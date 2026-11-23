@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="en" data-theme="dark" data-text="default" data-motion="on">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Garage Appraiser, an AI app built with Claude | Acharius Fox</title>
+<meta name="description" content="Acharius Fox designed and built The Garage Appraiser entirely with Claude and Claude Code: a mobile web app that identifies items from a barcode, photo, or description, asks the owner to confirm the match, and prices them from recent sales. 137 items priced, 40 sold.">
+<link rel="canonical" href="https://www.acharius.design/garage-appraiser/">
+<meta name="theme-color" content="#15120f" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#fbf8f5" media="(prefers-color-scheme: light)">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Acharius Fox">
+<meta property="og:title" content="Building an AI appraiser for my dad&#39;s garage cleanout">
+<meta property="og:description" content="Acharius Fox designed and built The Garage Appraiser entirely with Claude and Claude Code: a mobile web app that identifies items from a barcode, photo, or description, asks the owner to confirm the match, and prices them from recent sales. 137 items priced, 40 sold.">
+<meta property="og:url" content="https://www.acharius.design/garage-appraiser/">
+<meta property="og:image" content="https://www.acharius.design/assets/img/garage-appraiser/cover.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preload" href="../assets/fonts/instrument-sans-latin-standard-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/css/site.css">
+<script>
+/* Apply saved modes before first paint so the page never flashes the wrong theme */
+(function (r) {
+  function g(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+  r.classList.add("js");
+  var t = g("fox-theme"); r.setAttribute("data-theme", t === "light" || t === "dark" ? t : "dark");
+  r.setAttribute("data-text", g("fox-text") === "large" ? "large" : "default");
+  var m = g("fox-motion");
+  if (m !== "on" && m !== "reduced") m = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches ? "reduced" : "on";
+  r.setAttribute("data-motion", m);
+})(document.documentElement);
+</script>
+<script src="../assets/js/site.js" defer></script>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-fox" viewBox="0 0 32 32"><path style="fill:var(--accent)" d="M3 3.5 12 11h8l9-7.5V16L16 29 3 16Z"/><path style="fill:none;stroke:var(--bg)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M10.5 17.5 16 22.5l5.5-5"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7z"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M4.6 4.6 6 6M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4 6 18M18 6l1.4-1.4"/></g></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M6 6l12 12M18 6 6 18"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-arrow-left" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M19 12H5M11 6l-6 6 6 6"/></symbol>
+    <symbol id="i-arrow-right" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-external" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M8 7h9v9"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></g></symbol>
+    <symbol id="i-zoom" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></g></symbol>
+    <symbol id="i-target" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/></g></symbol>
+    <symbol id="i-pen" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M4 20h4L19 9l-4-4L4 16zM13.5 6.5l4 4"/></symbol>
+    <symbol id="i-trend" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M3 17l6-6 4 4 8-8M15 7h6v6"/></symbol>
+    <symbol id="i-layers" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="m12 3 9 5-9 5-9-5zM3 13l9 5 9-5M3 17.5l9 5 9-5"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M10.5 18.5h3"/></g></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M12 20s-7-4.35-7-10a4 4 0 0 1 7-2.65A4 4 0 0 1 19 10c0 5.65-7 10-7 10z"/></symbol>
+    <symbol id="i-pause" viewBox="0 0 24 24"><g fill="currentColor"><rect x="6.5" y="5" width="3.5" height="14" rx="1"/><rect x="14" y="5" width="3.5" height="14" rx="1"/></g></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="5" y="10.5" width="14" height="10" rx="2"/><path d="M8.5 10.5V7.5a3.5 3.5 0 0 1 7 0v3"/></g></symbol>
+    <symbol id="i-access" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="4.5" r="1.8"/><path d="M5 8.5c2.3.6 4.6 1 7 1s4.7-.4 7-1M12 9.5v4.5M12 14l-3 6.5M12 14l3 6.5"/></g></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></g></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></g></symbol>
+    <symbol id="i-file" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8zM14 3v5h5M9 13h6M9 17h4"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8 12.5 2.8 2.8L16 10"/></g></symbol>
+    <symbol id="i-rotate" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"/></symbol>
+    <symbol id="i-store" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M12 7v6M9.5 10.5 12 13l2.5-2.5"/></g></symbol>
+    <symbol id="i-play-proto" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M10 8.5v5l4-2.5z" fill="currentColor"/><path d="M8 21h8" stroke-linecap="round"/></g></symbol>
+  </defs>
+</svg><a class="skip-link" href="#main">Skip to main content</a>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="../index.html" aria-label="Acharius Fox, home">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><use href="#i-fox"/></svg>
+      <span class="brand-name" aria-hidden="true">Acharius <span class="nm">Fox</span></span>
+    </a>
+    <nav class="site-nav" id="site-nav" aria-label="Main">
+      <ul class="nav-list">
+        <li><a href="../index.html#work" aria-current="page">Work</a></li>
+        <li><a href="../about/index.html">About</a></li>
+        <li><a href="../art/index.html">Art</a></li>
+        <li class="nav-contact"><a href="../index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-btn theme-toggle" type="button" aria-label="Switch to light theme">
+        <svg class="i-moon" aria-hidden="true"><use href="#i-moon"/></svg>
+        <svg class="i-sun" aria-hidden="true"><use href="#i-sun"/></svg>
+      </button>
+      <button class="icon-btn menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+        <svg aria-hidden="true"><use href="#i-menu"/></svg>
+      </button>
+      <a class="btn btn-primary btn-sm header-cta" href="../index.html#contact">Contact</a>
+    </div>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+<article class="cs" style="--tint:#b07a2c">
+  <header class="wrap cs-hero">
+    <a class="cs-back" href="../index.html#work"><svg aria-hidden="true"><use href="#i-arrow-left"/></svg>All work</a>
+    <ul class="chips" aria-label="Focus areas">
+<li class="chip chip--accent">AI product</li><li class="chip chip--accent">Mobile web app</li><li class="chip chip--accent">Built with Claude Code</li>    </ul>
+    <h1 class="cs-title"><span data-draft="case study title">Building an AI appraiser for my dad's garage cleanout</span></h1>
+    <p class="cs-sub"><span data-draft="case study subtitle">I designed and built <span class="nm">The Garage Appraiser</span> entirely with <span class="nm">Claude</span>. Scan, snap, or type an item, confirm it's the right match, and get a price from recent sales.</span></p>
+<p class="cs-note"><svg aria-hidden="true"><use href="#i-lock"/></svg><span>There's no public link to the app. Every lookup is billed to my own Anthropic API key, so the screens on this page come from the real app running on sample items.</span></p>
+  </header>
+
+  <div class="wrap">
+    <div class="cs-cover"><div class="stage stage--ga" role="img" aria-label="Three screens from The Garage Appraiser: an identified item with versions to choose from, a price estimate, and the shared inventory">
+  <div class="dev dev--phone" style="left:13%;bottom:-14%;width:25%;--r:-7deg;z-index:1"><img src="../assets/img/garage-appraiser/identified.webp" width="1179" height="2556" alt="" loading="lazy" decoding="async"></div>
+  <div class="dev dev--phone" style="left:37.5%;bottom:-4%;width:25%;--r:0deg;z-index:3"><img src="../assets/img/garage-appraiser/estimate.webp" width="1179" height="2556" alt="" loading="lazy" decoding="async"></div>
+  <div class="dev dev--phone" style="left:62%;bottom:-14%;width:25%;--r:7deg;z-index:2"><img src="../assets/img/garage-appraiser/inventory.webp" width="1179" height="2556" alt="" loading="lazy" decoding="async"></div>
+</div>
+</div>
+<dl class="snapshot" aria-label="Project snapshot">
+  <div><dt>My role</dt><dd>Designer and developer</dd><dd>Solo project</dd></div>
+  <div><dt>Timeline</dt><dd>June to November 2026</dd><dd>Still in use</dd></div>
+  <div><dt>Built with</dt><dd><span class="nm">Claude</span> and <span class="nm">Claude Code</span></dd><dd>No Figma</dd></div>
+  <div><dt>Platform</dt><dd>Mobile web app for iPhone and Android</dd><dd>Private, no public link</dd></div>
+</dl>
+<section class="tldr" aria-labelledby="tldr-title">
+  <h2 class="tldr-head" id="tldr-title">The short version</h2>
+  <div class="tldr-grid">
+    <div class="tldr-item">
+      <svg aria-hidden="true"><use href="#i-target"/></svg>
+      <h3>The challenge</h3>
+      <p data-draft="tldr">My dad was clearing out a garage full of games, toys, movies, tools, and craft supplies. Pricing each one meant digging through eBay sold listings by hand.</p>
+    </div>
+    <div class="tldr-item">
+      <svg aria-hidden="true"><use href="#i-pen"/></svg>
+      <h3>What I did</h3>
+      <p data-draft="tldr">I designed and built a mobile web app with <span class="nm">Claude</span> that identifies an item from a barcode, photo, or description, has him confirm the match, and prices it from recent sales.</p>
+    </div>
+    <div class="tldr-item">
+      <svg aria-hidden="true"><use href="#i-trend"/></svg>
+      <h3>The outcome</h3>
+      <p>We've scanned and priced 137 items so far, and 40 of them have sold.</p>
+    </div>
+  </div>
+</section>
+<div class="methods">
+  <h2>Methods and skills</h2>
+  <ul class="chips">
+    <li class="chip">Designing in code with AI</li><li class="chip">Prompt design</li><li class="chip">Human review of AI output</li>
+    <li class="chip">Cost-aware architecture</li><li class="chip">Mobile web</li><li class="chip">Iterating from real use</li>
+  </ul>
+</div>
+
+    <div class="cs-layout">
+      <nav class="toc" aria-labelledby="toc-title">
+        <h2 id="toc-title">On this page</h2>
+        <ol>
+<li><a href="#problem">The problem</a></li>
+<li><a href="#workflow">Built entirely with AI</a></li>
+<li><a href="#how">How it works</a></li>
+<li><a href="#decisions">Key decisions</a></li>
+<li><a href="#outcome">Outcome</a></li>
+<li><a href="#reflection">Reflection</a></li>
+        </ol>
+      </nav>
+      <div class="cs-body">
+        <details class="toc-mobile">
+          <summary>On this page</summary>
+          <ol>
+<li><a href="#problem">The problem</a></li>
+<li><a href="#workflow">Built entirely with AI</a></li>
+<li><a href="#how">How it works</a></li>
+<li><a href="#decisions">Key decisions</a></li>
+<li><a href="#outcome">Outcome</a></li>
+<li><a href="#reflection">Reflection</a></li>
+          </ol>
+        </details>
+<section class="cs-section" id="problem" aria-labelledby="problem-h">
+  <div><span class="cs-num" aria-hidden="true"></span><h2 class="cs-h2" id="problem-h">A garage full of stuff and no price tags</h2></div>
+  <div class="prose" data-draft="problem copy">
+    <p>My dad was clearing out his garage: video games, Beanie Babies, DVDs, tools, records, and boxes of craft kits. A lot of it was worth something. Finding out what meant typing each item into eBay, filtering to sold listings, and guessing which results matched the thing in his hand.</p>
+    <p>He needed a phone to do three jobs: figure out what an item is, suggest a fair asking price, and keep a list we could both add to. He isn't a tech person, so every step had to be obvious.</p>
+  </div>
+</section>
+
+<section class="cs-section" id="workflow" aria-labelledby="workflow-h">
+  <div><span class="cs-num" aria-hidden="true"></span><h2 class="cs-h2" id="workflow-h">Designed and built entirely with AI</h2></div>
+  <div class="prose" data-draft="workflow copy">
+    <p>I never opened Figma for this project. I designed in the browser by describing screens and behavior to <span class="nm">Claude</span>, testing each version on my phone, and changing what didn't work. The product decisions were still mine: what to show, in what order, and what happens when the AI gets something wrong.</p>
+    <p>The first version went live in June. Almost everything after that came from watching my dad use it. The November release was built in <span class="nm">Claude Code</span>, and its commits are co-authored with <span class="nm">Claude</span>.</p>
+  </div>
+  <ol class="steps" style="--steps:4" aria-label="Project timeline">
+    <li class="step"><p class="step-when">June 2026</p><p class="step-what">First version</p><p class="step-note">Identify an item from a barcode, photo, or description, then price it with web search</p></li>
+    <li class="step"><p class="step-when">August</p><p class="step-what">Built for two people</p><p class="step-note">iPhone barcode scanning, a shared inventory, automatic collections, smaller photo uploads</p></li>
+    <li class="step"><p class="step-when">October</p><p class="step-what">Free storage</p><p class="step-note">Moved the inventory to a free database and copied every item over</p></li>
+    <li class="step"><p class="step-when">November</p><p class="step-what">Version 1.8</p><p class="step-note">Cheaper lookups, and a way to correct a match before pricing it</p></li>
+  </ol>
+</section>
+
+<section class="cs-section" id="how" aria-labelledby="how-h">
+  <div><span class="cs-num" aria-hidden="true"></span><h2 class="cs-h2" id="how-h">How it works</h2></div>
+  <div class="prose">
+    <p data-draft="how copy">Every item goes through the same three steps. These are screens from the real app running on sample items.</p>
+  </div>
+  <div class="gallery gallery--phones" style="--cols:3">
+    <figure class="figure"><div class="frame frame--phone"><img src="../assets/img/garage-appraiser/scan.webp" width="1179" height="2556" alt="The Garage Appraiser&#x27;s scan screen, with tabs for Scan barcode, Take a photo, and Type it in, a camera button, a box for typing barcode digits, and the shared inventory below" loading="lazy" decoding="async" id="img-ga-scan-107"><button class="icon-btn zoom-btn" type="button" data-lightbox="../assets/img/garage-appraiser/scan.webp" data-img="img-ga-scan-107" aria-label="View larger: The Garage Appraiser&#x27;s scan screen"><svg aria-hidden="true"><use href="#i-zoom"/></svg></button></div><figcaption><b>1. Add it.</b> Scan a barcode, take a photo, or type a description.</figcaption></figure>
+    <figure class="figure"><div class="frame frame--phone"><img src="../assets/img/garage-appraiser/identified.webp" width="1179" height="2556" alt="An item identified from its barcode as a Stitchwell Harbor Lighthouse counted cross-stitch kit, with a description, what drives its value, and three one-tap versions under Is this exactly what you have: Complete kit with fabric, Pattern only, and Factory sealed" loading="lazy" decoding="async" id="img-ga-identified-108"><button class="icon-btn zoom-btn" type="button" data-lightbox="../assets/img/garage-appraiser/identified.webp" data-img="img-ga-identified-108" aria-label="View larger: An item identified from its barcode as a Stitchwell Harbor Lighthouse counted cross-stitch kit"><svg aria-hidden="true"><use href="#i-zoom"/></svg></button></div><figcaption><b>2. Confirm it.</b> <span class="nm">Claude</span> names the item and asks if that's exactly what you have.</figcaption></figure>
+    <figure class="figure"><div class="frame frame--phone"><img src="../assets/img/garage-appraiser/estimate.webp" width="1179" height="2556" alt="An estimate with a suggested asking price of $24.00, a typical range of $18 to $31, the mean, median, and mode, buttons for eBay sold listings and Terapeak, and the comparable sales it used" loading="lazy" decoding="async" id="img-ga-estimate-109"><button class="icon-btn zoom-btn" type="button" data-lightbox="../assets/img/garage-appraiser/estimate.webp" data-img="img-ga-estimate-109" aria-label="View larger: An estimate with a suggested asking price of $24.00"><svg aria-hidden="true"><use href="#i-zoom"/></svg></button></div><figcaption><b>3. Price it.</b> An asking price from recent sales, with the sales it used.</figcaption></figure>
+  </div>
+</section>
+
+<section class="cs-section" id="decisions" aria-labelledby="decisions-h">
+  <div><span class="cs-num" aria-hidden="true"></span><h2 class="cs-h2" id="decisions-h">Key decisions</h2></div>
+  <div class="decisions">
+    <article class="decision" aria-labelledby="d1">
+      <div class="decision-head"><span class="label">Decision 1</span><h3 class="decision-title" id="d1">Treat the AI's answer as a draft he confirms</h3></div>
+      <div class="decision-grid" data-draft="decision copy">
+        <div><h4>The situation</h4><p>A kit's barcode often belongs to the pattern alone, and a photo can't tell sealed from opened. Details like these change the price a lot, and the AI can't see them.</p></div>
+        <div class="chosen"><h4>What I chose</h4><p>After naming an item, the app asks "Is this exactly what you have?" and offers up to three versions that sell for different prices. A tap, or a typed detail, runs the match again on a cheap model and treats his answer as fact.</p></div>
+        <div><h4>The trade-off</h4><p>It's one more step before a price. Because it comes before the paid search, a wrong match costs nothing to fix.</p></div>
+      </div>
+      <div class="gallery gallery--phones" style="--cols:2">
+        <figure class="figure"><div class="frame frame--phone"><img src="../assets/img/garage-appraiser/identified.webp" width="1179" height="2556" alt="An item identified from its barcode as a Stitchwell Harbor Lighthouse counted cross-stitch kit, with a description, what drives its value, and three one-tap versions under Is this exactly what you have: Complete kit with fabric, Pattern only, and Factory sealed" loading="lazy" decoding="async" id="img-ga-identified-110"><button class="icon-btn zoom-btn" type="button" data-lightbox="../assets/img/garage-appraiser/identified.webp" data-img="img-ga-identified-110" aria-label="View larger: An item identified from its barcode as a Stitchwell Harbor Lighthouse counted cross-stitch kit"><svg aria-hidden="true"><use href="#i-zoom"/></svg></button></div><figcaption><span class="tag-state">First match</span>Three versions to choose from</figcaption></figure>
+        <figure class="figure"><div class="frame frame--phone"><img src="../assets/img/garage-appraiser/clarified.webp" width="1179" height="2556" alt="After tapping Complete kit with fabric, the name changes to a complete kit with fabric and floss, and the detail shows as a checked chip" loading="lazy" decoding="async" id="img-ga-clarified-111"><button class="icon-btn zoom-btn" type="button" data-lightbox="../assets/img/garage-appraiser/clarified.webp" data-img="img-ga-clarified-111" aria-label="View larger: After tapping Complete kit with fabric"><svg aria-hidden="true"><use href="#i-zoom"/></svg></button></div><figcaption><span class="tag-state tag-state--after">Confirmed</span>Name updated to the complete kit</figcaption></figure>
+      </div>
+    </article>
+    <article class="decision" aria-labelledby="d2">
+      <div class="decision-head"><span class="label">Decision 2</span><h3 class="decision-title" id="d2">Show the math, then send him to real sales</h3></div>
+      <div class="decision-grid" data-draft="decision copy">
+        <div><h4>The situation</h4><p>AI price estimates come from web search results, and they can be off. My dad needed to trust a number enough to list an item at it.</p></div>
+        <div class="chosen"><h4>What I chose</h4><p>The app suggests the median as the asking price, shows the mean, median, and mode with plain labels, and lists every sale it used. One tap opens eBay's sold listings or Terapeak for the same search.</p></div>
+        <div><h4>The trade-off</h4><p>The estimate screen holds more than a single number. It also tells him when a price is worth double-checking.</p></div>
+      </div>
+    </article>
+    <article class="decision" aria-labelledby="d3">
+      <div class="decision-head"><span class="label">Decision 3</span><h3 class="decision-title" id="d3">Spend money only where it changes the answer</h3></div>
+      <div class="decision-grid" data-draft="decision copy">
+        <div><h4>The situation</h4><p>Web searches are the expensive part of every lookup, and the bill grew with every item we scanned.</p></div>
+        <div class="chosen"><h4>What I chose</h4><p>Barcodes go to free databases first. A small, cheap model names the item. The larger model with web search only runs when he taps Look up prices, with a cap of two searches. He can also skip it, check eBay himself, and save his own price.</p></div>
+        <div><h4>The trade-off</h4><p>Prices take one extra tap now, and plenty of items never need one.</p></div>
+      </div>
+    </article>
+    <article class="decision" aria-labelledby="d4">
+      <div class="decision-head"><span class="label">Decision 4</span><h3 class="decision-title" id="d4">Share by link instead of accounts</h3></div>
+      <div class="decision-grid" data-draft="decision copy">
+        <div><h4>The situation</h4><p>We both wanted to add to the same list from our own phones, and my dad wasn't going to make an account.</p></div>
+        <div class="chosen"><h4>What I chose</h4><p>Each inventory lives at a link with a short code. Everyone on that link sees the same list, sets a name once, and every item shows who added it. Items sort into collections on their own, each with a running total.</p></div>
+        <div><h4>The trade-off</h4><p>Anyone with the link can edit the list. Early on, opening the plain site address started a separate list, so I added a Join box and clearer instructions on the screen.</p></div>
+      </div>
+      <div class="gallery gallery--phones" style="--cols:2">
+        <figure class="figure"><div class="frame frame--phone"><img src="../assets/img/garage-appraiser/inventory.webp" width="1179" height="2556" alt="The shared inventory with 10 items in 7 collections, a share link, a CSV download, the collection code, an Adding as name field, and a count of items added by Fox and by Dad" loading="lazy" decoding="async" id="img-ga-inventory-112"><button class="icon-btn zoom-btn" type="button" data-lightbox="../assets/img/garage-appraiser/inventory.webp" data-img="img-ga-inventory-112" aria-label="View larger: The shared inventory with 10 items in 7 collections"><svg aria-hidden="true"><use href="#i-zoom"/></svg></button></div><figcaption><b>Shared inventory</b> with who added what</figcaption></figure>
+        <figure class="figure"><div class="frame frame--phone"><img src="../assets/img/garage-appraiser/inventory-list.webp" width="1179" height="2556" alt="Inventory items grouped into collections such as Craft Kits, DVD and Blu-ray, Housewares, and Music and Vinyl, each with a running total and a Move to menu on every item" loading="lazy" decoding="async" id="img-ga-inventory-list-113"><button class="icon-btn zoom-btn" type="button" data-lightbox="../assets/img/garage-appraiser/inventory-list.webp" data-img="img-ga-inventory-list-113" aria-label="View larger: Inventory items grouped into collections such as Craft Kits"><svg aria-hidden="true"><use href="#i-zoom"/></svg></button></div><figcaption><b>Collections</b> with running totals</figcaption></figure>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="cs-section" id="outcome" aria-labelledby="outcome-h">
+  <div><span class="cs-num" aria-hidden="true"></span><h2 class="cs-h2" id="outcome-h">Outcome</h2></div>
+  <ul class="metrics" role="list">
+    <li class="metric"><span class="metric-value">137</span><span class="metric-label">items scanned and priced so far</span></li>
+    <li class="metric"><span class="metric-value">40</span><span class="metric-label">items sold</span></li>
+    <li class="metric"><span class="metric-value">2 <small>searches</small></span><span class="metric-label">at most per price lookup, down from 4</span></li>
+  </ul>
+  <div class="prose"><p data-draft="outcome copy">The cleanout is still going, and we're both still adding to the same inventory.</p></div>
+</section>
+
+<section class="cs-section" id="reflection" aria-labelledby="reflection-h">
+  <div><span class="cs-num" aria-hidden="true"></span><h2 class="cs-h2" id="reflection-h">Reflection</h2></div>
+  <div class="reflect" data-draft="reflection copy">
+    <div class="reflect-card">
+      <h3><svg aria-hidden="true"><use href="#i-check"/></svg>What worked</h3>
+      <p>Building straight in code meant my dad was using real screens within days instead of reviewing mockups. His feedback could go into the next version the same day. iPhone scanning, the shared inventory, and collections all shipped in one day in August.</p>
+    </div>
+    <div class="reflect-card">
+      <h3><svg aria-hidden="true"><use href="#i-rotate"/></svg>What I'd do differently</h3>
+      <p>I'd plan for cost and sharing from the start. The first version sent every lookup down the most expensive path, and the shared inventory needed a fix once two people were really using it. Both were easy to change in code, but they were product decisions, and I made them late.</p>
+    </div>
+  </div>
+</section>
+      </div>
+    </div>
+
+    <div class="next-project">
+      <div>
+        <p class="label">Next case study</p>
+        <h2><a href="../supplier-transfer/index.html">Helping <span class="nm">Parachute Health</span> suppliers hand off orders they can't fill</a></h2>
+      </div>
+      <span class="next-arrow" aria-hidden="true"><svg><use href="#i-arrow-right"/></svg></span>
+    </div>
+  </div>
+</article>
+<section class="section" id="contact" aria-labelledby="contact-title">
+  <div class="wrap">
+    <div class="contact">
+      <h2 class="contact-title" id="contact-title">Let's talk</h2>
+      <p data-draft="contact copy">I'm looking for Lead and Senior product design roles in Chicago or remote, especially on consumer mobile apps and design systems. Email is the fastest way to reach me.</p>
+      <div class="contact-actions">
+        <a class="btn btn-primary" href="mailto:designedbyfox@proton.me"><svg aria-hidden="true"><use href="#i-mail"/></svg>Email designedbyfox@proton.me</a>
+        <button class="btn btn-ghost" type="button" data-copy="designedbyfox@proton.me" aria-describedby="copy-status"><svg aria-hidden="true"><use href="#i-copy"/></svg>Copy email</button>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/acharius" target="_blank" rel="noopener">LinkedIn<svg aria-hidden="true"><use href="#i-external"/></svg><span class="visually-hidden">(opens in a new tab)</span></a>
+      </div>
+      <p class="copy-status" id="copy-status" role="status"></p>
+    </div>
+  </div>
+</section></main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <p class="footer-name"><span class="nm">Acharius Fox</span></p>
+        <p>Lead Product Designer in Chicago</p>
+        <p>Designed by Fox with <span class="nm">Claude Code</span></p>
+      </div>
+      <div>
+        <h2>Site</h2>
+        <ul>
+          <li><a href="../index.html#work">Work</a></li>
+          <li><a href="../about/index.html">About</a></li>
+          <li><a href="../art/index.html">Art</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Connect</h2>
+        <ul>
+          <li><a href="mailto:designedbyfox@proton.me">Email</a></li>
+          <li><a href="https://www.linkedin.com/in/acharius" target="_blank" rel="noopener">LinkedIn<svg aria-hidden="true"><use href="#i-external"/></svg><span class="visually-hidden">(opens in a new tab)</span></a></li>
+          <li><a href="../assets/AchariusFox_Resume.pdf">Resume (PDF)</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="footer-legal">© 2026 Acharius Fox</p>
+  </div>
+</footer>
+
+<dialog class="lightbox" id="lightbox" aria-labelledby="lightbox-caption">
+  <div class="lightbox-bar">
+    <p id="lightbox-caption" data-lightbox-caption></p>
+    <a class="btn btn-ghost btn-sm" href="#" data-lightbox-full target="_blank" rel="noopener">Open full size<span class="visually-hidden">(opens in a new tab)</span></a>
+    <button class="icon-btn" type="button" data-close aria-label="Close image">
+      <svg aria-hidden="true"><use href="#i-close"/></svg>
+    </button>
+  </div>
+  <div class="lightbox-body"><img alt=""></div>
+</dialog>
+</body>
+</html>
