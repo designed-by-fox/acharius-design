@@ -704,5 +704,59 @@
     "urls": [
       "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6ab9ddfda6e9cc715274f581_lost_15.png"
     ]
+  },
+  "st-flow-0@full": {
+    "path": "assets/img/supplier-transfer/flow-current-full.jpg",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/643fedf49503495fda2dba51_Supplier%20Transfer.jpeg"
+    ]
+  },
+  "st-flow-1@full": {
+    "path": "assets/img/supplier-transfer/flow-mvp-1-full.jpg",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/643fee0f30b46604de581e22_Supplier%20Transfer%20(2).jpeg"
+    ]
+  },
+  "st-flow-2@full": {
+    "path": "assets/img/supplier-transfer/flow-mvp-2-full.jpg",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/643fee193c316a61caacdcf0_Supplier%20Transfer%20(3).jpeg"
+    ]
+  },
+  "itp-timeline@full": {
+    "path": "assets/img/identity-theft-protection/timeline-full.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642b77fec1ed2249cb7ea07f_Frame%201.png"
+    ]
+  },
+  "pr-audit@full": {
+    "path": "assets/img/patient-rounding/ui-audit-full.png",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/6436a7c3a43c9f58417da852_Artboard%20%E2%80%93%201.png"
+    ]
+  },
+  "pr-journey@full": {
+    "path": "assets/img/patient-rounding/journey-map-full.jpg",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642b9a4a95612b5e1c87bf30_Customer%20Journey%20Map.jpg"
+    ]
+  },
+  "pr-blueprint@full": {
+    "path": "assets/img/patient-rounding/service-blueprint-full.jpg",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642c191a36f34d3226ba8f49_Detailed%20Service%20Blueprint.jpg"
+    ]
+  },
+  "pr-flow@full": {
+    "path": "assets/img/patient-rounding/old-and-new-flow-full.jpg",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642c19725764a38463f027fd_Old%20%2B%20New%20Flowchart%20(1).jpg"
+    ]
+  },
+  "pr-insights@full": {
+    "path": "assets/img/patient-rounding/key-insights-full.jpg",
+    "urls": [
+      "https://cdn.prod.website-files.com/6422638f3a9a322ac607f3a8/642c18cea0d871093c5f6f13_Key%20Insights.jpg"
+    ]
   }
 }

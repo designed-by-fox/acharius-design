@@ -220,6 +220,8 @@
       var source = trigger.querySelector("img") || document.getElementById(trigger.getAttribute("data-img"));
       lastTrigger = trigger;
       dImg.src = src;
+      var full = dialog.querySelector("[data-lightbox-full]");
+      if (full) full.href = src;
       dImg.alt = source ? source.alt : "";
       dCap.textContent = trigger.getAttribute("data-caption") || (source ? source.alt : "");
       dialog.showModal();
