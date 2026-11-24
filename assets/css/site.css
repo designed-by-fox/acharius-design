@@ -674,7 +674,7 @@ main:focus { outline: none; }
   gap: var(--s-4);
   padding: clamp(1.5rem, 3vw, 2.5rem);
 }
-.project-top { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: var(--s-3) var(--s-4); }
+.project-top { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-2); }
 .project-title { min-width: 0; overflow-wrap: break-word; }
 .project-title { font-size: var(--fs-xl); line-height: 1.18; max-width: 22ch; }
 .project--wide .project-title { font-size: var(--fs-2xl); }
@@ -1510,3 +1510,7 @@ main:focus { outline: none; }
   .site-header, .modes, .toc, .toc-mobile, .site-footer, .next-project, .demo-frame { display: none !important; }
   body { background: #fff; color: #000; }
 }
+
+/* Process page (placeholder list until the page is written) */
+.process-links { display: grid; gap: var(--s-3); margin: var(--s-5) 0 0; padding: 0; list-style: none; }
+.process-links a { font-size: var(--fs-lg); }

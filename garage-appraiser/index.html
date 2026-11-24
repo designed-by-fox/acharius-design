@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Garage Appraiser, an AI app built with Claude | Acharius Fox</title>
-<meta name="description" content="Acharius Fox designed and built The Garage Appraiser entirely with Claude and Claude Code: a mobile web app that identifies items from a barcode, photo, or description, asks the owner to confirm the match, and prices them from recent sales. 137 items priced, 40 sold.">
+<meta name="description" content="Acharius Fox designed and built The Garage Appraiser entirely with Claude and Claude Code: a web app that identifies items from a barcode, photo, or description, asks the owner to confirm the match, and prices them from recent sales. 137 items priced so far.">
 <link rel="canonical" href="https://www.acharius.design/garage-appraiser/">
 <meta name="theme-color" content="#15120f" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#fbf8f5" media="(prefers-color-scheme: light)">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Acharius Fox">
 <meta property="og:title" content="Building an AI appraiser for my dad&#39;s garage cleanout">
-<meta property="og:description" content="Acharius Fox designed and built The Garage Appraiser entirely with Claude and Claude Code: a mobile web app that identifies items from a barcode, photo, or description, asks the owner to confirm the match, and prices them from recent sales. 137 items priced, 40 sold.">
+<meta property="og:description" content="Acharius Fox designed and built The Garage Appraiser entirely with Claude and Claude Code: a web app that identifies items from a barcode, photo, or description, asks the owner to confirm the match, and prices them from recent sales. 137 items priced so far.">
 <meta property="og:url" content="https://www.acharius.design/garage-appraiser/">
 <meta property="og:image" content="https://www.acharius.design/assets/img/garage-appraiser/cover.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -76,6 +76,7 @@
     <nav class="site-nav" id="site-nav" aria-label="Main">
       <ul class="nav-list">
         <li><a href="../index.html#work" aria-current="page">Work</a></li>
+        <li><a href="../process/index.html">Process</a></li>
         <li><a href="../about/index.html">About</a></li>
         <li><a href="../art/index.html">Art</a></li>
         <li class="nav-contact"><a href="../index.html#contact">Contact</a></li>
@@ -99,7 +100,7 @@
   <header class="wrap cs-hero">
     <a class="cs-back" href="../index.html#work"><svg aria-hidden="true"><use href="#i-arrow-left"/></svg>All work</a>
     <ul class="chips" aria-label="Focus areas">
-<li class="chip chip--accent">AI product</li><li class="chip chip--accent">Mobile web app</li><li class="chip chip--accent">Built with Claude Code</li>    </ul>
+<li class="chip chip--accent">AI product</li><li class="chip chip--accent">Web app</li><li class="chip chip--accent">Built with Claude Code</li>    </ul>
     <h1 class="cs-title"><span data-draft="case study title">Building an AI appraiser for my dad's garage cleanout</span></h1>
     <p class="cs-sub"><span data-draft="case study subtitle">I designed and built <span class="nm">The Garage Appraiser</span> entirely with <span class="nm">Claude</span>. Scan, snap, or type an item, confirm it's the right match, and get a price from recent sales.</span></p>
 <p class="cs-note"><svg aria-hidden="true"><use href="#i-lock"/></svg><span>There's no public link to the app. Every lookup is billed to my own Anthropic API key, so the screens on this page come from the real app running on sample items.</span></p>
@@ -116,7 +117,7 @@
   <div><dt>My role</dt><dd>Designer and developer</dd><dd>Solo project</dd></div>
   <div><dt>Timeline</dt><dd>June to November 2026</dd><dd>Still in use</dd></div>
   <div><dt>Built with</dt><dd><span class="nm">Claude</span> and <span class="nm">Claude Code</span></dd><dd>No Figma</dd></div>
-  <div><dt>Platform</dt><dd>Mobile web app for iPhone and Android</dd><dd>Private, no public link</dd></div>
+  <div><dt>Platform</dt><dd>Web app, used on phones</dd><dd>Private, no public link</dd></div>
 </dl>
 <section class="tldr" aria-labelledby="tldr-title">
   <h2 class="tldr-head" id="tldr-title">The short version</h2>
@@ -129,12 +130,12 @@
     <div class="tldr-item">
       <svg aria-hidden="true"><use href="#i-pen"/></svg>
       <h3>What I did</h3>
-      <p data-draft="tldr">I designed and built a mobile web app with <span class="nm">Claude</span> that identifies an item from a barcode, photo, or description, has him confirm the match, and prices it from recent sales.</p>
+      <p data-draft="tldr">I designed and built a web app with <span class="nm">Claude</span> that identifies an item from a barcode, photo, or description, has him confirm the match, and prices it from recent sales.</p>
     </div>
     <div class="tldr-item">
       <svg aria-hidden="true"><use href="#i-trend"/></svg>
       <h3>The outcome</h3>
-      <p>We've scanned and priced 137 items so far, and 40 of them have sold.</p>
+      <p>We've scanned and priced 137 items so far.</p>
     </div>
   </div>
 </section>
@@ -142,7 +143,7 @@
   <h2>Methods and skills</h2>
   <ul class="chips">
     <li class="chip">Designing in code with AI</li><li class="chip">Prompt design</li><li class="chip">Human review of AI output</li>
-    <li class="chip">Cost-aware architecture</li><li class="chip">Mobile web</li><li class="chip">Iterating from real use</li>
+    <li class="chip">Cost-aware architecture</li><li class="chip">Web app</li><li class="chip">Iterating from real use</li>
   </ul>
 </div>
 
@@ -254,7 +255,6 @@
   <div><span class="cs-num" aria-hidden="true"></span><h2 class="cs-h2" id="outcome-h">Outcome</h2></div>
   <ul class="metrics" role="list">
     <li class="metric"><span class="metric-value">137</span><span class="metric-label">items scanned and priced so far</span></li>
-    <li class="metric"><span class="metric-value">40</span><span class="metric-label">items sold</span></li>
     <li class="metric"><span class="metric-value">2 <small>searches</small></span><span class="metric-label">at most per price lookup, down from 4</span></li>
   </ul>
   <div class="prose"><p data-draft="outcome copy">The cleanout is still going, and we're both still adding to the same inventory.</p></div>
@@ -312,6 +312,7 @@
         <h2>Site</h2>
         <ul>
           <li><a href="../index.html#work">Work</a></li>
+          <li><a href="../process/index.html">Process</a></li>
           <li><a href="../about/index.html">About</a></li>
           <li><a href="../art/index.html">Art</a></li>
         </ul>

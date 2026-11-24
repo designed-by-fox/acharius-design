@@ -3,16 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Hero options (preview)</title>
-<meta name="description" content="Bento hero options for the home page, for review.">
-<link rel="canonical" href="https://www.acharius.design/hero-options/">
+<title>Design process | Acharius Fox</title>
+<meta name="description" content="How Acharius Fox approaches product design, from research to shipped design systems.">
+<link rel="canonical" href="https://www.acharius.design/process/">
 <meta name="theme-color" content="#15120f" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#fbf8f5" media="(prefers-color-scheme: light)">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Acharius Fox">
-<meta property="og:title" content="Hero options (preview)">
-<meta property="og:description" content="Bento hero options for the home page, for review.">
-<meta property="og:url" content="https://www.acharius.design/hero-options/">
+<meta property="og:title" content="Design process | Acharius Fox">
+<meta property="og:description" content="How Acharius Fox approaches product design, from research to shipped design systems.">
+<meta property="og:url" content="https://www.acharius.design/process/">
 <meta property="og:image" content="https://www.acharius.design/assets/img/og-card.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
@@ -32,20 +32,6 @@
 </script>
 <script src="../assets/js/site.js" defer></script>
 <meta name="robots" content="noindex">
-<link rel="stylesheet" href="../assets/css/hero-options.css">
-<style>
-.picks { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(1rem, 2.5vw, 2rem); margin-top: var(--s-7); padding: 0; list-style: none; }
-.pick { position: relative; display: grid; gap: var(--s-3); padding: var(--s-4); border-radius: var(--r-card); border: 1px solid var(--border); background: var(--surface); }
-.pick:hover { border-color: var(--border-strong); }
-.pick img { display: block; width: 100%; height: auto; border-radius: calc(var(--r-card) - 10px); border: 1px solid var(--border); }
-.pick h2 { font-size: var(--fs-xl); margin-top: var(--s-2); }
-.pick h2 a { text-decoration: none; }
-.pick h2 a::after { content: ""; position: absolute; inset: 0; border-radius: var(--r-card); }
-.pick h2 a:focus-visible { outline: none; }
-.pick:has(a:focus-visible) { outline: 3px solid var(--focus); outline-offset: 4px; }
-.pick p { color: var(--text-muted); max-width: 52ch; }
-@media (max-width: 760px) { .picks { grid-template-columns: 1fr; } }
-</style>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
@@ -91,6 +77,7 @@
     <nav class="site-nav" id="site-nav" aria-label="Main">
       <ul class="nav-list">
         <li><a href="../index.html#work">Work</a></li>
+        <li><a href="../process/index.html" aria-current="page">Process</a></li>
         <li><a href="../about/index.html">About</a></li>
         <li><a href="../art/index.html">Art</a></li>
         <li class="nav-contact"><a href="../index.html#contact">Contact</a></li>
@@ -110,46 +97,22 @@
 </header>
 
 <main id="main" tabindex="-1">
-<section class="section">
-  <div class="wrap">
-    <div class="section-head">
-      <h1 class="section-title">Hero options</h1>
-      <p class="section-lede">The live hero, and the bento layout with five different tall tiles. Each preview is the full home page, and everything below the hero stays the same. Use the bar at the bottom of a preview to flip between them.</p>
-    </div>
-    <ol class="picks">
-      <li class="pick">
-        <img src="../assets/img/hero/option-current.webp" width="1200" height="750" alt="" loading="lazy">
-        <h2><a href="../index.html">Current hero (live)</a></h2>
-        <p>The headline as a type specimen, with the Modes panel and its live contrast readout beside it.</p>
-      </li>
-      <li class="pick">
-        <img src="../assets/img/hero/option-bento-modes.webp" width="1200" height="750" alt="" loading="lazy">
-        <h2><a href="../hero-options/bento-modes/index.html">Bento with Modes</a></h2>
-        <p>The tall tile becomes the Modes panel: theme, text size, and motion switches with the live contrast readout, so it keeps the idea from the current hero.</p>
-      </li>
-      <li class="pick">
-        <img src="../assets/img/hero/option-bento-career.webp" width="1200" height="750" alt="" loading="lazy">
-        <h2><a href="../hero-options/bento-career/index.html">Bento with career</a></h2>
-        <p>The tall tile lists where you&#39;ve worked, newest first, with a link to your resume.</p>
-      </li>
-      <li class="pick">
-        <img src="../assets/img/hero/option-bento-quote.webp" width="1200" height="750" alt="" loading="lazy">
-        <h2><a href="../hero-options/bento-quote/index.html">Bento with feedback</a></h2>
-        <p>The tall tile is a coworker quote about your empathy and the way you run meetings, with a link to the rest of the feedback on your About page.</p>
-      </li>
-      <li class="pick">
-        <img src="../assets/img/hero/option-bento-portrait.webp" width="1200" height="750" alt="" loading="lazy">
-        <h2><a href="../hero-options/bento-portrait/index.html">Bento with a big portrait</a></h2>
-        <p>Your photo takes the tall tile, and a small tile has the theme and text size switches.</p>
-      </li>
-      <li class="pick">
-        <img src="../assets/img/hero/option-h.webp" width="1200" height="750" alt="" loading="lazy">
-        <h2><a href="../hero-options/h/index.html">Bento with Master Tour (first version)</a></h2>
-        <p>The version you saw before, with the live Master Tour Dashboard in a phone. Kept for comparison.</p>
-      </li>
-    </ol>
-  </div>
-</section>
+<div class="wrap">
+  <header class="cs-hero" style="text-align:left">
+    <h1 class="cs-title" style="margin-inline:0">My design process</h1>
+    <p class="cs-sub" style="margin-inline:0" data-draft="process placeholder">I'm writing this page now. Until it's up, each case study walks through the process behind that project.</p>
+  </header>
+  <section class="section" aria-labelledby="cs-list" style="padding-top:var(--s-5)">
+    <h2 class="section-title" id="cs-list">Case studies</h2>
+    <ul class="process-links">
+      <li><a href="../live-event-platform/index.html">Rebuilding the <span class="nm">Master Tour</span> app for 60,000 people on tour</a></li>
+      <li><a href="../garage-appraiser/index.html">Building an AI appraiser for my dad's garage cleanout</a></li>
+      <li><a href="../supplier-transfer/index.html">Helping <span class="nm">Parachute Health</span> suppliers hand off orders they can't fill</a></li>
+      <li><a href="../identity-theft-protection/index.html">Opening <span class="nm">Discover</span> Identity Theft Protection to non-cardholders</a></li>
+      <li><a href="../patient-rounding/index.html">Modernizing <span class="nm">Press Ganey</span>'s iRound for hospital rounding</a></li>
+    </ul>
+  </section>
+</div>
 </main>
 
 <footer class="site-footer">
@@ -164,6 +127,7 @@
         <h2>Site</h2>
         <ul>
           <li><a href="../index.html#work">Work</a></li>
+          <li><a href="../process/index.html">Process</a></li>
           <li><a href="../about/index.html">About</a></li>
           <li><a href="../art/index.html">Art</a></li>
         </ul>

@@ -17,6 +17,7 @@ Plain HTML, CSS, and a small amount of vanilla JavaScript. No framework, no buil
 
 ```
 index.html                           Home: hero, selected work, how I work, experience, contact
+process/                             My design process
 about/                               About, coworker feedback, personal, education
 art/                                 Photography and glitch art
 live-event-platform/                 Case study: Master Tour mobile redesign and design system
@@ -24,7 +25,6 @@ garage-appraiser/                    Case study: The Garage Appraiser, an AI app
 supplier-transfer/                   Case study: Supplier Transfer at Parachute Health
 identity-theft-protection/           Case study: Discover Identity Theft Protection
 patient-rounding/                    Case study: Press Ganey iRound
-hero-options/                        Hero previews for review (noindex, not linked)
 itp/                                 Short link that redirects to identity-theft-protection/
 demos/master-tour-dashboard.html     Interactive Dashboard demo, embedded in its case study
 404.html                             Not found page
