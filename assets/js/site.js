@@ -16,8 +16,7 @@
     root.setAttribute("data-" + name, value);
     if (persist !== false) store(KEYS[name], value);
     syncControls();
-    updateReadout();
-    setTimeout(updateReadout, 380); /* again once the color transition settles */
+    scheduleReadout();
     broadcast();
   }
 
@@ -91,11 +90,23 @@
     set("body", rBody.toFixed(1) + ":1 " + grade(rBody, false));
     if (rAccent) set("accent", rAccent.toFixed(1) + ":1 " + grade(rAccent, true));
     set("size", Math.round(size) + "px");
-    var redType = document.querySelector("[data-redline-type]");
-    if (redType) {
-      var ts = getComputedStyle(title);
-      redType.textContent = "Instrument Sans " + ts.fontWeight + " / " + Math.round(parseFloat(ts.fontSize)) + "px, " + rTitle.toFixed(1) + ":1";
-    }
+  }
+
+  /* Colors animate between themes, so a ratio read mid-transition is wrong
+     (it can briefly read as a fail). Show a checking state and measure once
+     the last change has settled. */
+  var readoutTimer;
+  function scheduleReadout() {
+    var out = document.querySelector("[data-readout]");
+    if (!out) return;
+    out.classList.add("is-checking");
+    out.setAttribute("aria-busy", "true");
+    clearTimeout(readoutTimer);
+    readoutTimer = setTimeout(function () {
+      updateReadout();
+      out.classList.remove("is-checking");
+      out.setAttribute("aria-busy", "false");
+    }, 450);
   }
 
   /* Let embedded demos follow the site's modes */
