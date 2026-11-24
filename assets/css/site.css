@@ -552,6 +552,8 @@ main:focus { outline: none; }
 .modes-title { font-size: var(--fs-md); font-weight: 600; letter-spacing: 0; }
 .modes-note { color: var(--text-muted); font-size: var(--fs-sm); line-height: 1.45; }
 .modes summary { display: none; }
+/* <details> doesn't apply grid gap to its contents in every browser, so space the controls from the divider directly */
+@media (min-width: 761px) { .modes-head { margin-bottom: var(--s-4); } }
 .modes-body { display: grid; gap: var(--s-4); }
 .seg-field {
   display: grid;
