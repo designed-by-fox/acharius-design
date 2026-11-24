@@ -464,6 +464,7 @@ main:focus { outline: none; }
   font-weight: 500;
 }
 .status-dot {
+  flex: none;
   width: 9px; height: 9px;
   border-radius: 50%;
   background: var(--accent);

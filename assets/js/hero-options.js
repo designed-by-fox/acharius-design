@@ -111,3 +111,22 @@
     t += 1450;
   });
 })();
+
+/* ---------- I. Stained glass: the light behind the glass follows the pointer ---------- */
+(function () {
+  "use strict";
+  if (!document.querySelector("[data-glass]")) return;
+  var root = document.documentElement;
+  var mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+  var frame = 0, x = 0, y = 0;
+  function allowed() { return root.getAttribute("data-motion") !== "reduced" && !mq.matches && window.matchMedia("(hover: hover)").matches; }
+  window.addEventListener("pointermove", function (e) {
+    if (e.pointerType === "touch" || !allowed()) return;
+    x = e.clientX; y = e.clientY;
+    if (!frame) frame = requestAnimationFrame(function () {
+      frame = 0;
+      root.style.setProperty("--lx", x + "px");
+      root.style.setProperty("--ly", y + "px");
+    });
+  }, { passive: true });
+})();
