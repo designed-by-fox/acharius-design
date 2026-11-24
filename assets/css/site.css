@@ -1514,3 +1514,5 @@ main:focus { outline: none; }
 /* Process page (placeholder list until the page is written) */
 .process-links { display: grid; gap: var(--s-3); margin: var(--s-5) 0 0; padding: 0; list-style: none; }
 .process-links a { font-size: var(--fs-lg); }
+
+.cs-cover:empty { display: none; }

@@ -21,6 +21,7 @@ process/                             My design process
 about/                               About, coworker feedback, personal, education
 art/                                 Photography and glitch art
 live-event-platform/                 Case study: Master Tour mobile redesign and design system
+master-tour-ecosystem/               More from Eventric: Master Tour Venue, logo, and website
 garage-appraiser/                    Case study: The Garage Appraiser, an AI app built with Claude Code
 supplier-transfer/                   Case study: Supplier Transfer at Parachute Health
 identity-theft-protection/           Case study: Discover Identity Theft Protection
