@@ -1,4 +1,6 @@
 # Publishes the site to GitHub Pages on every push to main.
+# Build and deploy are separate jobs (GitHub's recommended setup), so the
+# uploaded artifact is fully registered before the deploy job looks for it.
 name: Deploy site
 on:
   push:
@@ -12,16 +14,23 @@ concurrency:
   group: pages
   cancel-in-progress: false
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      # The site zip and README live in the repo for download, not on the site
+      - name: Stage the site
+        run: rsync -a --exclude '.git' --exclude '.github' --exclude 'acharius-design.zip' --exclude 'README.md' ./ _site/
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
   deploy:
+    needs: build
     runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: .
       - id: deployment
         uses: actions/deploy-pages@v4
