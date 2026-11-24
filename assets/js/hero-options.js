@@ -112,21 +112,94 @@
   });
 })();
 
-/* ---------- I. Stained glass: the light behind the glass follows the pointer ---------- */
+/* ---------- Fox options (J to M) ---------- */
 (function () {
   "use strict";
-  if (!document.querySelector("[data-glass]")) return;
   var root = document.documentElement;
   var mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-  var frame = 0, x = 0, y = 0;
-  function allowed() { return root.getAttribute("data-motion") !== "reduced" && !mq.matches && window.matchMedia("(hover: hover)").matches; }
-  window.addEventListener("pointermove", function (e) {
-    if (e.pointerType === "touch" || !allowed()) return;
-    x = e.clientX; y = e.clientY;
-    if (!frame) frame = requestAnimationFrame(function () {
-      frame = 0;
-      root.style.setProperty("--lx", x + "px");
-      root.style.setProperty("--ly", y + "px");
+  function calm() { return root.getAttribute("data-motion") === "reduced" || mq.matches; }
+  function say(el, text, ms) {
+    if (!el) return;
+    el.textContent = text;
+    el.classList.add("is-on");
+    clearTimeout(el._t);
+    el._t = setTimeout(function () { el.classList.remove("is-on"); }, ms || 2600);
+  }
+
+  /* Eyes follow the pointer (decorative, off when motion is reduced) */
+  var lookers = Array.prototype.slice.call(document.querySelectorAll(".fox-follow"));
+  var frame = 0, px = 0, py = 0;
+  function look() {
+    frame = 0;
+    lookers.forEach(function (svg) {
+      var r = svg.getBoundingClientRect();
+      if (!r.width) return;
+      var ex = r.left + r.width * 0.5, ey = r.top + r.width * 0.53;
+      var dx = px - ex, dy = py - ey, d = Math.sqrt(dx * dx + dy * dy) || 1;
+      var m = Math.min(1, d / 260) * 4.5;
+      svg.style.setProperty("--ex", (dx / d * m).toFixed(2) + "px");
+      svg.style.setProperty("--ey", (dy / d * m * 0.8).toFixed(2) + "px");
     });
-  }, { passive: true });
+  }
+  if (lookers.length) {
+    window.addEventListener("pointermove", function (e) {
+      if (calm() || e.pointerType === "touch") return;
+      px = e.clientX; py = e.clientY;
+      if (!frame) frame = requestAnimationFrame(look);
+    }, { passive: true });
+  }
+
+  /* J. Peekaboo */
+  var spot = document.querySelector(".peek-spot");
+  if (spot) {
+    var btn = spot.querySelector("[data-peek]");
+    var bubble = spot.querySelector("[data-peek-says]");
+    var lines = ["Oh, hi!", "The case studies are just below.", "I'm the fox in Acharius Fox.", "Thanks for stopping by."];
+    var n = 0, upTimer;
+    setTimeout(function () { spot.classList.add("is-peeking"); }, calm() ? 0 : 900);
+    btn.addEventListener("click", function () {
+      spot.classList.add("is-up");
+      say(bubble, lines[n++ % lines.length], 2800);
+      clearTimeout(upTimer);
+      upTimer = setTimeout(function () { spot.classList.remove("is-up"); }, 2800);
+    });
+    window.addEventListener("pointermove", function (e) {
+      if (e.pointerType === "touch") return;
+      var r = btn.getBoundingClientRect();
+      var dx = e.clientX - (r.left + r.width / 2), dy = e.clientY - (r.top + r.height / 2);
+      spot.classList.toggle("is-curious", Math.sqrt(dx * dx + dy * dy) < 240);
+    }, { passive: true });
+  }
+
+  /* K. Nap: wakes on hover or tap, dozes off again after you leave */
+  var nap = document.querySelector("[data-nap]");
+  if (nap) {
+    var sleepTimer;
+    function wake() { clearTimeout(sleepTimer); nap.classList.add("is-awake"); }
+    function doze(ms) { clearTimeout(sleepTimer); sleepTimer = setTimeout(function () { nap.classList.remove("is-awake"); }, ms); }
+    nap.addEventListener("pointerenter", function (e) { if (e.pointerType !== "touch") wake(); });
+    nap.addEventListener("pointerleave", function (e) { if (e.pointerType !== "touch") doze(1400); });
+    nap.addEventListener("click", function () { wake(); doze(3000); });
+  }
+
+  /* L. Mode buddy: says something when a mode changes */
+  var buddy = document.querySelector("[data-fox-says]");
+  if (buddy) {
+    var last = {
+      theme: root.getAttribute("data-theme"),
+      text: root.getAttribute("data-text"),
+      motion: root.getAttribute("data-motion")
+    };
+    var quips = {
+      theme: { light: "Sunglasses on.", dark: "Ahh, back to the dark." },
+      text: { large: "Ooh, easier to read.", "default": "Back to regular size." },
+      motion: { reduced: "Taking it slow.", on: "Wide awake again." }
+    };
+    new MutationObserver(function () {
+      ["theme", "text", "motion"].forEach(function (k) {
+        var v = root.getAttribute("data-" + k);
+        if (v !== last[k]) { last[k] = v; if (quips[k][v]) say(buddy, quips[k][v], 2400); }
+      });
+    }).observe(root, { attributes: true, attributeFilter: ["data-theme", "data-text", "data-motion"] });
+  }
 })();
